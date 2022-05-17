@@ -30,10 +30,10 @@
 ---
 categories:
   # - ai-ml
-  # - performance-and-workflow
-  - scientific-software
+  - performance-and-workflow
+  # - scientific-software
   # - simulation
-  # - tools
+    - tools
   # - visualization
 
 themes:
@@ -137,16 +137,16 @@ themes:
   #     - Conformance testing
   #     - Cyber-physical systems
   #         - Smart cities
-  #     - Cybersecurity
-  #         - Configuration and vulnerability management
+        - Cybersecurity
+            - Configuration and vulnerability management
   #         - Cryptography
   #         - Cybersecurity Education and Workforce Development
-  #         - Risk management
-  #     - Data and informatics
+            - Risk management
+        - Data and informatics
   #         - Human language technology
-  #         - Information retrieval
+            - Information retrieval
   #         - Natural language processing
-  #     - Data entry
+        - Data entry
   #     - Federal information standards (FIPS)
   #     - Health IT
   #     - Identity and access management
@@ -167,8 +167,8 @@ themes:
   #         - Software assurance
   #         - Software performance
   #         - Software testing
-  #     - Usability and human factors
-  #         - Accessibility
+        - Usability and human factors
+            - Accessibility
   #     - Video analytics
   #     - Visualization research
   #     - Voting systems
@@ -300,12 +300,12 @@ themes:
   #     - Resilient materials
   #     - Windstorm impact reduction
   #
-  # - Standards
+    - Standards
   #     - Accreditation
   #     - Calibration Services
   #     - Conformity assessment
-  #     - Documentary standards
-  #     - Frameworks
+        - Documentary standards
+        - Frameworks
   #     - Reference data
   #     - Reference instruments
   #     - Reference materials
