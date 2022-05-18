@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xsl" href="list-projects.xsl"?>
+<projects>
+    <project entry="directory.xml">
+        <name>Reflection</name>
+        <line>Pointing back to this portal.</line>
+        <description>
+            <p>The listing shows how a link to any project can look.</p>
+            <p><i>View Source</i> to see the XML source from which the page is produced.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>Project templating</name>
+        <description>
+            <p>Dynamically load this directory into index.html. Use the same XSLT.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>JSON Spill</name>
+        <description>
+            <p>Load JSON and spill it onto the page, as HTML.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>Load and Run</name>
+        <description>
+            <p>Load your XSLT 1.0, then your XML. Inspired by D Carlisle.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>Excel Drill</name>
+        <description>
+            <p>Load your Excel spreadsheet, pick your worksheet, map it into a table, save it.</p>
+            <p>Save as HTML or OSCAL.</p>
+            <p>Will require (un)zip functionality, resource wrapping (or other runtime interface with XSLT engine)</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>Accessibility checklist &amp; diagnostic</name>
+        <description>
+            <p>A dynamic form application saving a checklist of accessibility issues in
+                publishing.</p>
+            <p>Can be hotwired to provide for automated checks of accessible documents. (HTML?)</p>
+            <ul>
+                <li><code>/*/@lang</code></li>
+                <li>Correctly nested headers - no header may be directly followed by another more than one level deeper</li>
+                <li>Only one header per section|div</li>
+                <li>Tables?</li>
+                <li><code>class</code> markup</li>
+                <li>Labeling form fields</li>
+                <li><code>alt-text</code> markup on images</li>
+                <li>Figures (<code>&lt;figure></code>) and figure usage (captions etc); images
+                    outside (nominal) figures</li>
+                <li>Color check / preview? (links)</li>
+                <li>Accessibility audits (links)</li>
+            </ul>
+        </description>
+        <link href="https://www.w3.org/WAI/fundamentals/">W3C Web Accessibility
+                Initiative</link>
+    </project>
+</projects>

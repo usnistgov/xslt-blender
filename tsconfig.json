@@ -1,0 +1,21 @@
+{
+  "compilerOptions": {
+    "target": "es6",
+    "module": "commonjs",
+    "lib": ["es6", "es2015", "dom", "DOM.Iterable"],
+    "declaration": true,
+    "outDir": "pub/lib",
+    "rootDir": "src",
+    "strict": true,
+    "types": ["node"],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "sourceMap": true,
+
+    "allowJs": true,                                     /* Allow JavaScript files to be a part of your program. Use the `checkJS` option to get errors from these files. */
+    "forceConsistentCasingInFileNames": true,            /* Ensure that casing is correct in imports. */
+    "noImplicitAny": true,                               /* Enable error reporting for expressions and declarations with an implied `any` type.. */
+    "skipLibCheck": true                                 /* Skip type checking all .d.ts files. */
+  }
+}

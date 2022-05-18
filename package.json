@@ -1,0 +1,21 @@
+{
+  "name": "xslt-blender",
+  "version": "0.1.0",
+  "description": "Typescript / nodeJS supporting XML and XSLT 1.0 in the browser or as a standalone utility, with minimal dependencies.",
+  "main": "index.js",
+  "scripts": {
+    "build": "npx tsc",
+    "serve": "http-server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/usnistgov/xslt-blender.git"
+  },
+  "keywords": [],
+  "author": "Wendell Piez",
+  "license": "NIST-PD-fallback",
+  "devDependencies": {
+    "@types/node": "^17.0.8",
+    "typescript": "^4.5.4"
+  }
+}

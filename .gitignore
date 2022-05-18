@@ -1,3 +1,8 @@
+
+# oXygen IDE project files
+*.xpr
+!*share.xpr
+
 # Logs
 logs
 *.log
@@ -19,4 +24,11 @@ typings/
 .npm
 
 # Typescript output
-lib/
+/pub/lib
+
+# Files not to be propagated
+vault/
+scratch/
+
+# Temp or junk files
+.DS_Store
