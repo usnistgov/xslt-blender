@@ -15,7 +15,7 @@
             <p>Dynamically load this directory into index.html. Use the same XSLT.</p>
         </description>
     </project>
-    <project status="planned">
+    <project status="underway">
         <name>JSON Spill</name>
         <description>
             <p>Load JSON and spill it onto the page, as HTML.</p>

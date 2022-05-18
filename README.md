@@ -20,6 +20,10 @@ Use this repository by browsing the code base, trying the examples (as served in
 
 Depending largely on developer interest, over time more mature support may be offered, in the form of documentation, unit tests, packaging and deployment support.
 
+## Development Model
+
+TBD. This codebase is a secondary ("spinoff") project with the purpose of making code available for reuse.
+
 ## Repository Contents
 
 - `pub` subdirectory - an HTML site, maintained by hand with the exception of its `lib` subdirectory. Serve the demonstrations from here.
@@ -35,14 +39,23 @@ Demonstrations should be self-explanatory, assuming relevant background knowledg
 
 To run a server (below) or to compile from source, nodeJS and npm are assumed.
 
-### Serving from localhost
+### Compiling
 
-Start a local server by opening a Linux/WSL prompt, switching to `pub` and invoking `npm serve`, or simply `http-server` with that npm module installed.
+The latest `lib` outputs will be pushed to the repository, so you only have to compile if you modify or extend the source code.
+
+Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries.
+
+### Serving from `localhost`
+
+With NPM, start a local server by opening a Linux/WSL prompt, switching to `pub` and invoking `npm serve`, or simply `http-server` with that npm module installed.
+
+Or run a vanilla web server from `pub` using the http server of your choice.
+
+Point your browser at `index.html` or the landing page of any demo, as served on `localhost` or the address of your server.
 
 ## License and dependencies
 
-Code here all runs in your browser with no runtime dependencies except as noted per demonstration.
-Code is developed as Typescript or native Javascript, and compiled and tested under nodeJS.
+Code here all runs in your browser with no runtime dependencies except as noted per demonstration. Code is developed as Typescript and compiled and tested under Node JS.
 
 A license is given in the LICENSE.md file.
 
