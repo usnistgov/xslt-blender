@@ -2,7 +2,7 @@
   "name": "xslt-blender",
   "version": "0.1.0",
   "description": "Typescript / nodeJS supporting XML and XSLT 1.0 in the browser or as a standalone utility, with minimal dependencies.",
-  "main": "index.js",
+  "type": "module",
   "scripts": {
     "build": "npx tsc",
     "serve": "http-server"

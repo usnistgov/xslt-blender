@@ -43,6 +43,8 @@ To run a server (below) or to compile from source, nodeJS and npm are assumed.
 
 The latest `lib` outputs will be pushed to the repository, so you only have to compile if you modify or extend the source code.
 
+`npm install` to install or reinstall the Typescript configuration.
+
 Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries.
 
 ### Serving from `localhost`

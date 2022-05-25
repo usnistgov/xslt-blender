@@ -3,22 +3,6 @@
     xmlns="http://www.w3.org/1999/xhtml"
     version="1.0">
     
-    
-    <!--XSLT 1.0 stylesheet suitable for browser use -->
-    
-    <xsl:template match="/*">
-        <html lang="en">
-            <head>
-                <title>XSLT Blender Demonstrations</title>
-                <link href="projects-html.css" rel="stylesheet" />
-                <xsl:call-template name="script"/>
-            </head>
-            <body>
-                <h1>XSLT Blender Demonstrations</h1>
-                <xsl:apply-templates/>
-            </body>
-        </html>
-    </xsl:template>
     <xsl:template match="project">
         <section class="project {@status}">
             <xsl:for-each select="@entry">
@@ -66,24 +50,5 @@
         </xsl:element>
     </xsl:template>
     
-    <!--<xsl:template match="*[.='View Source']" mode="cast-to-html">
-        <span onclick="showSource('{ancestor::project/@entry}')">
-            <xsl:apply-templates/>
-        </span>
-    </xsl:template>-->
-        
-    <xsl:template name="script">
-        <!--<script>
-            function showSource(relPath) {
-              window.location = showSourceHREF(relPath);
-              // console.log(showSourceHREF(relPath));
-            }
-            
-            function showSourceHREF(relPath) {
-              thereURL = new URL(relPath,document.location);
-              return "view-source:" + thereURL.href;
-            }
-        </script>-->
-    </xsl:template>
     
 </xsl:stylesheet>

@@ -14,26 +14,26 @@ NIST/ITL/CSD
 // ###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%
 
 // Loads an HTML view of SP 800-53 into the target Element content
-async function loadsp80053(targetID: string): Promise<void> {
+// async function loadsp80053(targetID: string): Promise<void> {
     // cacheable?
-    const catalogHTML: Document = await sp80053inHTML();
-    const clearing: Boolean = true;
-    return spliceIntoPage(targetID, catalogHTML, clearing);
-}
+//     const catalogHTML: Document = await sp80053inHTML();
+//     const clearing: Boolean = true;
+//     return spliceIntoPage(targetID, catalogHTML, clearing);
+// }
 
 // Picks up loaded files, thus handling multiple catalogs, groups, or controls
 // (sequences of discrete XML instances)
 // each sequence member is rendered and displayed in the target locationn
-async function showOSCAL(fileSet: FileList, targetID: string): Promise<void> {
-    const target = document.getElementById(targetID);
-    if (target) {
-        for (const eachFile of fileSet) {
-            const resultXML = await fileXMLContent(eachFile);
-            if (resultXML) { addOSCALView(resultXML, targetID) }
-            // else { clearElement(target) }
-        }
-    }
-}
+// async function showOSCAL(fileSet: FileList, targetID: string): Promise<void> {
+//     const target = document.getElementById(targetID);
+//     if (target) {
+//         for (const eachFile of fileSet) {
+//             const resultXML = await fileXMLContent(eachFile);
+//             if (resultXML) { addOSCALView(resultXML, targetID) }
+//             // else { clearElement(target) }
+//         }
+//     }
+// }
 
 /* 
 
@@ -44,19 +44,19 @@ async function showOSCAL(fileSet: FileList, targetID: string): Promise<void> {
 // Utility UI drivers capable of accepting OSCAL
 // ###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%
 
-async function addOSCALView(xml: Document, targetID: string): Promise<void> {
-    const result: Document = await HTMLForOSCALXML(xml); // a promise
-    const clearing: Boolean = false
-    return spliceIntoPage(targetID, result, clearing);
-}
+// async function addOSCALView(xml: Document, targetID: string): Promise<void> {
+//     const result: Document = await HTMLForOSCALXML(xml); // a promise
+//     const clearing: Boolean = false
+//     return spliceIntoPage(targetID, result, clearing);
+// }
 
 // Same as add, but not additive
-async function refreshOSCALView(xml: Document, targetID: string): Promise<void> {
+// async function refreshOSCALView(xml: Document, targetID: string): Promise<void> {
     // const result: Promise<Document> = HTMLForOSCALXML(xml); // a promise
-    const result: Document = await HTMLForOSCALXML(xml);
-    const clearing: Boolean = true
-    return spliceIntoPage(targetID, result, clearing);
-}
+//     const result: Document = await HTMLForOSCALXML(xml);
+//     const clearing: Boolean = true
+//     return spliceIntoPage(targetID, result, clearing);
+// }
 
 /* 
 
@@ -67,20 +67,20 @@ async function refreshOSCALView(xml: Document, targetID: string): Promise<void> 
 // OSCAL-related (static) resources and functionality
 // ###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%
 
-const sp80053CatalogXML: Promise<Document> = getXMLviaHTTP('NIST_SP-800-53_rev5_catalog.xml');
+// const sp80053CatalogXML: Promise<Document> = getXMLviaHTTP('NIST_SP-800-53_rev5_catalog.xml');
 
-const OSCALtoHTMLxsltEngine: Promise<XSLTProcessor> = xsltEngineForHREF('show-oscal-html.xsl');
+// const OSCALtoHTMLxsltEngine: Promise<XSLTProcessor> = xsltEngineForHREF('show-oscal-html.xsl');
 
-async function HTMLForOSCALXML(xml: Document): Promise<Document> {
-    const xsltEngine = await OSCALtoHTMLxsltEngine;
-    return xslt1ResultDocument(xml, xsltEngine);
-}
+// async function HTMLForOSCALXML(xml: Document): Promise<Document> {
+//     const xsltEngine = await OSCALtoHTMLxsltEngine;
+//     return xslt1ResultDocument(xml, xsltEngine);
+// }
 
-async function sp80053inHTML(): Promise<Document> {
-    const catalog = await sp80053CatalogXML;
-    const xsltEngine = await OSCALtoHTMLxsltEngine;
-    return xslt1ResultDocument(catalog, xsltEngine);
-}
+// async function sp80053inHTML(): Promise<Document> {
+//     const catalog = await sp80053CatalogXML;
+//     const xsltEngine = await OSCALtoHTMLxsltEngine;
+//     return xslt1ResultDocument(catalog, xsltEngine);
+// }
 
 /* 
 
@@ -121,7 +121,10 @@ function spliceIntoPage(targetID: string, doc: Document, clearing: Boolean): voi
         if (clearing) { clearElement(viewerElement) };
         viewerElement.prepend(newContents);
     }
-    else { console.log("Can't splice into page at " + targetID); }
+    else {
+        console.log("Can't splice into page at " + targetID);
+    if (!viewerElement) { console.log("not seeing " +  targetID)}
+    }
 }
 
 /* 
@@ -147,6 +150,11 @@ async function getAndApplyXSLTtoLiteral(xmlLiteral: string, xsltHREF: string): P
     return parseAndTransformXMLLiteral(xmlLiteral, xsltEngine);
 }
 
+async function getAndApplyXSLTtoXMLatHREF(xmlHREF: string, xsltHREF: string): Promise<Document> {
+    const xsltEngine: XSLTProcessor = await xsltEngineForHREF(xsltHREF);
+    return parseAndTransformXMLatHREF(xmlHREF, xsltEngine);
+}
+
 // This gives us back an engine for an XSLT given an href (relative or absolute URL)
 async function xsltEngineForHREF(xsltHREF: string): Promise<XSLTProcessor> {
     const xsltDoc: Document = await getXMLviaHTTP(xsltHREF);
@@ -170,6 +178,13 @@ function setupXSLTEngine(xslt: Document): Promise<XSLTProcessor> {
 function parseAndTransformXMLLiteral(xmlLiteral: string, xsltEngine: XSLTProcessor): Document {
     const aParser = new DOMParser();
     const doc = aParser.parseFromString(xmlLiteral, "application/xml");
+    // error handling?
+    return xslt1ResultDocument(doc, xsltEngine);
+}
+
+// If we have an XML literal and a configured XSLT engine ...
+async function parseAndTransformXMLatHREF(httpResource: string, xsltEngine: XSLTProcessor): Promise<Document> {
+    const doc = await getXMLviaHTTP(httpResource);
     // error handling?
     return xslt1ResultDocument(doc, xsltEngine);
 }
@@ -271,6 +286,7 @@ function tagName(jsonvalue: any): string {
 //     });
 // }
 
+// for local loading, not http
 function fileXMLContent(fileToRead: File): Promise<Document> {
     return fileParsedContent(fileToRead, "application/xml")
 }
@@ -329,35 +345,6 @@ function removeClassFromElementsByClass(removeFromClass: string, theClass: strin
     for (const elem of elements) { elem.classList.remove(theClass) }
 }
 
-/* 
-
-
-
-*/
-// ###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%
-// For initial PoC demo
-// ###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%###%%%
-
-async function filterAndShowJSONFiles(fileSet: FileList): Promise<void> {
-    for (const eachFile of fileSet) {
-        const result = await fileTextContent(eachFile);
-        if (result) {
-            const jsonObj = JSON.parse(result);
-            const jsonXML = writeOBJtoXML(jsonObj);
-            filterAndShowXML(jsonXML, "example");
-        }
-    }
-}
-
-async function filterAndShowXML(xmlLiteral: string, targetID: string): Promise<void> {
-    const resultDocument: Document = await filteredXML(xmlLiteral); // a promise
-    return spliceIntoPage(targetID, resultDocument, true);
-}
-
-async function filteredXML(xmlLiteral: string): Promise<Document> {
-    const filterXSLT = await filterXSLTEngine;
-    return parseAndTransformXMLLiteral(xmlLiteral, filterXSLT);
-}
-
-const filterXSLTEngine: Promise<XSLTProcessor> = xsltEngineForHREF('filter.xsl');
-
+export { fileTextContent, fileXMLContent, getXMLviaHTTP, writeOBJtoXML, spliceIntoPage,
+     parseAndTransformXMLLiteral, parseAndTransformXMLatHREF, xslt1ResultDocument, 
+     xsltEngineForHREF };

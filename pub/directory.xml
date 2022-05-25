@@ -1,22 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="list-projects.xsl"?>
+<?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
 <projects>
     <project entry="directory.xml">
         <name>Reflection</name>
         <line>Pointing back to this portal.</line>
         <description>
-            <p>The listing shows how a link to any project can look.</p>
+            <p>The directory to demonstrations on this site, loaded into your browser as XML.</p>
             <p><i>View Source</i> to see the XML source from which the page is produced.</p>
         </description>
     </project>
-    <project status="planned">
-        <name>Project templating</name>
+    <project entry="index.html">
+        <name>Dynamic index</name>
         <description>
-            <p>Dynamically load this directory into index.html. Use the same XSLT.</p>
+            <p>This directory is loaded dynamically into the index page, at user request. Uses the same XSLT as for <a href="directory.xml">the directory pushed as XML</a>.</p>
         </description>
     </project>
-    <project status="underway">
-        <name>JSON Spill</name>
+    <project status="planned">
+        <name>Site templating</name>
+        <line>Static site generator, old school</line>
+        <description>
+            <p>A NodeJS CL tool to read an HTML file and deliver a transformed HTML file would be the basis for a static site generator in Node JS + XSLT 1.0.</p>
+            <p>Then make an application of this for site templating.</p>
+            <p>Deploy as either page setup or CI/CD (push) step (or both)?</p>
+        </description>
+    </project>
+    <project entry="json-mixer/json-reader.html" status="underway">
+        <name>JSON Reader</name>
         <description>
             <p>Load JSON and spill it onto the page, as HTML.</p>
         </description>

@@ -2,9 +2,30 @@
 <html lang="en">
   <head>
     <title>XSLT Blender Home</title>
+    <link href="projects-html.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="nist-boilerplate.css" type="text/css" />
+    <script type="module">
+      import { spliceIntoPage, parseAndTransformXMLatHREF, xsltEngineForHREF } from "./lib/xslt-blender.js";
+
+      window.spliceIntoPage = spliceIntoPage;
+      window.parseAndTransformXMLatHREF = parseAndTransformXMLatHREF;
+      window.xsltEngineForHREF = xsltEngineForHREF;
+
+    </script>
   </head>
   <body>
     <h1>XSLT Blender repository portal</h1>
-    <p><a href="directory.xml">Project directory here</a></p>
+    <!-- p><a href="directory.xml">Project directory here</a></!-->
+    <div id="dirList" onclick="listIt()">Click me</div>
+    <script type="text/javascript">
+      
+      async function listIt() {
+        const XSLTEngine = await xsltEngineForHREF('list-projects.xsl');
+        const resultDocument = await parseAndTransformXMLatHREF('directory.xml', XSLTEngine);
+        spliceIntoPage("dirList", resultDocument, true);
+      }
+
+      
+    </script>
   </body>
 </html>

@@ -1,11 +1,10 @@
 /*  CSS for HTML rendition of project XML */ 
 
-body {  max-width: 46em; font-family: sans-serif }
-
 section.project {
   border: thin solid black; padding: 0.4em; margin-top: 0.6em }
 
 section > *:first-child { margin-top: 0em }
+section > button:first-child + * { margin-top: 0em }
 section > *:last-child { margin-bottom: 0em }
 
 p.highlight { font-style: italic }
