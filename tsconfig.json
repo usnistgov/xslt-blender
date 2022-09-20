@@ -2,12 +2,12 @@
   "compilerOptions": {
     "target": "es6",
     "module": "es6",
-    "lib": ["es6", "es2015", "dom", "DOM.Iterable"],
+    "lib": ["es6", "dom", "es2015", "DOM.Iterable"],
     "declaration": true,
     "outDir": "pub/lib",
     "rootDir": "src",
     "strict": true,
-    "types": ["node"],
+    "types": ["node", "mocha"],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "moduleResolution": "node",
@@ -15,7 +15,8 @@
 
     "allowJs": true,
     "forceConsistentCasingInFileNames": true,
-    "noImplicitAny": true,
-    "skipLibCheck": true
-  }
+    "noImplicitAny": true
+  },
+  "include": ["./src"],
+  "exclude": ["**/*.spec.*", "./lib/**/*", "./types"],
 }

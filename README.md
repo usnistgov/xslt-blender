@@ -18,7 +18,22 @@ Another area of interest is specifically [OSCAL](http://pages.nist.gov/OSCAL), t
 
 Use this repository by browsing the code base, trying the examples (as served in a plain web server), then replicating and rewriting them.
 
-Depending largely on developer interest, over time more mature support may be offered, in the form of documentation, unit tests, packaging and deployment support.
+Depending largely on developer interest, over time more mature support may be offered, in the form of documentation, unit 
+tests, packaging and deployment support.
+
+## Why XSLT?
+
+XSLT remains an excellent prototyping language.
+
+Code bases are small and relatively easy to audit. Vulnerabilities of the architecture, specifications and tools are well understood and preventable or mitigable. XSLT processors and their dependencies (such as parsers) have been well tested, and their degree of conformance with the relevant specifications is high.
+
+XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, and Javascript (more precisely, ECMAScript) in particular is *finally* able to provide the level of support needed to apply XSLT transformation logic flexibly, in a range of different scenarios, to achieve useful data processing operations in the browser, beyond display.
+
+The capacity to publish unit testing, for Javascript (Typescript) and XSLT, also helps to provide a level of assurance and verifiability to these applications that was impossible when they were first developed.
+
+Applications can be written with *no* dependencies on external libraries. XSLT 1.0 is supported natively in the browser. If the feature set or capabilities of XSLT 3.0 are needed, a single dependency suffices, [SaxonJS](https://www.saxonica.com/saxon-js/index.xml), which additionally offers a range of features supporting integration, application and interface development.
+
+The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) can be applied.
 
 ## Development Model
 

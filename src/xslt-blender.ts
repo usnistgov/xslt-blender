@@ -123,7 +123,7 @@ function spliceIntoPage(targetID: string, doc: Document, clearing: Boolean): voi
     }
     else {
         console.log("Can't splice into page at " + targetID);
-    if (!viewerElement) { console.log("not seeing " +  targetID)}
+        if (!viewerElement) { console.log(" ... not seeing " +  targetID) }
     }
 }
 
@@ -175,6 +175,13 @@ function setupXSLTEngine(xslt: Document): Promise<XSLTProcessor> {
 }
 
 // If we have an XML literal and a configured XSLT engine ...
+function parseXMLLiteral(xmlLiteral: string): Document {
+    const aParser = new DOMParser();
+    return aParser.parseFromString(xmlLiteral, "application/xml");
+    // error handling?
+}
+
+// If we have an XML literal and a configured XSLT engine ...
 function parseAndTransformXMLLiteral(xmlLiteral: string, xsltEngine: XSLTProcessor): Document {
     const aParser = new DOMParser();
     const doc = aParser.parseFromString(xmlLiteral, "application/xml");
@@ -182,7 +189,7 @@ function parseAndTransformXMLLiteral(xmlLiteral: string, xsltEngine: XSLTProcess
     return xslt1ResultDocument(doc, xsltEngine);
 }
 
-// If we have an XML literal and a configured XSLT engine ...
+// If we have an XML at an HREF and a configured XSLT engine ...
 async function parseAndTransformXMLatHREF(httpResource: string, xsltEngine: XSLTProcessor): Promise<Document> {
     const doc = await getXMLviaHTTP(httpResource);
     // error handling?
@@ -345,6 +352,7 @@ function removeClassFromElementsByClass(removeFromClass: string, theClass: strin
     for (const elem of elements) { elem.classList.remove(theClass) }
 }
 
+// any automagic way to export everything?
 export { fileTextContent, fileXMLContent, getXMLviaHTTP, writeOBJtoXML, spliceIntoPage,
-     parseAndTransformXMLLiteral, parseAndTransformXMLatHREF, xslt1ResultDocument, 
-     xsltEngineForHREF };
+         parseXMLLiteral, parseAndTransformXMLLiteral, parseAndTransformXMLatHREF,
+         xslt1ResultDocument, xsltEngineForHREF };
