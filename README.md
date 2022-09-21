@@ -2,7 +2,7 @@
 
 A library of XML/XSLT functionality for execution in a browser, illustrated through demonstrations.
 
-See the portal page for the demonstrations. There is a single portal (maintained in XML) but each demonstration is largely self-contained. Come back here for code.
+See the [XSLT Blender Portal](https://pages.nist.gov/xslt-blender) page for the demonstrations. There is a single portal (maintained in XML) but each demonstration is largely self-contained. Come back here for code.
 
 ## Aims
 
@@ -31,13 +31,13 @@ Developers who are interested in this code base should consider both
 
 ## Rights
 
-Like all NIST work, this software is provided on behalf of the US taxpayer to the public domain, as noted in the [License file](LICENSE.md), provided only that adequate notices of origin and modification are kept intact.
+As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is offered to the public domain, as noted in the [License file](LICENSE.md), provided only that adequate notices of origin and modification are kept intact.
 
 ## Why XSLT?
 
-Developed in 1999, XSLT 1.0 remains an excellent prototyping language for lightweight data transformation tasks, including some that may surprise even today.
+Developed in 1999, [XSLT 1.0](https://www.w3.org/TR/1999/REC-xslt-19991116) remains an excellent prototyping language for lightweight data transformation tasks, including some that may surprise even today.
 
-The language's grown-up version -- XSLT 3.0 is even more capable. But XSLT 1.0 has a peculiar advantage. It's kind of like the cigarette lighter in your car - you had no idea it could be so useful for powering things, and it still works.
+The language's grown-up version -- [XSLT 3.0](https://www.w3.org/XML/Group/qtspecs/specifications/xslt-30/html/) -- is even more capable. But XSLT 1.0 has a peculiar advantage. Not entirely unlike the cigarette lighter in your car, it turns out it to be useful for powering things, and it still works.
 
 Sticking with XSLT 1.0 for demonstrations, code bases can be small and relatively easy to audit. Vulnerabilities of the architecture, specifications and tools are well understood and preventable or mitigable. XSLT processors and their dependencies (such as parsers) have been well tested, and their degree of conformance with the relevant specifications is high.
 
