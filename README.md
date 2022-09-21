@@ -8,13 +8,13 @@ Presently in "alpha" state, that is, minimalistic and working towards proof-of-c
 
 This code base is intended to support development of  lightweight client-side web applications exploiting the XML/XSLT capabilities currently offered as standard in browsers (especially XSLT 1.0).
 
-Code here is authored in Typescript and Javascript but aims to have as small a footprint as possible, for ease of use, deployment and maintenance. The intent is to make it easy to do things that should be easy, but that require some measure of engineering of pipelines and interfaces -- which might be provided by a library.
+In general, applications here will process XML with XSLT. The XML may be on the site, elsewhere on the Internet, or provided by the user. In most cases, the capability being demonstrated  is implemented in XSLT, the source code of which is also provided for inspection and validation.
 
-This code base will be exercised through an informal collection of examples showing different kinds of functionality, including "mixed" applications where XSLT is used in conjunction with Javascript or with other Javascript (or Typescript) libraries supporting other functionalities, such as zipping/unzipping.
+These stylesheets are appplied by means of a library whose code is authored in Typescript and Javascript with as small a footprint as possible, for ease of use, deployment and maintenance. The intent is to make it easy to do things that should be easy, but that require some measure of engineering of pipelines and interfaces -- which might be provided by a library
 
-A particular area of interest is the pipelining of JSON data and integration of JSON data into XML-based pipelines, using XSLT 1.0.
+This code base can be exercised through an informal collection of examples showing different kinds of functionality, including "mixed" applications where XSLT is used in conjunction with Javascript or with other Javascript (or Typescript) libraries supporting other functionalities, such as zipping/unzipping.
 
-Another area of interest is specifically [OSCAL](http://pages.nist.gov/OSCAL), the Open Security Controls Assessment Language, including rendering, proofing, and validating applications.
+A particular area of interest is the pipelining of JSON data and integration of JSON data into XML-based pipelines, even using XSLT 1.0.
 
 Use this repository by browsing the code base, trying the examples (as served in a plain web server), then replicating and rewriting them.
 
@@ -37,22 +37,89 @@ The [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html) can b
 
 ## Development Model
 
-TBD. This codebase is a secondary ("spinoff") project with the purpose of making code available for reuse.
+This codebase is a secondary ("spinoff") project with the purpose of making code available for reuse. Developed for internal projects or use at NIST, the code base is published here for the use of the public and of developers who can build on its foundations or study it as a model.
 
 ## Repository Contents
 
-- `pub` subdirectory - an HTML site, maintained by hand with the exception of its `lib` subdirectory. Serve the demonstrations from here.
-- `src` Typescript source to be compiled (compiled Javascript goes into `pub`)
+### Site configuration
+
+CODEMETA.yaml
+CODEOWNERS
+CODE_OF_CONDUCT.md
+CONTRIBUTORS.md
+LICENSE.md
+README-template.md
+fair-software.md
+
+### This file
+
+- README.md
+
+### Portal front page
+
+- index.html
+
+### Site CSS
+
+- nist-boilerplate.css
+- nist-combined.css (copied from https://pages.nist.gov/nist-header-footer/css/)
+
+### Directory and its supporting files
+
+- directory.xml
+- list-projects.xsl
+- projects-html.css
+- projects-page.xsl
+
+### NodeJS setup
+
+- package-lock.json
+- package.json
+- tsconfig.json
+
+### Projects
+
+See directories
+
+- [JSON Mixer](json-mixer) - can do something (anything) with JSON in XSLT 1.0? yup
+- [STS Viewer](sts-viewer)
+
+### Source and compiled Typescript
+
+- Sources in `src`
+- Compiled Typescript and Javascript goes into `lib`
+- Additionally, projects may have their own Javascript libraries
+
+### For later (factor out)
+
+- page-template.html
+- frame.xsl
+- style.css
 
 ## Installation
 
-The `pub` directory presents an entire coherent publication, with navigation, of available demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability.
+The repository presents an entire coherent publication, with navigation, of available demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability.
 
-It can be served directly and viewed on `localhost`, or bound to a Github or Gitlab Pages site (for example). Because it is a prototype for demonstration, this site is presently *not* hosted on the open Internet.
+It can be served directly and viewed on `localhost`, or bound to a Github or Gitlab Pages site (such as what you might be reading).
 
-Demonstrations should be self-explanatory, assuming relevant background knowledge.
+Demonstrations should be self-explanatory, assuming relevant background knowledge. Please do research or make inquiries!
 
-To run a server (below) or to compile from source, nodeJS and npm are assumed.
+- Declarative markup
+- XML and XSLT
+
+To compile Typescript libraries from source, nodeJS and npm are assumed.
+
+## Development model
+
+Since these are client-side applications intended to be run in far-away environments, the development model relies on standards and simplicity to help ensure operations.
+
+A project will typically be built by:
+
+- designing a conceptual model of a functional interface for XML/XSLT
+- deploy a prototype coded by hand (HTML/Javascript) calling XSLT over XML sources
+- iteratively develop the (XSLT) transformation along with with user interface
+
+Over time, projects will show a range of different approaches and user interface capabilities, which can be borrowed, reused, and refined.
 
 ### Compiling
 
@@ -64,11 +131,19 @@ Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typ
 
 ### Serving from `localhost`
 
-With NPM, start a local server by opening a Linux/WSL prompt, switching to `pub` and invoking `npm serve`, or simply `http-server` with that npm module installed.
+With NPM, start a local server by opening a Linux/WSL prompt in the `xslt-blender` directory, and invoking `npm serve`, or simply `http-server` with that npm module installed.
 
-Or run a vanilla web server from `pub` using the http server of your choice.
+Or run a vanilla web server using the http server of your choice.
 
 Point your browser at `index.html` or the landing page of any demo, as served on `localhost` or the address of your server.
+
+### Testing
+
+Applications are tested by development under load with representative sample documents.
+
+Due to limitations in available support for XML/XSLT in Javascript (ECMAScript) outside browsers, we have not been able to unit test libraries outside the browser environment; this remains a TBD (and indeed browsers may vary in any case). To help compensate for this, a variety of browsers (typically at least Chrome and Firefox) are used to test in development.
+
+Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is fairly easy to compose in such a way that it is robust against hard failures entailing threats such as data exfiltration or even denial of service. Unless you provide your own code to these code bases, the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout and/or data "dumps" to your screen.
 
 ## License and dependencies
 
@@ -86,13 +161,7 @@ Additionally please open or respond to Issues in this Github repository.
 
 Piez, Wendell. XSLT Blender. US National Institute of Standards and Technology (NIST), 2022. https://github.com/usnistgov/xslt-blender.
 
-## To Do:
+## Next to do
 
-- [x] finish README line items
-- [x] finish README-template.md line items
-- [x] README.md, CODEOWNERS, CODEMETA.yaml
-- [x] push
-- [ ] test and push minimal installation
-  - JSON conversion; file loading and saving 
-- [ ] stand up unit testing (mocha/chai)
+- [ ] further explore unit testing (mocha/chai)
 - [ ] build unit tests
