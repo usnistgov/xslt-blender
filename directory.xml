@@ -15,6 +15,7 @@
         <description>
             <p>The directory to demonstrations on this site, loaded into your browser as XML.</p>
             <p><i>View Source</i> to see the XML source from which the page is produced.</p>
+            <p><i>IF</i> you are so lucky ... reports are that this link freezes in at least one browser (just close the page).</p>
         </description>
     </project>
     <project entry="index.html">
