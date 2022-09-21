@@ -64,7 +64,7 @@ XSLT applications are perfect for implementing along the lines of the [Rule of L
 
 This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
 
-- Ford, Katherine, and Will Thompson. ‚ÄúAn Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.‚Äù Presented at *Balisage: The Markup Conference 2018*, Washington, DC, July 31 - August 3, 2018. In Proceedings of Balisage: The Markup Conference 2018. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
+- Ford, Katherine, and Will Thompson. ìAn Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.î Presented at *Balisage: The Markup Conference 2018*, Washington, DC, July 31 - August 3, 2018. In Proceedings of Balisage: The Markup Conference 2018. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
 
 ## Development Model
 
