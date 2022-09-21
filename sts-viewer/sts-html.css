@@ -1,0 +1,154 @@
+
+.project-footer { margin-top: 1em }
+
+details, .titled { margin: 0.6em; padding: 0.2rem;
+                  padding-left: 1.2rem; padding-right: 0.8rem; outline: thin dotted transparent }
+
+details[open] { border: thin dotted black }
+
+
+summary { font-weight: bold; font-size: 127%; padding-right: 0.617em }
+
+details details summary { font-size: 112% }
+
+p { margin: 0.6em 0em; max-width: 54em }
+
+.project-footer p { max-width: inherit}
+
+.fn-label { line-height: 1 }
+
+/* *:first-child { margin-top: 0em }*/
+
+.run-in { font-weight: bold; font-size: 90% }
+
+#displaySTS > section.sts_standard { display: block; background-color: lemonchiffon; padding: 1vw; border: medium inset black;
+  font-family: "Merriweather Web", Georgia,Cambria,"Times New Roman",Times,serif }
+
+h1, h2, h3, h4, h5, h6, summary, *:before { font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; }
+
+aside > *:last-child { margin-bottom: 0em }
+
+#displaySTS header > * { margin: 0em }
+
+#displaySTS p { max-width: 48em; line-height: 1.62 }
+
+
+#displaySTS > section.sts_standard > section:last-child > details { margin-bottom: 0em }
+
+#displaySTS > section > section.sts_body { width: fit-content; background-color: white; display: block; border: thin solid black }
+
+#displaySTS > section > section { background-color: inherit }
+
+#displaySTS div
+  { border: none; padding: 0em; margin: 0em;;
+                  padding-left: 1.2rem;  }
+
+#displaySTS div.sts_table-wrap-group { padding-left: 0rem }
+
+#displaySTS div.labeled { margin: 0.2em 0em; padding: 0.3em; border: thin dotted gray }
+#displaySTS div.boxed   { margin: 0.2em 0em; padding: 0.3em; outline: thin solid gray }
+#displaySTS div.boxed.labeled { border: none }
+
+.sts_xref:hover { text-decoration: underline }
+
+/*#displaySTS div > * { margin: 0em }*/
+
+#displaySTS div.labeled:before { display: inline-block; 
+                    font-size: 80%; font-weight: normal;
+                    color: black;
+                    background-color: #f6999a; /*  color on niso-sts.org */
+                    content: attr(data-tag);
+                    padding: 0.2em;
+                    margin-right: 0.4em;
+                    border-radius: 0.25em;
+                    margin-bottom: 0.2em }
+
+/* sts_standard is at the top */
+
+#displaySTS div.sts_list:before,
+#displaySTS div.sts_list div:before
+  { content: none }
+
+#displaySTS div.sts_list, #displaySTS div.sts_list div { border: none; padding: 0em; margin: 0em }
+#displaySTS div.sts_list, #displaySTS div.sts_list *:first-child { padding: 0em; margin: 0em }
+#displaySTS div.sts_list div.sts_list-item { margin-left: 1em }
+
+#displaySTS div.sts_list-item { display: grid; grid-template-columns: 2em 1fr; gap: 0.2em }
+/* #displaySTS div.sts_list-item > div.sts_label { width: 2em; padding-right: 1em } */
+
+#displaySTS div.sts_ref        { border: none; border-left: thin solid black; padding: 0em 0.4em; margin: 1em 0em; }
+
+#displaySTS div.sts_ref > div.citation { border: none; padding: 0em; margin-left: 0.4em }
+
+#displaySTS div.sts_term-sec { margin-top: 1em }
+
+#displaySTS div.sts_term-display { display: grid; grid-template-columns: 36vw 1fr; grid-gap: 0.6em; border: none }
+
+#displaySTS div.sts_term-display > * { border: none; border-top: thin solid black }
+
+#displaySTS div.sts_def-list { margin-top: 1em }
+
+#displaySTS div.sts_def-item { display: grid; grid-template-columns: 36vw 1fr; grid-gap: 0.6em; border: none }
+
+#displaySTS div.sts_def-item > * { border: none; border-top: thin solid black }
+
+#displaySTS details summary + div { margin-top: 0.6em !important }
+
+
+.sts_xref:hover { text-decoration: underline }
+
+th, td { padding: 0.2rem }
+
+tr.withdrawn td { color: dimgrey }
+
+#displaySTS tr:nth-child(2n+1) { background-color: lightsteelblue }
+
+.inline-footnote { float:right; clear:both; max-width: 32em; border: thin solid black;
+  font-size: smaller; padding: 0.8rem; margin: 0.6rem }
+
+.fn-label { display: inline-block; padding: 0.2em; border: thin solid black }
+
+.flashing { background-color: aliceblue }
+
+.sts_i, .sts_source,
+.sts_std > .sts_title { font-style: italic }
+
+.sts_strike { text-decoration: line-through }
+.sts_sc { font-variant: small-caps }
+.sts_monospace { font-family: monospace }
+.sts_fixed-case { font-variant: normal }
+
+
+.sts_label      { text-decoration: underline }
+div.sts_label { line-height: 1.62 }
+
+.sts_list .sts_label { text-decoration: inherit }
+
+.sts_underline  { text-decoration: underline }
+
+.sts_overline { text-decoration-line: overline }
+
+.sts_named-content { color: steelblue; font-weight: bold; font-size: 92% }
+
+.sts_kwd { display: inline-block; border: thin solid grey }
+
+.gen { color: grey }
+
+table.control-matrix { width: 100% }
+
+table.control-matrix .label { width: 10% }
+table.control-matrix .control-title { width: 60% }
+
+
+#displaySTS div.fail { color: darkred; background-color: orange; padding: 0.4em }
+.fail code { font-weight: bold; font-size: 110% }
+
+/* prevent sub and sup from shifting the line leading */
+sup, sub {
+  vertical-align: baseline;
+  position: relative;
+  top: -0.4em;
+}
+sub { 
+  top: 0.4em; 
+}

@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
+<?xml-stylesheet type="text/xsl" href="site/projects-page.xsl"?>
 <projects>
+    <project entry="sts-viewer/index.html">
+        <name>NISO STS Viewer</name>
+        <line>Preview your NISO STS document.</line>
+        <description>
+            <p>NISO STS is an XML-based documentary format being adopted at NIST and elsewhere as an interchange format supporting the publication, exchange, and re-use of documentation relating to standards and guidelines. As a documentary format it is both richer and more rigorous than HTML.</p>
+            <p>Use this Previewer to see how a NISO STS-tagged document <i>might</i> appear in display.</p>
+        </description>
+    </project>
     <project entry="directory.xml">
         <name>Reflection</name>
         <line>Pointing back to this portal.</line>

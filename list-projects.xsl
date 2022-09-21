@@ -3,6 +3,12 @@
     xmlns="http://www.w3.org/1999/xhtml"
     version="1.0">
     
+    <xsl:template match="projects">
+        <div class="project-directory">
+            <xsl:apply-templates/>
+        </div>
+    </xsl:template>
+    
     <xsl:template match="project">
         <section class="project {@status}">
             <xsl:for-each select="@entry">
@@ -11,7 +17,7 @@
             <xsl:apply-templates/>
         </section>
     </xsl:template>
-
+    
     <xsl:template match="project/name">
         <h3>
             <xsl:apply-templates/>
