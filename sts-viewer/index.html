@@ -15,6 +15,10 @@
   <script type="text/javascript" id="MathJax-script" async="async"
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
 </script>
+  <!-- https://github.com/usnistgov/pages-root/wiki/Adding-NIST-required-branding-and-features-to-your-site -->
+  <!-- Google analytics    -->
+  <script async="async" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NIST&subagency=github&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c">
+</script>
   <script type="module">
       import { fileXMLContent, spliceIntoPage, xslt1ResultDocument, xsltEngineForHREF } from "../lib/xslt-blender.js";
 
@@ -120,15 +124,16 @@
         <summary>About NISO STS</summary>
         <p><a href="https://www.niso.org/standards-committees/sts">NISO STS</a> (Standards Tag Suite) is a standardized set of XML tags
           supporting the creation, maintenance and publication of standards and guidelines documents.</p>
-        <p>More resources on this format can be found at the <a href="https://niso-sts.org/">NISO STS Supporting Materials</a> web site</p>
-        <p>To test this demonstration, a couple of public examples may be tried (or use your own STS XML):</p>
+        <p>More resources on this format can be found at the <a href="https://niso-sts.org/">NISO STS Supporting Materials</a> web site.</p>
+        <p>To test this demonstration, a couple of public examples may be tried:</p>
         <ul>
           <li><a href="https://niso-sts.org/downloadables/samples/NISO-STS-Standard-1-0.XML">NISO STS Tag Library</a> in NISO STS</li>
           <li><a href="https://niso-sts.org/downloadables/samples/rfc8142.xml">Small example of IETF RFC</a> in NISO STS</li>
+          <li>Or use your own STS XML or best guess (this application does not validate against a schema)</li>
         </ul>
         <p>In this demonstration, markers such as <span class="tagLabel">Element</span> indicate elements that have not yet been coded in the transformation. Over time as we add features, these will be seen less frequently.</p>
         <p>Limitations: basic structures and fallback processing are provided for, but areas are still in need of development. Your examples of valid STS are welcome as use cases for refinement and new features. See the <a href="https://github.com/usnistgov/xslt-blender">project repository documentation</a> and its <a href="https://github.com/usnistgov/xslt-blender/issues">Issues board</a>.</p>
-        <p>NISO, the <a href="https://niso.org/">National Information Standards Organization</a>, is a nonprofit membership organization that publishes technical standards to manage information, and has no affiliation with NIST, the <a href="https?//nist.gov">National Institute for Standards and Technology</a>, a bureau of the US Department of Commerce. </p>
+        <p>NISO, the <a href="https://niso.org/">National Information Standards Organization</a>, is a nonprofit membership organization that publishes technical standards to manage information, and has no affiliation with NIST, the <a href="https?//nist.gov">National Institute for Standards and Technology</a>, a bureau of the US Department of Commerce. This project is developed at NIST in support of public use of a non-proprietary encoding technology illustrating the power of external specification in combination with declarative design principles.</p>
       </details>
       <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
         onchange="filterAndShowXMLFiles(this.files)" />
