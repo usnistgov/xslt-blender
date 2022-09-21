@@ -11,7 +11,8 @@ summary { font-weight: bold; font-size: 127%; padding-right: 0.617em }
 
 details details summary { font-size: 112% }
 
-p { margin: 0.6em 0em; max-width: 54em }
+p { margin: 0.6em 0em; max-width: 54em; line-height: 1.62 }
+
 
 .project-footer p { max-width: inherit}
 
@@ -29,9 +30,6 @@ h1, h2, h3, h4, h5, h6, summary, *:before { font-family: 'Source Sans Pro', 'Hel
 aside > *:last-child { margin-bottom: 0em }
 
 #displaySTS header > * { margin: 0em }
-
-#displaySTS p { max-width: 48em; line-height: 1.62 }
-
 
 #displaySTS > section.sts_standard > section:last-child > details { margin-bottom: 0em }
 
@@ -53,15 +51,18 @@ aside > *:last-child { margin-bottom: 0em }
 
 /*#displaySTS div > * { margin: 0em }*/
 
+span.tagLabel,
 #displaySTS div.labeled:before { display: inline-block; 
                     font-size: 80%; font-weight: normal;
                     color: black;
                     background-color: #f6999a; /*  color on niso-sts.org */
-                    content: attr(data-tag);
                     padding: 0.2em;
-                    margin-right: 0.4em;
                     border-radius: 0.25em;
                     margin-bottom: 0.2em }
+
+#displaySTS div.labeled:before {
+                    content: attr(data-tag);
+                    margin-right: 0.4em }
 
 /* sts_standard is at the top */
 
