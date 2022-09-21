@@ -14,3 +14,5 @@ button.jump { float: right; clear: both }
 section.project.planned { background-color: gainsboro; color: #AAA; border: thin dotted black }
 
 section.project.planned:hover { color: darkslategrey }
+
+section.planned a { color: currentColor }

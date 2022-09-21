@@ -39,7 +39,7 @@
     
     <xsl:template match="link">
         <p class="link">
-            <a href="{@href}">
+            <a href="{@href}" class="external">
                 <xsl:apply-templates/>
             </a>
         </p>
