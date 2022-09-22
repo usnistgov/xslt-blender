@@ -2,15 +2,15 @@
 
 ## Aims:
 
-This is a display application for NISO STS format. Its primary use is to render documents encoded in NISO STS XML on screen for reading by human users. Instead of tags, a reader can understand directly the structures by way of mapping to a set of generic layout conventions, consistent with the STS model in design and versatile enough to be adapted 
+This is a display application for NISO STS format. Its primary use is to render documents encoded in NISO STS XML on screen for reading by human users. Instead of tags, a reader can understand directly the structures by way of mapping to a set of generic layout conventions, consistent with the STS model in design and versatile enough to be adapted. The current plan:
 
-- Adequate handling for display of any reasonably 'generic' STS in the body and back matter
-- Front matter too, in part
-- Focus on NIST CSD publications as primary use case
-  - Any other NIST or non-NIST pub can provide further use case
-- Provide robust, generic, reusable, Accessible HTML
-- Provide HTML reasonably easy to format further (style/PDF)  
-- Not provide solutions to everything, but can be built out further
+- For adequate handling for display of any reasonably 'generic' STS in the body and back matter
+  - Front matter too, in part
+- To focus on NIST CSD publications as primary use case
+  - With any other NIST or non-NIST pubs as further use cases
+- To provide robust, clean, Accessible HTML
+  - Reasonably easy to format further (style/PDF)  
+- Not to provide solutions to everything, but instead a foundation
 
 ## Maintenance plan
 
@@ -18,11 +18,11 @@ Feature requests are welcome: please contact the developer or post an Issue.  ([
 
 A longer-term maintenance plan remains to be formulated, based on the usefulness of the resource and how widely (and by whom) it is adopted. Internal users are our first but not the only audience. Users who wish to ensure this application has long-term viability are encouraged to fork it in addition to finding other ways to support it.
 
-Contrapositively, if you use this application and tell no one, the developer will not know and it may become moribund, or disappear at any time, if only because no one was thought to care. (You can prevent that.)
+If you use this application and tell no one, the developer will not know and it may become moribund, or disappear at any time, if only because no one was thought to care. You can prevent that.
 
 ## XSLT Version
 
-Currently this is built in XSLT 1.0 for lightest possible browser footprint.
+Currently this is built in XSLT 1.0 for lightest possible browser footprint, and consistently with the host project [XSLT Blender](../README.md).
 
 We can port to XSLT 3.0 later if need be (or spin off application logic to other applications).
 
