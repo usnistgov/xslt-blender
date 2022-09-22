@@ -16,3 +16,5 @@ section.project.planned { background-color: gainsboro; color: #AAA; border: thin
 section.project.planned:hover { color: darkslategrey }
 
 section.planned a { color: currentColor }
+
+.project-footer p { margin: 0.6em 0em }

@@ -2,7 +2,9 @@
 
 A library of XML/XSLT functionality for execution in a browser, illustrated through demonstrations.
 
-See the [XSLT Blender Portal](https://pages.nist.gov/xslt-blender) page for the demonstrations. There is a single portal (maintained in XML) but each demonstration is largely self-contained. Come back here for code.
+See the [XSLT Blender Portal](https://pages.nist.gov/xslt-blender) page for the demonstrations. There is a single portal (maintained in XML) and a library of scripts, with each demonstration adding its own capabilities and customizations. 
+
+Come back here to see source code for both library and demonstrations, as well as project documentation.
 
 ## Aims
 
@@ -45,7 +47,7 @@ XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, a
 
 Applications can be written with *no* dependencies on external libraries. XSLT 1.0 is supported natively in the browser. If the feature set or capabilities of XSLT 3.0 are needed, a single dependency suffices, [SaxonJS](https://www.saxonica.com/saxon-js/index.xml), which additionally offers a range of features supporting integration, application and interface development.
 
-XSLT applications are perfect for implementing along the lines of the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a codebase is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong.
+XSLT applications are perfect for implementing along the lines of the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a code base is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong. Hence the site tagline, "Least Power, Greatest Effect".
 
 This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
 
@@ -59,13 +61,12 @@ This codebase started a secondary ("spinoff") project with the purpose of making
 
 ### Site configuration
 
-CODEMETA.yaml
-CODEOWNERS
-CODE_OF_CONDUCT.md
-CONTRIBUTORS.md
-LICENSE.md
-README-template.md
-fair-software.md
+- CODEMETA.yaml
+- CODEOWNERS
+- CODE_OF_CONDUCT.md
+- CONTRIBUTORS.md
+- LICENSE.md
+- fair-software.md
 
 ### This file
 
