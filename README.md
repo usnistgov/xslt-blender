@@ -66,6 +66,10 @@ This work is informed by daily and weekly practice with XSLT, and inspired (in p
 
 - Ford, Katherine, and Will Thompson. ìAn Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.î Presented at *Balisage: The Markup Conference 2018*, Washington, DC, July 31 - August 3, 2018. In Proceedings of Balisage: The Markup Conference 2018. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
 
+This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
+
+- Ford, Katherine, and Will Thompson. ‚ÄúAn Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.‚Äù Presented at *Balisage: The Markup Conference 2018*, Washington, DC, July 31 - August 3, 2018. In Proceedings of Balisage: The Markup Conference 2018. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
+
 ## Development Model
 
 This codebase started a secondary ("spinoff") project with the purpose of making code available for reuse. Developed for internal projects or use at NIST, these projects are published here for the use of the public and by developers who can build on its foundations or study it as a model. Contribute to this project by offering positive commentary and feedback ([tell us what is working](https://github.com/usnistgov/xslt-blender/issues/new)). New ideas for projects or feature requests will be considered and taken up based on the generality of the need and the closeness of the use case. Of course, the repository is also designed to be improved on in your fork.
