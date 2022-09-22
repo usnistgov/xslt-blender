@@ -26,6 +26,9 @@ typings/
 # Typescript output
 /pub/lib
 
+# VSCode setup
+.vscode/
+
 # Files not to be propagated
 vault/
 scratch/
