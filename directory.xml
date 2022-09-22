@@ -25,6 +25,14 @@
         </description>
     </project>
     <project status="planned">
+        <name>STS Fitness Checking</name>
+        <line>How does the STS submission look?</line>
+        <description>
+            <p>An XSLT can render a document for display; it can also discover and signal where known issues are detected or
+                rules are not satisfied.</p>
+        </description>
+    </project>
+    <project status="planned">
         <name>Site templating</name>
         <line>Static site generator, old school</line>
         <description>

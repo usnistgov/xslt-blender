@@ -8,11 +8,11 @@ See the [XSLT Blender Portal](https://pages.nist.gov/xslt-blender) page for the 
 
 This code base is intended to support development of lightweight client-side web applications exploiting the XML/XSLT capabilities currently offered as standard in browsers, starting with XSLT 1.0.
 
-Elsewhere on line we have some beautiful demonstrations of XSLT 3.0 using the SaxonJS library, developed within the context of the OSCAL project. Applications here are not limited to OSCAL (though not exclusive either). At time of writing all the demonstrations use exclusively XSLT 1.0; that is, they run without any third-party libraries.
+Elsewhere on line, impressive demonstrations of the current technology (XSLT 3.0) are available using the SaxonJS library from [Saxonica](https://saxonica.com/saxonjs/). At NIST some of these capabilities have been shown in the context of the [OSCAL project](https://pages.nist.gov/oscal-tools/demos/csx/). XSLT Blender applications are not limited to OSCAL (though not exclusive of it either). At time of writing all the demonstrations on the site (and available through the [portal page](https://www.github.com/usnistgov/xslt-blender)) use exclusively XSLT 1.0 as distributed with the browser (as a DOM Level 4 feature); that is, they run without any support from third-party libraries.
 
-In general, applications here will process XML with XSLT. Depending on the application in questions, the XML may be on the site, elsewhere on the Internet (if permissions obtain), or provided by the user. In most cases, the capability being demonstrated  is implemented in XSLT, delivered by the server as a static page, compiled and applied in your browser.
+In general, applications here will process XML with XSLT. Depending on the application, the XML may be provided on the site, accessed from elsewhere on the Internet (when permissions obtain), or provided by the user. In most cases, the capability being demonstrated is implemented in XSLT, delivered by the server as a page, and compiled and applied dynamically in your browser.
 
-A noteworthy aspect of this arrangement is that if a file is provided by a user from a local system, it can be accessed and processed *without sharing* with any other application, service or point of contact. No file is uploaded to a server. No file, view or log is retained anywhere after the browser application is terminated.
+A noteworthy aspect of this arrangement is that if a file is provided by a user from a local system, it can be accessed and processed *without exposure* to any other application, service or point of contact. No file is uploaded to a server. No file, view or log is retained anywhere after the browser application is terminated. (A hosting page may do any of these things but the application itself will not.)
 
 In these demonstrations the stylesheets are applied by means of a library authored in Typescript and Javascript with as small a footprint as possible, for ease of use, deployment and maintenance. The intent is to make it easy to do things that should be easy, but that require some measure of engineering of pipelines and interfaces, which might be provided by such a library.
 
@@ -22,7 +22,7 @@ In the demonstrations, this code base can be exercised to show different kinds o
 
 A particular area of interest is the pipelining of JSON data and integration of JSON data into XML-based pipelines, even using XSLT 1.0.
 
-Use this repository by browsing the code base, trying the examples (as served in a plain web server), then replicating and rewriting them.
+Use this repository by browsing the code base, trying the examples (as served in a plain web server or in the [portal](https://www.github.com/usnistgov/xslt-blender)), then replicating and rewriting them.
 
 Developers who are interested in this code base should consider both
 
@@ -46,6 +46,10 @@ XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, a
 Applications can be written with *no* dependencies on external libraries. XSLT 1.0 is supported natively in the browser. If the feature set or capabilities of XSLT 3.0 are needed, a single dependency suffices, [SaxonJS](https://www.saxonica.com/saxon-js/index.xml), which additionally offers a range of features supporting integration, application and interface development.
 
 XSLT applications are perfect for implementing along the lines of the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a code base is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong.
+
+This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
+
+- Ford, Katherine, and Will Thompson. “An Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.” Presented at *Balisage: The Markup Conference 2018*, Washington, DC, July 31 - August 3, 2018. In Proceedings of Balisage: The Markup Conference 2018. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
 
 ## Development Model
 
