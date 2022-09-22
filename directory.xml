@@ -62,6 +62,15 @@
         </description>
     </project>
     <project status="planned">
+        <name>Word Dump</name>
+        <description>
+            <p>Why should the Excellent have all the fun? Drop a Word document onto the page and see rendered text. YMMV.</p>
+            <p>Save as HTML, NISO BITS, or OSCAL?</p>
+            <p>Essentially this is a mini-<a href="https://xsweet.org">XSweet</a> for a browser using only XSLT 1.0 (see how that goes)</p>
+            <p>Also require (un)zip functionality, resource wrapping (or other runtime interface with XSLT engine) etc. etc.</p>
+        </description>
+    </project>
+    <project status="planned">
         <name>Accessibility checklist &amp; diagnostic</name>
         <description>
             <p>A dynamic form application saving a checklist of accessibility issues in

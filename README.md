@@ -18,7 +18,7 @@ In these demonstrations the stylesheets are applied by means of a library author
 
 All source code, whether Typescript, Javascript or XSLT, is also available for inspection and testing. An isolated runtime (that is, download everything and run it off line) can help demonstrate the integrity of the application.
 
-In the demonstrations, this code base can be exercised to show different kinds of functionality, including "mixed" applications where XSLT is used in conjunction with Javascript or with other Javascript (or Typescript) libraries supporting other functionalities, such as zipping/unzipping.
+In the demonstrations, this code base can be exercised to show different kinds of functionality, including mixed applications where XSLT is used in conjunction with Javascript or with other Javascript (or Typescript) libraries supporting other functionalities, such as zipping/unzipping.
 
 A particular area of interest is the pipelining of JSON data and integration of JSON data into XML-based pipelines, even using XSLT 1.0.
 
@@ -27,11 +27,11 @@ Use this repository by browsing the code base, trying the examples (as served in
 Developers who are interested in this code base should consider both
 
 - new applications showing new functionalities
-- how you can contribute to building, extending and supporting this
+- how you can contribute to building, extending and supporting this (project or approach)
 
 ## Rights
 
-As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is offered to the public domain, as noted in the [License file](LICENSE.md), provided only that adequate notices of origin and modification are kept intact.
+As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), provided only that adequate notices of origin and modification are kept intact.
 
 ## Why XSLT?
 
@@ -45,7 +45,7 @@ XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, a
 
 Applications can be written with *no* dependencies on external libraries. XSLT 1.0 is supported natively in the browser. If the feature set or capabilities of XSLT 3.0 are needed, a single dependency suffices, [SaxonJS](https://www.saxonica.com/saxon-js/index.xml), which additionally offers a range of features supporting integration, application and interface development.
 
-XSLT applications are perfect for implementing along the lines of the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a code base is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong.
+XSLT applications are perfect for implementing along the lines of the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a codebase is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong.
 
 This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
 
@@ -179,6 +179,7 @@ Piez, Wendell. XSLT Blender. US National Institute of Standards and Technology (
 
 ## Next to do
 
+- [ ] enrich links on this page
 - [ ] update readmes in project directories
 - [ ] further explore unit testing (mocha/chai)
 - [ ] build unit tests
