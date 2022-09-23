@@ -29,6 +29,8 @@ h1, h2, h3, h4, h5, h6, summary, *:before { font-family: 'Source Sans Pro', 'Hel
 
 aside > *:last-child { margin-bottom: 0em }
 
+#displaySTS { margin: 1em 0em }
+
 #displaySTS header > * { margin: 0em }
 
 #displaySTS > section.sts_standard > section:last-child > details { margin-bottom: 0em }
@@ -110,6 +112,13 @@ tr.withdrawn td { color: dimgrey }
 .fn-label { display: inline-block; padding: 0.2em; border: thin solid black }
 
 .flashing { background-color: aliceblue }
+
+pre.sts_preformat {
+    padding: 0.2em;
+    background-color: white;
+    font-family: monospace;
+    white-space: pre-line; /* fix up some ws anomalies */
+}
 
 .sts_i, .sts_source,
 .sts_std > .sts_title { font-style: italic }

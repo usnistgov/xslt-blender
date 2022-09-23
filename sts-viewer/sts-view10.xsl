@@ -338,6 +338,14 @@
             <xsl:apply-templates select="child::*[not(self::label)]"/>
         </li>
     </xsl:template>
+
+    <xsl:template match="preformat">
+        <pre>
+            <xsl:apply-templates select="@*"/>            
+            <xsl:call-template name="add.class"/>
+            <xsl:apply-templates/>
+        </pre>
+    </xsl:template>
     
     <!--
     table | col | thead | tr | th | tbody | td
@@ -403,7 +411,8 @@
         <xsl:value-of select="local-name()"/>
     </xsl:template>
     
-    <xsl:template priority="2" match="app-group | table-wrap | table-wrap-group | ref-list | ref | def-list | def-item | term | def | term-sec | term-display" mode="class">
+<!-- add anything here that shouldn't be marked 'labeled' -->
+    <xsl:template priority="2" match="app-group | table-wrap | table-wrap-group | ref-list | ref | def-list | def-item | term | def | term-sec | term-display | preformat" mode="class">
         <xsl:text>sts_</xsl:text>
         <xsl:value-of select="local-name()"/>
     </xsl:template>
@@ -429,4 +438,5 @@
         <xsl:text>sts_</xsl:text>
         <xsl:value-of select="local-name()"/>
     </xsl:template>
+    
 </xsl:stylesheet>
