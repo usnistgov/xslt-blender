@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="site/projects-page.xsl"?>
+<?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
 <projects>
     <project entry="sts-viewer/index.html">
         <name>NISO STS Viewer</name>
         <line>Preview your NISO STS document.</line>
         <description>
-            <p>NISO STS is an XML-based documentary format being adopted at NIST and elsewhere as an interchange format supporting the publication, exchange, and re-use of documentation relating to standards and guidelines. As a documentary format it is both richer and more rigorous than HTML.</p>
-            <p>Use this Previewer to see how a NISO STS-tagged document <i>might</i> appear in display.</p>
+            <p>NISO STS is an XML-based documentary format being adopted at NIST and more widely as an interchange format supporting the publication, exchange, re-use and sustainable (accessible) archiving of documentation relating to standards and guidelines. As a documentary format it is both richer and more rigorous than HTML.</p>
+            <p>Use this Previewer to see how a NISO STS-tagged document <i>might</i> appear in display (that is, in your browser, cast dynamically from its source tagging).</p>
         </description>
     </project>
     <project entry="directory.xml">
@@ -15,12 +15,28 @@
         <description>
             <p>The directory to demonstrations on this site, loaded into your browser as XML.</p>
             <p><i>View Source</i> to see the XML source from which the page is produced.</p>
+            <p><i>IF</i> you are so lucky ... reports are that this link freezes in at least one browser (just close the page).</p>
         </description>
     </project>
     <project entry="index.html">
         <name>Dynamic index</name>
         <description>
             <p>This directory is loaded dynamically into the index page, at user request. Uses the same XSLT as for <a href="directory.xml">the directory pushed as XML</a>.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>OSCAL to STS conversion</name>
+        <line>You have OSCAL, you want STS</line>
+        <description>
+            <p>We have XSLT 3.0 that can do this: a SaxonJS demo on OSCAL Tools?</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>STS Fitness Checking</name>
+        <line>How does the STS submission look?</line>
+        <description>
+            <p>An XSLT can render a document for display; it can also discover and signal where known issues are detected or
+                rules are not satisfied.</p>
         </description>
     </project>
     <project status="planned">
@@ -50,6 +66,15 @@
             <p>Load your Excel spreadsheet, pick your worksheet, map it into a table, save it.</p>
             <p>Save as HTML or OSCAL.</p>
             <p>Will require (un)zip functionality, resource wrapping (or other runtime interface with XSLT engine)</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>Word Dump</name>
+        <description>
+            <p>Why should the Excellent have all the fun? Drop a Word document onto the page and see rendered text. YMMV.</p>
+            <p>Save as HTML, NISO BITS, or OSCAL?</p>
+            <p>Essentially this is a mini-<a href="https://xsweet.org">XSweet</a> for a browser using only XSLT 1.0 (see how that goes)</p>
+            <p>Also require (un)zip functionality, resource wrapping (or other runtime interface with XSLT engine) etc. etc.</p>
         </description>
     </project>
     <project status="planned">
