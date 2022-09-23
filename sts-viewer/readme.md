@@ -50,17 +50,17 @@ The `fallback.xsl` logic also provides support for assignment of `@class` values
 
 The base layer of processing is encoded in the main module `sts-view10.xsl`. It overrides the fallback layer for all 'normal' and regular structures permitting better mappings into HTML.
 
-- paragraphs - `p` elements
-- tables
-- lists
-- term lists
-- References section, citations
-- figures
-- sections / asides
+- paragraphs - become HTML `p` elements
+- tables - become tables
+- lists - become lists or grids
+- term lists - ditto
+- References section, citations - wrapper structures and linking
+- figures - ditto
+- sections / asides - ditto
 - links - external & internal
 - MathML
 
-Note that by default, everything is already matched and tagged such that most customizations of display can happen in the CSS layer.
+Note that by default, everything is already matched and tagged such that most customizations of display can happen in the CSS layer. New or altered XSLT in the base layer is needed only when the HTML structure itself needs to be altered, attributes added or classes reassigned.
 
 ### CSS Layer
 
