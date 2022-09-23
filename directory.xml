@@ -25,6 +25,13 @@
         </description>
     </project>
     <project status="planned">
+        <name>OSCAL to STS conversion</name>
+        <line>You have OSCAL, you want STS.</line>
+        <description>
+            <p>We have XSLT 3.0 that can do this: a SaxonJS demo on OSCAL Tools?</p>
+        </description>
+    </project>
+    <project status="planned">
         <name>STS Fitness Checking</name>
         <line>How does the STS submission look?</line>
         <description>
