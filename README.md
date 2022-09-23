@@ -35,6 +35,19 @@ Developers who are interested in this code base should consider both
 
 As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), provided only that adequate notices of origin and modification are kept intact.
 
+### Licensing statement
+
+A current statement of licensing applicable to this software appears here: 
+https://www.nist.gov/open/license#software
+
+Transcribed September 2022:
+
+> NIST-developed software is provided by NIST as a public service. You may use, copy, and distribute copies of the software in any medium, provided that you keep intact this entire notice. You may improve, modify, and create derivative works of the software or any portion of the software, and you may copy and distribute such modifications or works. Modified works should carry a notice stating that you changed the software and should note the date and nature of any such change. Please explicitly acknowledge the National Institute of Standards and Technology as the source of the software. 
+>
+> NIST-developed software is expressly provided "AS IS." NIST MAKES NO WARRANTY OF ANY KIND, EXPRESS, IMPLIED, IN FACT, OR ARISING BY OPERATION OF LAW, INCLUDING, WITHOUT LIMITATION, THE IMPLIED WARRANTY OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE, NON-INFRINGEMENT, AND DATA ACCURACY. NIST NEITHER REPRESENTS NOR WARRANTS THAT THE OPERATION OF THE SOFTWARE WILL BE UNINTERRUPTED OR ERROR-FREE, OR THAT ANY DEFECTS WILL BE CORRECTED. NIST DOES NOT WARRANT OR MAKE ANY REPRESENTATIONS REGARDING THE USE OF THE SOFTWARE OR THE RESULTS THEREOF, INCLUDING BUT NOT LIMITED TO THE CORRECTNESS, ACCURACY, RELIABILITY, OR USEFULNESS OF THE SOFTWARE.
+>
+> You are solely responsible for determining the appropriateness of using and distributing the software and you assume all risks associated with its use, including but not limited to the risks and costs of program errors, compliance with applicable laws, damage to or loss of data, programs or equipment, and the unavailability or interruption of operation. This software is not intended to be used in any situation where a failure could cause risk of injury or damage to property. The software developed by NIST employees is not subject to copyright protection within the United States.
+
 ## Why XSLT?
 
 Developed in 1999, [XSLT 1.0](https://www.w3.org/TR/1999/REC-xslt-19991116) remains an excellent prototyping language for lightweight data transformation tasks, including some that may surprise even today.
@@ -98,7 +111,7 @@ This codebase started a secondary ("spinoff") project with the purpose of making
 
 See directories
 
-- [JSON Mixer](json-mixer) - can do something (anything) with JSON in XSLT 1.0? yup
+- [JSON Mixer](json-mixer) - can we do something (anything) with JSON in XSLT 1.0? yup
 - [STS Viewer](sts-viewer)
 
 ### Source and compiled Typescript
@@ -170,7 +183,7 @@ A license is given in the LICENSE.md file.
 
 ## Contact info
 
-This project is maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division). Please contact w e n d e l l p i e z [at] n i s t . g o v.
+This project is maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division), Secure Systems and Applications Group. Please contact w e n d e l l (dot) p i e z (at) n i s t (dot) g o v.
 
 Additionally please open or respond to Issues in this Github repository.
 
@@ -180,7 +193,5 @@ Piez, Wendell. XSLT Blender. US National Institute of Standards and Technology (
 
 ## Next to do
 
-- [ ] enrich links on this page
-- [ ] update readmes in project directories
 - [ ] further explore unit testing (mocha/chai)
 - [ ] build unit tests
