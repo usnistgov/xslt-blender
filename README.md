@@ -12,7 +12,7 @@ This code base is intended to support development of lightweight client-side web
 
 Elsewhere on line, impressive demonstrations of the current technology (XSLT 3.0) are available using the SaxonJS library from [Saxonica](https://saxonica.com/saxonjs/). At NIST some of these capabilities have been shown in the context of the [OSCAL project](https://pages.nist.gov/oscal-tools/demos/csx/). XSLT Blender applications are not limited to OSCAL (though not exclusive of it either). At time of writing all the demonstrations on the site (and available through the [portal page](https://www.github.com/usnistgov/xslt-blender)) use exclusively XSLT 1.0 as distributed with the browser (as a DOM Level 4 feature); that is, they run without any support from third-party libraries.
 
-In general, applications here will process XML with XSLT. Depending on the application, the XML may be provided on the site, accessed from elsewhere on the Internet (when permissions obtain), or provided by the user. In most cases, the capability being demonstrated is implemented in XSLT, delivered by the server as a page, and compiled and applied dynamically in your browser.
+In general, applications here will process XML with XSLT. Depending on the application, the XML may be provided on the site, accessed from elsewhere on the Internet (when permissions obtain), or provided by the user. In most cases, the capability being demonstrated is implemented in XSLT, delivered by the server as a resource (asynchronously, in the background), and compiled and applied dynamically in your browser.
 
 A noteworthy aspect of this arrangement is that if a file is provided by a user from a local system, it can be accessed and processed *without exposure* to any other application, service or point of contact. No file is uploaded to a server. No file, view or log is retained anywhere after the browser application is terminated. (A hosting page may do any of these things but the application itself will not.)
 
@@ -29,11 +29,11 @@ Use this repository by browsing the code base, trying the examples (as served in
 Developers who are interested in this code base should consider both
 
 - new applications showing new functionalities
-- how you can contribute to building, extending and supporting this (project or approach)
+- how you can contribute to building, extending and supporting this project or this approach
 
 ## Rights
 
-As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), provided only that adequate notices of origin and modification are kept intact.
+As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), and is free for use provided only that adequate notices of origin and modification are kept intact.
 
 ### Licensing statement
 
@@ -50,21 +50,19 @@ Transcribed September 2022:
 
 ## Why XSLT?
 
-Developed in 1999, [XSLT 1.0](https://www.w3.org/TR/1999/REC-xslt-19991116) remains an excellent prototyping language for lightweight data transformation tasks, including some that may surprise even today.
+Developed in 1999, [XSLT 1.0](https://www.w3.org/TR/1999/REC-xslt-19991116) remains an excellent language for data transformation tasks, including some that may surprise even today.
 
-The language's grown-up version -- [XSLT 3.0](https://www.w3.org/XML/Group/qtspecs/specifications/xslt-30/html/) -- is even more capable. But XSLT 1.0 has a peculiar advantage. Not entirely unlike the cigarette lighter in your car, it turns out it to be useful for powering things, and it still works.
+The language's grown-up version -- [XSLT 3.0](https://www.w3.org/XML/Group/qtspecs/specifications/xslt-30/html/) -- is even more capable. But XSLT 1.0 has a peculiar advantage. Not entirely unlike an AC power port in your car, you may not even know it is there, but it turns out it to be useful and versatile.
 
 Sticking with XSLT 1.0 for demonstrations, code bases can be small and relatively easy to audit. Vulnerabilities of the architecture, specifications and tools are well understood and preventable or mitigable. XSLT processors and their dependencies (such as parsers) have been well tested, and their degree of conformance with the relevant specifications is high.
 
-XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, and Javascript (more precisely, ECMAScript) in particular is *finally* able to provide the level of support needed to apply XSLT transformation logic flexibly, in a range of different scenarios, to achieve useful data processing operations in the browser, beyond display.
+XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, and Javascript (more precisely, ECMAScript) in particular is *finally* able to provide the level of support needed in web pages, to orchestrate transformations and interactions together. Using modern Javascript we are able to deploy asynchronous, defensible subroutines for acquiring resources and applying transformation logic flexibly, in a range of different scenarios, to achieve useful data processing operations in the browser, supporting display and interactivity.
 
-Applications can be written with *no* dependencies on external libraries. XSLT 1.0 is supported natively in the browser. If the feature set or capabilities of XSLT 3.0 are needed, a single dependency suffices, [SaxonJS](https://www.saxonica.com/saxon-js/index.xml), which additionally offers a range of features supporting integration, application and interface development.
+Entire (albeit small and simple) applications can be written with *no* dependencies on external libraries. The basic capability that XSLT offers -- casting data from one descriptive format into another at arbitrary levels of granularity, while retaining structure and organization -- is simple, difficult to abuse or break, yet flexible in use, making XSLT applications well-suited to following the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a code base is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong. Hence the site tagline, "Least Power, Greatest Effect".
 
-XSLT applications are perfect for implementing along the lines of the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a code base is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong. Hence the site tagline, "Least Power, Greatest Effect".
+This work is informed by daily and weekly practice with XSLT, and inspired by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
 
-This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
-
-- Ford, Katherine, and Will Thompson. “An Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.” Presented at *Balisage: The Markup Conference 2018*, Washington, DC, July 31 - August 3, 2018. In Proceedings of Balisage: The Markup Conference 2018. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
+- Ford, Katherine, and Will Thompson. “An Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.” Presented at Balisage: The Markup Conference 2018, Washington, DC, July 31 - August 3, 2018. In *Proceedings of Balisage: The Markup Conference 2018*. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
 
 This work is informed by daily and weekly practice with XSLT, and inspired (in part) by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
 
@@ -72,11 +70,11 @@ This work is informed by daily and weekly practice with XSLT, and inspired (in p
 
 ## Development Model
 
-This codebase started a secondary ("spinoff") project with the purpose of making code available for reuse. Developed for internal projects or use at NIST, these projects are published here for the use of the public and by developers who can build on its foundations or study it as a model. Contribute to this project by offering positive commentary and feedback ([tell us what is working](https://github.com/usnistgov/xslt-blender/issues/new)). New ideas for projects or feature requests will be considered and taken up based on the generality of the need and the closeness of the use case. Of course, the repository is also designed to be improved on in your fork.
+This codebase started a secondary ("spinoff") project with the purpose of making code available for reuse. Developed for internal projects or use at NIST, these projects are published here for the use of the public and by developers who can build on its foundations or study it as a model. Contribute to this project by offering positive commentary and constructive feedback ([tell us what is working](https://github.com/usnistgov/xslt-blender/issues/new)). New ideas for projects or feature requests will be considered and taken up based on the generality and acuteness of the need and the closeness of the use case. Of course, the repository is also designed to be improved on in your fork.
 
 ## Repository Contents
 
-### Site configuration
+### Repo configuration
 
 - CODEMETA.yaml
 - CODEOWNERS
@@ -85,31 +83,27 @@ This codebase started a secondary ("spinoff") project with the purpose of making
 - LICENSE.md
 - fair-software.md
 
-### This file
+### NodeJS configuration
 
-- README.md
-
-### Portal front page
-
-- index.html
+- package-lock.json
+- package.json
+- tsconfig.json
 
 ### Site CSS
 
 - nist-boilerplate.css
 - nist-combined.css (copied from https://pages.nist.gov/nist-header-footer/css/)
 
-### Directory and its supporting files
+### Portal landing page
+
+- index.html
+
+### Projects directory and supporting files
 
 - directory.xml
 - list-projects.xsl
 - projects-html.css
 - projects-page.xsl
-
-### NodeJS setup
-
-- package-lock.json
-- package.json
-- tsconfig.json
 
 ### Projects
 
@@ -124,6 +118,10 @@ See directories
 - Compiled Typescript and Javascript goes into `lib`
 - Additionally, projects may have their own Javascript libraries
 
+### This file
+
+- README.md
+
 ### For later (factor out)
 
 - page-template.html
@@ -134,14 +132,21 @@ See directories
 
 The repository presents an entire coherent publication, with navigation, of available demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability.
 
-It can be served directly and viewed on `localhost`, or bound to a Github or Gitlab Pages site (such as what you might be reading).
+It can be served directly and viewed on `localhost` (see below) for "clean room" use, or pushed into a Github or Gitlab Pages site (such as what you might be reading) for wide availability.
 
 Demonstrations should be self-explanatory, assuming relevant background knowledge. Please do research or make inquiries!
 
 - Declarative markup
 - XML and XSLT
 
-To compile Typescript libraries from source, nodeJS and npm are assumed.
+Scripting and application logic used in this site falls into four categories:
+
+- The 'XSLT Blender' library (Typescript in `src` compiled into `lib`) provides generalized interfaces with/for XML and XSLT capabilities
+- Per demonstration, XSLT provides the 'layering' that gets content into the browser (via a 'cast' to HTML for a defined tag set)
+- CSS applied to the page can then style this - both per demonstration, and site-wide CSS are used
+- Javascript (lightweight, self-contained) may also be deployed per demonstration
+
+To compile Typescript libraries from source, nodeJS and npm are assumed. But most extension and customization can be done in the other layers.
 
 ## Development model
 
@@ -150,7 +155,7 @@ Since these are client-side applications intended to be run in far-away environm
 A project will typically be built by:
 
 - designing a conceptual model of a functional interface for XML/XSLT
-- deploy a prototype coded by hand (HTML/Javascript) calling XSLT over XML sources
+- deploying a prototype coded by hand (HTML/Javascript) calling XSLT over XML sources
 - iteratively develop the (XSLT) transformation along with with user interface
 
 Over time, projects will show a range of different approaches and user interface capabilities, which can be borrowed, reused, and refined.
@@ -163,7 +168,13 @@ The latest `lib` outputs will be pushed to the repository, so you only have to c
 
 Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries.
 
+Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless they go beyond the transformation (mapping) requirements ably addressed by XSLT.
+
 ### Serving from `localhost`
+
+Due to protections placed on browsers against cross-site scripting, these pages must be served to a web browser (that is, made available via `http` or `https`) for the application to perform. Nevertheless, after a server has delivered a functional payload (host page and transformations specifications, aka stylesheets in XSLT), no data is passed, and in no circumstance is data passed out of the user's machine. Instead, processing logic comes in.
+
+Accordingly, a browser that has cached the page, scripts and stylesheets can perform the transformations without an internet connection; and a developer whose workflow entails directly refreshing views must take care that caches are refreshed when tracing functionality.
 
 With NPM, start a local server by opening a Linux/WSL prompt in the `xslt-blender` directory, and invoking `npm serve`, or simply `http-server` with that npm module installed.
 
@@ -173,23 +184,21 @@ Point your browser at `index.html` or the landing page of any demo, as served on
 
 ### Testing
 
-Applications are tested by development under load with representative sample documents.
+Applications are tested by development under load with representative sample documents (including representations of 'pathological' inputs).
 
 Due to limitations in available support for XML/XSLT in Javascript (ECMAScript) outside browsers, we have not been able to unit test libraries outside the browser environment; this remains a TBD (and indeed browsers may vary in any case). To help compensate for this, a variety of browsers (typically at least Chrome and Firefox) are used to test in development.
 
-Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is fairly easy to compose in such a way that it is robust against hard failures entailing threats such as data exfiltration or even denial of service. Unless you provide your own code to these code bases, the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout and/or data "dumps" to your screen.
+Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is fairly easy to compose in such a way that is robust against hard failures entailing threats such as data exfiltration or even denial of service. Unless you provide your own code to these code bases, the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout and/or data "dumps" to your screen -- or in extreme cases (with stylesheets not yet properly tested), by suspending your browser.
 
-## License and dependencies
+## Dependencies and licenses
 
-Code here all runs in your browser with no runtime dependencies except as noted per demonstration. Code is developed as Typescript and compiled and tested under Node JS.
-
-A license is given in the LICENSE.md file.
+Code here all runs in your browser with no runtime dependencies except as noted per demonstration. Particular demonstrations may carry license information as required (see their respective readmes).
 
 ## Contact info
 
 This project is maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division), Secure Systems and Applications Group. Please contact w e n d e l l (dot) p i e z (at) n i s t (dot) g o v.
 
-Additionally please open or respond to Issues in this Github repository.
+Additionally please feel free to open or respond to Issues in this Github repository.
 
 ## Cite this work
 

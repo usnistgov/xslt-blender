@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
 <projects>
-    <project entry="sts-viewer/index.html">
+    <project entry="sts-viewer">
         <name>NISO STS Viewer</name>
         <line>Preview your NISO STS document.</line>
         <description>
@@ -11,15 +11,15 @@
     </project>
     <project entry="directory.xml">
         <name>Reflection</name>
-        <line>Pointing back to this portal.</line>
+        <line>XML served up crude</line>
         <description>
-            <p>The directory to demonstrations on this site, loaded into your browser as XML.</p>
-            <p><i>View Source</i> to see the XML source from which the page is produced.</p>
-            <p><i>IF</i> you are so lucky ... reports are that this link freezes in at least one browser (just close the page).</p>
+            <p>The (same) directory to demonstrations on this site, loaded into your browser as XML.</p>
+            <p><i>View Source</i> to see the XML source from which the page is produced. In display it looks the same, in this case by design.</p>
+            <p>In addition to clean project descriptions, the directory provides a control point for top-level site navigation.</p>
         </description>
     </project>
     <project entry="index.html">
-        <name>Dynamic index</name>
+        <name>Portal Page (dynamic index)</name>
         <description>
             <p>This directory is loaded dynamically into the index page, at user request. Uses the same XSLT as for <a href="directory.xml">the directory pushed as XML</a>.</p>
         </description>
@@ -35,29 +35,43 @@
         <name>STS Fitness Checking</name>
         <line>How does the STS submission look?</line>
         <description>
-            <p>An XSLT can render a document for display; it can also discover and signal where known issues are detected or
-                rules are not satisfied.</p>
+            <p>An XSLT can render a document for display; it can also discover and signal where known issues are detected, requirements are not satisfied, or rules are broken.</p>
         </description>
     </project>
     <project status="planned">
-        <name>Site templating</name>
+        <name>Site Templating</name>
         <line>Static site generator, old school</line>
         <description>
-            <p>A NodeJS CL tool to read an HTML file and deliver a transformed HTML file would be the basis for a static site generator in Node JS + XSLT 1.0.</p>
+            <p>A NodeJS CL tool to read an HTML file and deliver a transformed HTML file would be the basis for a static site generator in Node JS + XSLT. (This might have to be Saxon-based if only for XSLT outside the browser.)</p>
             <p>Then make an application of this for site templating.</p>
             <p>Deploy as either page setup or CI/CD (push) step (or both)?</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>Site Page Validator</name>
+        <line>Even older school alternative supporting hand-crafted pages</line>
+        <description>
+            <p>Instead of templating, this application works by validating an HTML document to see how well it is templated. It could check for the presence of normative boilerplate and report when it is not found ... questions would be, how (and even when and whether) to maintain updates and checks for updates.</p>
+            <p>This could be built as a helper application providing chunks of code for a user to copy out, when a page is found to be out of order.</p>
         </description>
     </project>
     <project entry="json-mixer/json-reader.html" status="underway">
         <name>JSON Reader</name>
         <description>
             <p>Load JSON and spill it onto the page, as HTML.</p>
+            <p>This is a very rudimentary application in place mainly for sake of testing the concept and stabilizing the (germ of a) code base that can carry it out.</p>
         </description>
     </project>
     <project status="planned">
         <name>Load and Run</name>
         <description>
             <p>Load your XSLT 1.0, then your XML. Inspired by D Carlisle.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>CSV Tabulator</name>
+        <description>
+            <p>Rather than supporting people's dependencies on spreadsheets (like the Excel Drill), this application permits converting arbitrary CSV (such as might be exported by a spreadsheet) into a grid or table (configured by the user), perhaps then written out as OSCAL or other structured format ready for use in other applications?</p>
         </description>
     </project>
     <project status="planned">

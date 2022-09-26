@@ -142,6 +142,7 @@ body {
 
 .nist-footer__menu-item a {
   font-weight: normal;
+  margin-left: 6px;
   margin-right: 6px;
   white-space: nowrap;
   padding: 0.5em 0;
