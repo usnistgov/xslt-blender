@@ -33,7 +33,7 @@ Developers who are interested in this code base should consider both
 
 ## Rights
 
-As work product of the National Intitute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), and is free for use provided only that adequate notices of origin and modification are kept intact.
+As work product of the National Institute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), and is free for use provided only that adequate notices of origin and modification are kept intact.
 
 ### Licensing statement
 
@@ -50,9 +50,9 @@ Transcribed September 2022:
 
 ## Why XSLT?
 
-Developed in 1999, [XSLT 1.0](https://www.w3.org/TR/1999/REC-xslt-19991116) remains an excellent language for data transformation tasks, including some that may surprise even today.
+Released in 1999, [XSLT 1.0](https://www.w3.org/TR/1999/REC-xslt-19991116) remains an excellent language for data transformation tasks, including some that may surprise even today.
 
-The language's grown-up version -- [XSLT 3.0](https://www.w3.org/XML/Group/qtspecs/specifications/xslt-30/html/) -- is even more capable. But XSLT 1.0 has a peculiar advantage. Not entirely unlike an AC power port in your car, you may not even know it is there, but it turns out it to be useful and versatile.
+The language's grown-up version -- [XSLT 3.0](https://www.w3.org/XML/Group/qtspecs/specifications/xslt-30/html/) -- is even more capable. But XSLT 1.0 has a peculiar advantage. Not entirely unlike an AC power port in your car, you may not even know it is there, but it turns out to be useful and versatile.
 
 Sticking with XSLT 1.0 for demonstrations, code bases can be small and relatively easy to audit. Vulnerabilities of the architecture, specifications and tools are well understood and preventable or mitigable. XSLT processors and their dependencies (such as parsers) have been well tested, and their degree of conformance with the relevant specifications is high.
 
@@ -130,9 +130,9 @@ See directories
 
 ## Installation
 
-The repository presents an entire coherent publication, with navigation, of available demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability.
+The repository presents a set of web browser-based demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability.
 
-It can be served directly and viewed on `localhost` (see below) for "clean room" use, or pushed into a Github or Gitlab Pages site (such as what you might be reading) for wide availability.
+It can be served directly and viewed on `localhost` (see below) for "clean room" use, served directly on the web, or pushed into a Github or Gitlab Pages site (such as what you might be reading), or other repository host, for wide availability.
 
 Demonstrations should be self-explanatory, assuming relevant background knowledge. Please do research or make inquiries!
 
@@ -142,8 +142,8 @@ Demonstrations should be self-explanatory, assuming relevant background knowledg
 Scripting and application logic used in this site falls into four categories:
 
 - The 'XSLT Blender' library (Typescript in `src` compiled into `lib`) provides generalized interfaces with/for XML and XSLT capabilities
-- Per demonstration, XSLT provides the 'layering' that gets content into the browser (via a 'cast' to HTML for a defined tag set)
-- CSS applied to the page can then style this - both per demonstration, and site-wide CSS are used
+- Per demonstration, XSLT provides the 'layering' that gets content into the browser (typically via a 'cast' to HTML for a defined tag set)
+- CSS applied to the page can then style this - both CSS per demonstration, and site-wide CSS are used
 - Javascript (lightweight, self-contained) may also be deployed per demonstration
 
 To compile Typescript libraries from source, nodeJS and npm are assumed. But most extension and customization can be done in the other layers.
