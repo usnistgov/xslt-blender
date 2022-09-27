@@ -35,6 +35,8 @@ Developers who are interested in this code base should consider both
 
 As work product of the National Institute for Standards and Technology (NIST), this software with its documentation is placed into the public domain, as noted in the [License file](LICENSE.md), and is free for use provided only that adequate notices of origin and modification are kept intact.
 
+When you adapt this code please remove any NIST-identifying boilerplate or branding from page views. While your site should retain appropriate credits, we cannot be responsible for misrepresentations and we expect you not to be.
+
 ### Licensing statement
 
 A current statement of licensing applicable to this software appears here: 
