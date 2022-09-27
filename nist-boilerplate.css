@@ -7,7 +7,7 @@ main.draft { background-image: url( 'draft.svg' ) }
 
 section.project { background-image: none; background-color: white; }
 
-section.project-footer { background-color: gainsboro; text-align: center;
+.project-footer { background-color: gainsboro; text-align: center;
   padding: 0.3em; margin: 0; margin-top: 1em; border: none }
 
 html, body { font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif;
@@ -18,3 +18,8 @@ main { padding: 0 16px } /* same horizontal space as NIST header */
 
 /* relative position keeps the footer block behind the leaving-site popup */
 #nistfootergoeshere { z-index: -1; position: relative }
+
+details.boxed { width: fit-content; padding: 0.4em;
+    margin-bottom: 1em }
+
+details.boxed[open] { outline: thin dotted black }
