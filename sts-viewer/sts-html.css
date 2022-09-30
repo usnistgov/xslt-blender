@@ -1,16 +1,6 @@
 
 .project-footer { margin-top: 1em }
 
-details, .titled { margin: 0.6em; padding: 0.2rem;
-                  padding-left: 1.2rem; padding-right: 0.8rem; outline: thin dotted transparent }
-
-details[open] { border: thin dotted black }
-
-
-summary { font-weight: bold; font-size: 127%; padding-right: 0.617em }
-
-details details summary { font-size: 112% }
-
 p { margin: 0.6em 0em; max-width: 54em; line-height: 1.62 }
 
 
@@ -32,6 +22,19 @@ aside > *:last-child { margin-bottom: 0em }
 #displaySTS { margin: 1em 0em }
 
 #displaySTS header > * { margin: 0em }
+
+
+#displaySTS details,
+#displaySTS .titled { margin: 0.6em; padding: 0.2rem;
+                  padding-left: 1.2rem; padding-right: 0.8rem; outline: thin dotted transparent }
+
+#displaySTS details[open] { border: thin dotted black }
+
+
+#displaySTS summary { font-weight: bold; font-size: 127%; padding-right: 0.617em }
+
+#displaySTS details details summary { font-size: 112% }
+
 
 #displaySTS > section.sts_standard > section:last-child > details { margin-bottom: 0em }
 
