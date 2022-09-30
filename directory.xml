@@ -25,6 +25,15 @@
         </description>
     </project>
     <project status="planned">
+        <name>OSCAL Boilerplate</name>
+        <line>Styling your OSCAL with CSS</line>
+        <description>
+            <p>Like any XML, OSCAL XML can be displayed in the browser natively, using CSS for layout and typography, almost entirely meeting requirements for many simple applications for document review and the like.</p>
+            <p>Where <q>almost entirely</q> isn't enough, a project such as <a href="https://dcl.ils.indiana.edu/teibp/">TEI Boilerplate</a> demonstrates how even a very lightweight XSLT shim can do the rest.</p>
+            <p>In this application, one should be able to load an OSCAL file and then either load or edit CSS and have it applied dynamically. A small accompanying chart would document where the XSLT transformation intervenes to expand text (for example: parameter value insertions), create links or map into HTML directly. This would enable the user effectively to control the entire look/feel of the document as presented, on top of a plain and transparent OSCAL foundation and framing.</p>
+        </description>
+    </project>
+    <project status="planned">
         <name>OSCAL to STS conversion</name>
         <line>You have OSCAL, you want STS</line>
         <description>
