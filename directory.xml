@@ -3,7 +3,7 @@
 <projects>
     <project entry="sts-viewer">
         <name>NISO STS Viewer</name>
-        <line>Preview your NISO STS document.</line>
+        <line>Preview your NISO STS document</line>
         <description>
             <p>NISO STS is an XML-based documentary format being adopted at NIST and more widely as an interchange format supporting the publication, exchange, re-use and sustainable (accessible) archiving of documentation relating to standards and guidelines. As a documentary format it is both richer and more rigorous than HTML.</p>
             <p>Use this Previewer to see how a NISO STS-tagged document <i>might</i> appear in display (that is, in your browser, cast dynamically from its source tagging).</p>
