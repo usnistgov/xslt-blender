@@ -23,3 +23,11 @@ details.boxed { width: fit-content; padding: 0.4em;
     margin-bottom: 1em }
 
 details.boxed[open] { outline: thin dotted black }
+
+
+details#sec-notice { margin: 0em; padding: 0.2em;
+  text-align: right; font-size: smaller; background-color: lightgrey  }
+
+#sec-notice p { margin: 0em; max-width: inherit }
+#sec-notice p span:before { content: '• '  } /* bullet */
+#sec-notice p span:hover { background-color: gainsboro  }
