@@ -168,8 +168,3 @@ html.nist-footer-bottom #main {
 html.nist-footer-bottom .nist-footer {
   flex-shrink: 0;
 }
-
-details#sec-notice { margin: 0em; padding: 0.2em;
-   text-align: right; font-size: smaller; background-color: lightgrey  }
-#sec-notice ul { margin: 0em }
-#sec-notice ul li { display: inline list-item }
