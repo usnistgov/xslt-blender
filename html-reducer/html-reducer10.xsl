@@ -13,7 +13,7 @@
     <xsl:strip-space elements="*"/>
     
 <!-- TODO: acquire list of HTML text-containing elements for preserve-space -->
-    <xsl:preserve-space elements="p li td a i b span strong em"/>
+    <xsl:preserve-space elements="p li td th a i b q u span strong em"/>
     
     <xsl:template match="/*">
         <div>
@@ -29,8 +29,7 @@
     <xsl:template match="*">
         <xsl:if test="$noisy">
             <xsl:message>
-                <xsl:text>Dropping 
-                </xsl:text>
+                <xsl:text>Dropping </xsl:text>
                 <xsl:value-of select="local-name()"/>
             </xsl:message>
         </xsl:if>
@@ -39,9 +38,11 @@
     
     <xsl:template match="h1 | h2 | h3 | h4 | h5 | h6 | 
                          p | ol | ul | li | pre | table | tr | th | td |
+                         i | b | strong | em | q | code |
                          xh:h1 | xh:h2 | xh:h3 | xh:h4 | xh:h5 | xh:h6 | 
-                         xh:p | xh:ol | xh:ul | xh:li | xh:pre | xh:table | xh:tr | xh:th | xh:td">
-        <xsl:element name="{ local-name() }">
+                         xh:p | xh:ol | xh:ul | xh:li | xh:pre | xh:table | xh:tr | xh:th | xh:td |
+                         xh:i | xh:b | xh:strong | xh:em | xh:q | xh:code">
+        <xsl:element name="{ local-name() }" namespace="http://www.w3.org/1999/xhtml">
             <xsl:apply-templates/>
         </xsl:element>
     </xsl:template>

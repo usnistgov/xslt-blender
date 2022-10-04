@@ -358,6 +358,6 @@ function removeClassFromElementsByClass(removeFromClass: string, theClass: strin
 
 // any automagic way to export everything?
 export { fileTextContent, fileXMLContent, fileHTMLContent,
-         getXMLviaHTTP, writeOBJtoXML, spliceIntoPage,
+         getXMLviaHTTP, writeOBJtoXML, clearElementById, spliceIntoPage,
          parseXMLLiteral, parseAndTransformXMLLiteral, parseAndTransformXMLatHREF,
          xslt1ResultDocument, xsltEngineForHREF };
