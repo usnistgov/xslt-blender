@@ -5,6 +5,31 @@
   <title>HTML Reducer</title>
   <meta charset="utf-8" />
   <style type="text/css" xml:space="preserve">
+code { font-size: 105% }
+
+
+.panels { display: grid;
+   grid-template-columns:  repeat(3, auto);
+   gap: 0.2em;
+  margin-top: 1em }
+
+.panel { border: thin inset black; padding: 0.2em }
+
+.panel > div { padding: 0.2em; background-color: gainsboro }
+.panel > div:empty { background-color: inherit }
+
+.panel > div *:first-child { margin-top: 0em }
+.panel > div *:last-child { margin-bottom: 0em }
+
+
+#literalOut {  white-space: pre-wrap; font-family: monospace }
+
+#literalIn {  min-height: 12vh; white-space: pre-line; width: 92%}
+
+.panel div#renderedOut { background-color: lightsteelblue }
+.panel div#renderedOut:empty { background-color: inherit }
+
+#markdownOut { white-space: pre-wrap; font-family: monospace }
 
   </style>
   <link rel="stylesheet" href="../nist-boilerplate.css" type="text/css" />
@@ -14,11 +39,12 @@
   <!-- <script async="async" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NIST&subagency=github&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c">
   </script> -->
   <script type="module">
-      import { fileXMLContent, spliceIntoPage, xslt1ResultDocument, xsltEngineForHREF } from "../lib/xslt-blender.js";
+      import { fileTextContent, fileHTMLContent, spliceIntoPage, xslt1ResultDocument, xsltEngineForHREF } from "../lib/xslt-blender.js";
 
       // todo: replace with something a little less cumbersome?
       window.xslt1ResultDocument = xslt1ResultDocument;
-      window.fileXMLContent = fileXMLContent;
+      window.fileTextContent = fileTextContent;
+      window.fileHTMLContent = fileHTMLContent;
       window.spliceIntoPage = spliceIntoPage;
       // window.parseAndTransformXMLLiteral = parseAndTransformXMLLiteral;
       window.xsltEngineForHREF = xsltEngineForHREF;
@@ -27,13 +53,21 @@
    
    <script type="text/javascript">
 
-   async function filterAndShowXHTMLFiles(fileSet) {
+   async function filterAndShowFiles(fileSet) {
       for (const eachFile of fileSet) {
-        const maybeXHTML = await fileXMLContent(eachFile);
-        if (maybeXHTML) {
-          viewAndShowHTMLtags(maybeXHTML, "counter-top");
-        }
+        const maybeHTML = await fileHTMLContent(eachFile);
+        const asText    = await fileTextContent(eachFile);
+        let aDocument = new Document();
+        aDocument.appendChild(maybeHTML.body);
+        document.getElementById("literalIn").value = asText;
+        return viewAndShowReduction(aDocument);
       }
+    }
+
+    function filterAndShowText(markupText) {
+        const aParser = new DOMParser();
+        const maybeHTML = aParser.parseFromString(markupText, "text/html");
+        return viewAndShowReduction(maybeHTML);
     }
 
     /* async function filterAndShowHTMLFiles(fileSet) {
@@ -45,23 +79,48 @@
       }
     } */
 
-    async function viewAndShowHTMLtags(HTMLDocument, targetID) {
+    async function viewAndShowReduction(HTMLDocument) {
       // a pipeline through two XSLTs
       const reducerXSLTEngine = await xsltEngineForHREF('html-reducer10.xsl');
-      const writerXSLTEngine = await xsltEngineForHREF('write-xml10.xsl');
+      const tagWriterXSLTEngine = await xsltEngineForHREF('write-xml10.xsl');
+      const markdownWriterXSLTEngine = await xsltEngineForHREF('html-to-markdown.xsl');
+
       const reducedHTML = xslt1ResultDocument(HTMLDocument, reducerXSLTEngine); // a promise
-      const HTMLTags = xslt1ResultDocument(reducedHTML, writerXSLTEngine); // a promise
-      return spliceIntoPage(targetID, HTMLTags, true);
+      const taggedHTML = xslt1ResultDocument(reducedHTML, tagWriterXSLTEngine); // a promise
+      const markdownFormatted = xslt1ResultDocument(reducedHTML, markdownWriterXSLTEngine); // a promise
+      // console.log(reducedHTML);
+      spliceIntoPage("literalOut", taggedHTML, true);
+      spliceIntoPage("renderedOut", reducedHTML, true);
+      spliceIntoPage("markdownOut", markdownFormatted, true);
     }
     
-    
-   const clearPage = () => {
-     const clearing = document.getElementById('counter-top');
-     let emptyList = new DataTransfer();
-     let noFiles = emptyList.files;
-     while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
-     document.getElementById("loadHTML").files = noFiles;
-     document.getElementById("loadXHTML").files = noFiles;
+   
+    /* function fileContentasDOM(fileToRead) {
+        const fileText = fileTextContent(fileToRead);
+        const fileParsed = new DOMParser().parseFromString(fileText, "text/html");
+        return fileParsed;        
+    } */
+
+    const clearPage = () => {
+
+      document.getElementById("literalIn").value = "";
+
+      let targets = ['literalOut','renderedOut','markdownOut']
+      targets.forEach( (e) => {
+        let clearing = document.getElementById(e);
+        while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );   
+      });    
+
+     /* const clearing = document.getElementById('literalIn');
+     while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) ); */
+
+     /* clearElementByID("literalOut");
+     clearElementByID("renderedOut");
+     clearElementByID("markdownOut"); */
+       let emptyList = new DataTransfer();
+       let noFiles = emptyList.files;
+       document.getElementById("loadFile").files = noFiles;
+
      }
 
     </script>
@@ -101,31 +160,64 @@
   </div>
   <details id="sec-notice">
     <summary>Is this site a preview, demo, mockup or spoof? - <i><b>How you can know</b></i></summary>
-    <ul><li>The real site domain ends in <code>nist.gov</code></li>
-    <li>The page address shows <code>https://</code></li></ul>
+    <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
   </details>
   <main>
     <h1>HTML Reducer</h1>
-    <p>Drop your XHTML onto the page. Your browser loads it and converts it to a plain, simple, flat, Markdown-compatible HTML.</p>
+    <p style="font-weight: bold">Sanitizes. Flattens. Writes Markdown. OSCAL-friendly.</p>
+    <p>Drop your HTML onto the page. Your browser will try to load it; what it can read, it converts it to a plain, simple, flat, Markdown-compatible HTML.</p>
+    <p>It drops structural information except as might be reflected implicitly in header elements (i.e. <code>h1</code> through <code></code>h6</code>). It drops all styling. It keeps only what works in the most reduced environments.</p>
+    <p>Accordingly, it also screens out any <code>script</code> or <code>style</code> that might perturb downstream consumers.</p>
+    <p>Keeping what works ensures that regularly tagged contents such as paragraphs, basic inline formatting, lists and simple tables will come through, and no data will be lost, while superfluous information constituting <q>noise</q> (you must be the judge) is screened out.</p>
+    <!--
+to test:
+x parse and transform HTML DOM?
+o serialize an HTML DOM for display (as tagged)?
+o build out tabs / triptych
+   two expandable panels:
+     1A Source literal 1B Final Markdown w/ Save As
+     2A Displayed result 2B Cleaned up result w/ Save As
+
+     -->
     <p>Upcoming features:</p>
     <ul>
       <li>Textbox for literal HTML</li>
-      <li>Three renderings: in layout; XHTML (OSCAL-ready) source; Markdown</li>
+      <li>Four tabs: source code; reduced source code; displayed reduced; Markdown</li>
       <li>Save As and copy-to-clipboard options for XHTML and Markdown</li>
-      <li>Find a way to support handling non-wf HTML (such as Tidy)?</li>
+      <li><span style="text-decoration: line-through">a way to support handling non-wf HTML</span> <i>- Done!</i></li>
+      <li>Experiment with loading either/both XHTML and HTML (try both parsers?)</li>
     </ul>
   </p>
     <!-- <p>All processing is in your browser. Either your reduced HTML, or the same text written out in Markdown, can be saved out as well.</p> -->
     <details class="boxed">
       <summary>Limitations</summary>
-      <p>Currently this can only process XHTML or other XML (well-formed) inputs. If your HTML is not already XML you can Tidy it first.</p>
+      <p>Now passing all (any) inputs to the HTML parser not the XML parser. Good luck! Note that data not already appearing  in <code>p</code> tags or other (plain) element markup (lists, headers, tables) will spill out into the containing <code>div</code> - which is schema-valid
+      only because divs can contain basically anything.</p>
+      <p><a class="external" href="https://developer.mozilla.org/en-US/docs/Web/XSLT/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations">Mozilla Developer Network documentation for XSLT</a> cautions that this isn't tested (by them) and they can't promise it won't change. It seems to work, however.</p>
     </details>
     <!-- <input type="file" id="loadHTML" name="loadHTML" title="Load HTML (text/html)"
       onchange="filterAndShowHTMLFiles(this.files)" /> -->
-      <input type="file" id="loadXHTML" name="loadXHTML" title="Load XHTML (application/xml)"
-      onchange="filterAndShowXHTMLFiles(this.files)" />
+      <input type="file" id="loadFile" name="loadFile" title="Load file"
+      onchange="filterAndShowFiles(this.files)" />
     <button style="float:right" onclick="clearPage()">Clear page</button>
-    <div id="counter-top" style="white-space: pre-line"><!-- --></div>
+    <details class="panel" style="margin-top: 1em">
+      <summary>Source <i>(editable)</i></summary>
+      <textarea id="literalIn" onchange="filterAndShowText(this.value)"><!-- --></textarea>
+    </details>
+    <div class="panels" style="display: grid">
+    <details open="open" class="panel">
+      <summary>Cleaned up</summary>
+      <div id="literalOut"><!-- --></div>
+    </details>
+    <details open="open" class="panel">
+      <summary>Displayed</summary>
+      <div id="renderedOut"><!-- --></div>
+    </details>
+    <details open="open" class="panel">
+      <summary>Markdown</summary>
+      <div id="markdownOut"><!-- --></div>
+    </details>
+  </div>
   </main>
   <div class="project-footer">
     <p><i>HTML Reducer</i> is an <a  href="https://pages.nist.gov/xslt-blender">XSLT Blender</a> project using XSLT 1.0 capabilities built into your browser, with no external dependencies.</p>
