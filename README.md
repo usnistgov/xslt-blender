@@ -204,7 +204,7 @@ Additionally please feel free to open or respond to Issues in this Github reposi
 
 ## Cite this work
 
-Piez, Wendell. XSLT Blender. US National Institute of Standards and Technology (NIST), 2022. https://github.com/usnistgov/xslt-blender.
+Piez, Wendell (2022), XSLT Blender, US National Institute of Standards and Technology (NIST), https://doi.org/10.18434/mds2-2813.
 
 ## Next to do
 
