@@ -143,16 +143,18 @@ Demonstrations should be self-explanatory, assuming relevant background knowledg
 
 Scripting and application logic used in this site falls into four categories:
 
-- The 'XSLT Blender' library (Typescript in `src` compiled into `lib`) provides generalized interfaces with/for XML and XSLT capabilities
-- Per demonstration, XSLT provides the 'layering' that gets content into the browser (typically via a 'cast' to HTML for a defined tag set)
-- CSS applied to the page can then style this - both CSS per demonstration, and site-wide CSS are used
+- The 'XSLT Blender' library (Typescript in `src` compiled into `lib`) provides generalized interfaces for XML and XSLT capabilities.
+- Per demonstration, XSLT provides the *layering* that gets content into the browser, typically via a 'cast' to HTML for a defined tag set.
+- CSS applied to the page can then style this further - both CSS per demonstration, and site-wide CSS are used
 - Javascript (lightweight, self-contained) may also be deployed per demonstration
+
+This describes the general pattern: in the case of individual demonstrations, it may be muddied or complicated by special requirements. For example, there may be more than one XSLT transformation, or none at all for a CSS-only project.
 
 To compile Typescript libraries from source, nodeJS and npm are assumed. But most extension and customization can be done in the other layers.
 
 ## Development model
 
-Since these are client-side applications intended to be run in far-away environments, the development model relies on standards and simplicity to help ensure operations.
+Since these are client-side applications intended to be run in far-away environments, the development model relies on standards and simplicity to help ensure operations. Relevant standards -- XML, XSLT, CSS, occasionally others -- make it easy to do what would be hard, and possible to do what would be impossible.
 
 A project will typically be built by:
 
@@ -198,9 +200,9 @@ Code here all runs in your browser with no runtime dependencies except as noted 
 
 ## Contact info
 
-This project is maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division), Secure Systems and Applications Group. Please contact w e n d e l l (dot) p i e z (at) n i s t (dot) g o v.
+This project is founded and currently maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division), Secure Systems and Applications Group. Please contact w e n d e l l (dot) p i e z (at) n i s t (dot) g o v.
 
-Additionally please feel free to open or respond to Issues in this Github repository.
+Additionally please feel free to open or respond to [Issues in this Github repository](https://github.com/usnistgov/xslt-blender/issues) or to contact the developer in public forums.
 
 ## Cite this work
 

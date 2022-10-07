@@ -64,6 +64,13 @@
             <p>This could be built as a helper application providing chunks of code for a user to copy out, when a page is found to be out of order.</p>
         </description>
     </project>
+    <project status="planned">
+        <name>OSCALize this site</name>
+        <line>Eating our own cat fud</line>
+        <description>
+            <p>Using OSCAL for assurance as well as for maintaining security posture.</p>
+        </description>
+    </project>
     <project entry="json-mixer/json-reader.html" status="underway">
         <name>JSON Reader</name>
         <description>
