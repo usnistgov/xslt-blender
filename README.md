@@ -146,11 +146,11 @@ Scripting and application logic used in this site falls into four categories:
 - The 'XSLT Blender' library (Typescript in `src` compiled into `lib`) provides generalized interfaces for XML and XSLT capabilities.
 - Per demonstration, XSLT provides the *layering* that gets content into the browser, typically via a 'cast' to HTML for a defined tag set.
 - CSS applied to the page can then style this further - both CSS per demonstration, and site-wide CSS are used
-- Javascript (lightweight, self-contained) may also be deployed per demonstration
+- Javascript (lightweight, self-contained) may also be deployed to provide demonstrations with interactivity on the page
 
-This describes the general pattern: in the case of individual demonstrations, it may be muddied or complicated by special requirements. For example, there may be more than one XSLT transformation, or none at all for a CSS-only project.
+This describes the general pattern: in the case of individual demonstrations, it may be muddied or complicated by special requirements. For example, there may be more than one XSLT transformation, or none at all for a CSS-only project. A code base may be fairly large and complex, or quite small. A small code base may do useful things with large data sets. Etc.
 
-To compile Typescript libraries from source, nodeJS and npm are assumed. But most extension and customization can be done in the other layers.
+To compile Typescript libraries from source, nodeJS and npm are assumed. But for many purposes this will not be necessary.
 
 ## Development model
 
@@ -200,15 +200,10 @@ Code here all runs in your browser with no runtime dependencies except as noted 
 
 ## Contact info
 
-This project is founded and currently maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division), Secure Systems and Applications Group. Please contact w e n d e l l (dot) p i e z (at) n i s t (dot) g o v.
+This project is maintained by Wendell Piez, NIST ITL/CSD (Information Technology Laboratory, Computer Security Division), Secure Systems and Applications Group. Please contact w e n d e l l (dot) p i e z (at) n i s t (dot) g o v.
 
 Additionally please feel free to open or respond to [Issues in this Github repository](https://github.com/usnistgov/xslt-blender/issues) or to contact the developer in public forums.
 
 ## Cite this work
 
 Piez, Wendell (2022), XSLT Blender, US National Institute of Standards and Technology (NIST), https://doi.org/10.18434/mds2-2813.
-
-## Next to do
-
-- [ ] further explore unit testing (mocha/chai)
-- [ ] build unit tests
