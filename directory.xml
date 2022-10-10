@@ -16,12 +16,14 @@
             <p>The (same) directory to demonstrations on this site, loaded into your browser as XML.</p>
             <p><i>View Source</i> to see the XML source from which the page is produced. In display it looks the same, in this case by design.</p>
             <p>In addition to clean project descriptions, the directory provides a control point for top-level site navigation.</p>
+            <p>Don't expect much from the demonstration: the point is that the page looks and works the same. But it is also a test of your browser's support of XML with stylesheets (straight-up XML source) rather than HTML with scripting (capable of delivering XML transformed into HTML).</p>
         </description>
     </project>
     <project entry="index.html">
         <name>Portal Page (dynamic index)</name>
         <description>
-            <p>This directory is loaded dynamically into the index page, at user request. Uses the same XSLT as for <a href="directory.xml">the directory pushed as XML</a>.</p>
+            <p>Currently serving as the <q>front page</q> for the demo site, this page permits
+                the user to initiate loading the directory, thereby testing the infrastructure while providing these links. For display, the same XSLT is applied as for <a href="directory.xml">the directory acquired as XML</a>.</p>
         </description>
     </project>
     <project status="planned">
