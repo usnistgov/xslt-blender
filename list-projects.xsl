@@ -4,12 +4,16 @@
     version="1.0">
     
     <xsl:template match="projects">
-        <div class="project-directory">
-            <xsl:apply-templates/>
+        <div>
+            <div class="project-directory">
+                <xsl:apply-templates/>
+            </div>
+            <div style="margin: auto 0em; text-align: center; margin-top: 1em">
+                <button id="main-edit-directory"
+                    onclick="window.location.href='https://github.com/usnistgov/xslt-blender/tree/main/directory.xml'"
+                    >Edit the directory</button>
+            </div>
         </div>
-        <div style="margin: auto 0em; text-align: center; margin-top: 1em">
-        <button id="main-edit-directory" onclick="window.location.href='https://github.com/usnistgov/xslt-blender/tree/main/directory.xml'">Edit the directory</button>
-      </div>
 
     </xsl:template>
     
