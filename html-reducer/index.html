@@ -21,10 +21,9 @@ code { font-size: 105% }
 .panel > div *:first-child { margin-top: 0em }
 .panel > div *:last-child { margin-bottom: 0em }
 
-
 #literalOut {  white-space: pre-wrap; font-family: monospace }
 
-#literalIn {  min-height: 12vh; white-space: pre-line; width: 92%}
+#literalIn {  min-height: 12vh; white-space: pre-wrap; width: 92%}
 
 .panel div#renderedOut { background-color: lightsteelblue }
 .panel div#renderedOut:empty { background-color: inherit }
@@ -85,9 +84,9 @@ code { font-size: 105% }
       const tagWriterXSLTEngine = await xsltEngineForHREF('write-xml10.xsl');
       const markdownWriterXSLTEngine = await xsltEngineForHREF('html-to-markdown.xsl');
 
-      const reducedHTML = xslt1ResultDocument(HTMLDocument, reducerXSLTEngine); // a promise
-      const taggedHTML = xslt1ResultDocument(reducedHTML, tagWriterXSLTEngine); // a promise
-      const markdownFormatted = xslt1ResultDocument(reducedHTML, markdownWriterXSLTEngine); // a promise
+      const reducedHTML = await xslt1ResultDocument(HTMLDocument, reducerXSLTEngine); // a promise
+      const taggedHTML = await xslt1ResultDocument(reducedHTML, tagWriterXSLTEngine); // a promise
+      const markdownFormatted = await xslt1ResultDocument(reducedHTML, markdownWriterXSLTEngine); // a promise
       // console.log(reducedHTML);
       spliceIntoPage("literalOut", taggedHTML, true);
       spliceIntoPage("renderedOut", reducedHTML, true);
@@ -122,6 +121,26 @@ code { font-size: 105% }
        document.getElementById("loadFile").files = noFiles;
 
      }
+
+     /* reads text out of an element, provides it to a download link and clicks it */
+    function offerDownload(elemID, mimeType) {
+      const contents = document.getElementById(elemID).textContent;
+      const f = new Blob([contents], { type: mimeType });
+      const a = document.createElement("a");
+      a.href = URL.createObjectURL(f);
+      a.download = ( mimeType === "text/plain") ? "cleanedUp.md" : "cleanedUp.html";
+      a.click()
+      /* window.alert('boo!') */
+    }
+
+    /* selects textarea#linkcopy and copies it to the system clipboard */
+    function copyToClipboard(whoToCopy) {
+      const copyToCopy = document.getElementById(whoToCopy);
+      // to select text ...
+      window.getSelection().selectAllChildren(copyToCopy);
+      document.execCommand('copy');
+    }
+
 
     </script>
         
@@ -166,7 +185,7 @@ code { font-size: 105% }
     <h1>HTML Reducer</h1>
     <p style="font-weight: bold">Sanitizes. Flattens. Writes Markdown. OSCAL-friendly.</p>
     <p>Drop your HTML onto the page. Your browser will try to load it; what it can read, it converts it to a plain, simple, flat, Markdown-compatible HTML.</p>
-    <p>It drops structural information except as might be reflected implicitly in header elements (i.e. <code>h1</code> through <code></code>h6</code>). It drops all styling. It keeps only what works in the most reduced environments.</p>
+    <p>Structural information is filtered away, except as might be reflected implicitly in header elements (i.e. <code>h1</code> through <code></code>h6</code>). All styling is dropped. The filter passes through all the text, but of the tagging it keeps only what works in the most reduced environments.</p>
     <p>Accordingly, it also screens out any <code>script</code> or <code>style</code> that might perturb downstream consumers.</p>
     <p>Keeping what works ensures that regularly tagged contents such as paragraphs, basic inline formatting, lists and simple tables will come through, and no data will be lost, while superfluous information constituting <q>noise</q> (you must be the judge) is screened out.</p>
     <!--
@@ -179,14 +198,25 @@ o build out tabs / triptych
      2A Displayed result 2B Cleaned up result w/ Save As
 
      -->
-    <p>Upcoming features:</p>
+     <details class="boxed">
+    <summary>Tasks / TODO</summary>
     <ul>
-      <li>Textbox for literal HTML</li>
-      <li>Four tabs: source code; reduced source code; displayed reduced; Markdown</li>
-      <li>Save As and copy-to-clipboard options for XHTML and Markdown</li>
-      <li><span style="text-decoration: line-through">a way to support handling non-wf HTML</span> <i>- Done!</i></li>
-      <li>Experiment with loading either/both XHTML and HTML (try both parsers?)</li>
+      <li style="text-decoration: line-through";>Save As and Copy to Clipboard buttons</li>
+      <li>Refine L/F
+        <ul><li>elements to drop? e.g. buttons</li>
+        <li>images!</li>
+      </ul>
+      </li>
+      <li>Stress testing with broken HTML
+        <ul>
+          <li>Support flat element sequences? (now draws a blank)</li>
+          <li>Test across browsers</li>
+        </ul>
+      </li>
+      <li>Unit testing in the back to demonstrate HTML subset coverage?</li>
     </ul>
+    </details>
+    
   </p>
     <!-- <p>All processing is in your browser. Either your reduced HTML, or the same text written out in Markdown, can be saved out as well.</p> -->
     <details class="boxed">
@@ -194,6 +224,8 @@ o build out tabs / triptych
       <p>Now passing all (any) inputs to the HTML parser not the XML parser. Good luck! Note that data not already appearing  in <code>p</code> tags or other (plain) element markup (lists, headers, tables) will spill out into the containing <code>div</code> - which is schema-valid
       only because divs can contain basically anything.</p>
       <p><a class="external" href="https://developer.mozilla.org/en-US/docs/Web/XSLT/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations">Mozilla Developer Network documentation for XSLT</a> cautions that this isn't tested (by them) and they can't promise it won't change. It seems to work, however.</p>
+      <p>Note that while the application saves out flat (<q>unwrapped</q>) HTML-like elements, it does not read flat inputs, due to limitations in the parser. If your input doesn't come through, try adding wrapper <code>&lt;body></code> tagging (that is, with start- and end-tagging around the entire text contents) in the Source editor.</code></p>
+      
     </details>
     <!-- <input type="file" id="loadHTML" name="loadHTML" title="Load HTML (text/html)"
       onchange="filterAndShowHTMLFiles(this.files)" /> -->
@@ -206,7 +238,12 @@ o build out tabs / triptych
     </details>
     <div class="panels" style="display: grid">
     <details open="open" class="panel">
-      <summary>Cleaned up</summary>
+      <summary>Cleaned up
+        <div style="float:right">
+          <button onclick="copyToClipboard('literalOut')">Copy to Clipboard</button>
+          <button onclick="offerDownload('literalOut','text/html')">Save</button>
+        </div>
+      </summary>
       <div id="literalOut"><!-- --></div>
     </details>
     <details open="open" class="panel">
@@ -214,7 +251,12 @@ o build out tabs / triptych
       <div id="renderedOut"><!-- --></div>
     </details>
     <details open="open" class="panel">
-      <summary>Markdown</summary>
+      <summary>Markdown
+        <div style="float:right">
+        <button onclick="copyToClipboard('markdownOut')">Copy to Clipboard</button>
+        <button onclick="offerDownload('markdownOut','text/plain')">Save</button>
+      </div>
+      </summary>
       <div id="markdownOut"><!-- --></div>
     </details>
   </div>
