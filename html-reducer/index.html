@@ -7,28 +7,30 @@
   <style type="text/css" xml:space="preserve">
 code { font-size: 105% }
 
+section#front { max-width: 52em }
 
-.panels { display: grid;
-   grid-template-columns:  repeat(3, auto);
+section#front > *:first-child { margin-top: 0em }
+
+#panels { display: grid;
+   grid-template-columns:  repeat(3, 1fr);
    gap: 0.2em;
   margin-top: 1em }
 
-.panel { border: thin inset black; padding: 0.2em }
+#panels.unpopulated { display: none }
 
-.panel > div { padding: 0.2em; background-color: gainsboro }
-.panel > div:empty { background-color: inherit }
+.panel { border: thin inset gainsboro; padding: 0.2em }
+
+.panel > div { padding: 0.8em }
+.panel > div:not(:empty) { border-top: thin solid black }
+
+.panel > h3 { margin-top: 0em; margin-bottom: 0.6em }
 
 .panel > div *:first-child { margin-top: 0em }
 .panel > div *:last-child { margin-bottom: 0em }
 
-.panel:not([open]) button { display: none }
-
 #literalOut {  white-space: pre-wrap; font-family: monospace }
 
 #literalIn {  min-height: 12vh; white-space: pre-wrap; width: 92%}
-
-.panel div#renderedOut { background-color: lightsteelblue }
-.panel div#renderedOut:empty { background-color: inherit }
 
 #markdownOut { white-space: pre-wrap; font-family: monospace }
 
@@ -98,6 +100,8 @@ code { font-size: 105% }
       spliceIntoPage("literalOut", taggedHTML, true);
       spliceIntoPage("renderedOut", reducedHTML, true);
       spliceIntoPage("markdownOut", markdownFormatted, true);
+
+      document.getElementById("panels").classList.remove('unpopulated');
     }
   
     const clearPage = () => {
@@ -112,7 +116,7 @@ code { font-size: 105% }
 
      /* const clearing = document.getElementById('literalIn');
      while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) ); */
-
+     document.getElementById("panels").classList.add('unpopulated');
      /* clearElementByID("literalOut");
      clearElementByID("renderedOut");
      clearElementByID("markdownOut"); */
@@ -182,14 +186,14 @@ code { font-size: 105% }
     <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
   </details>
   <main>
+    <section id="front">
     <h1>HTML Reducer</h1>
     <p style="font-weight: bold">Sanitizes. Flattens. Writes Markdown. OSCAL-friendly.</p>
     <p>Drop your HTML onto the page. Your browser will try to load it; what it can read, it converts it to a plain, simple, flat, Markdown-compatible HTML. The file source (code) is also entered into a form field where it can be edited and run again.</p>
     <p>This is a <q>deep clean</q>: structural information is filtered away, except as might be reflected implicitly in header elements (<code>h1</code> through <code></code>h6</code>). All styling is dropped. The filter passes through all the text, but of the tagging it keeps only what works safely in reduced environments.</p>
     <p>Accordingly, it also discards any <code>script</code> or <code>style</code> that might perturb downstream consumers.</p>
-    <p>Keeping what works ensures that regularly tagged contents will come through, such as paragraphs, very basic inline formatting (such as italics or bold), lists and simple tables, while no data will be lost. Whether information screened out constitutes <q>noise</q> or <q>signal</q> will depend on the case.</p>    
-    <p>All operations are accomplished entirely in the browser, without uploading, transmitting or communicating user data, or derived data, to any other system. Once cached, the application can be run off line or air-gapped, with no live access to a network, on new inputs. Similarly the only model for data persistence is the user option to save out results.</p>
-
+    <p>Keeping what works ensures that regular tagging of elements at the line and inline level will come through: this includes paragraphs, very basic inline formatting (such as italics or bold), lists and simple tables. Other tagging is removed, but no data is lost. Whether information screened out constitutes <q>noise</q> or <q>signal</q> will depend on the case.</p>    
+    <p>All operations are accomplished entirely in the browser, without uploading, transmitting or communicating user data, or derived data, to the server (which delivers the application) or to any other system. Once cached, the application can be run off line or air-gapped, with no live access to a network, on new inputs. Similarly the only model for data persistence is the user option to save out results.</p>
     <details class="boxed">
     <summary>Tasks / TODO</summary>
     <ul>
@@ -216,8 +220,9 @@ code { font-size: 105% }
       only because divs can contain basically anything.</p>
       <p><a class="external" href="https://developer.mozilla.org/en-US/docs/Web/XSLT/Using_the_Mozilla_JavaScript_interface_to_XSL_Transformations">Mozilla Developer Network documentation for XSLT</a> cautions that this isn't tested (by them) and they can't promise it won't change. It seems to work, however.</p>
       <p>Note that while the application saves out flat (<q>unwrapped</q>) HTML-like elements, it does not read flat inputs, due to limitations in the parser. If your input doesn't come through, try adding wrapper <code>&lt;body></code> tagging (that is, with start- and end-tagging around the entire text contents) in the Source editor.</code></p>
-      
     </details>
+    </section>
+
     <!-- <input type="file" id="loadHTML" name="loadHTML" title="Load HTML (text/html)"
       onchange="filterAndShowHTMLFiles(this.files)" /> -->
       <input type="file" id="loadFile" name="loadFile" title="Load file"
@@ -227,29 +232,29 @@ code { font-size: 105% }
       <summary>Source <i>(editable)</i></summary>
       <textarea id="literalIn" onchange="filterAndShowText(this.value)"><!-- --></textarea>
     </details>
-    <div class="panels" style="display: grid">
-    <details open="open" class="panel">
-      <summary>Cleaned up
-        <div style="float:right">
-          <button onclick="copyToClipboard('literalOut')" title="Copy to clipboard">Copy</button>
-          <button onclick="offerDownload('literalOut','text/html')" title="Save">Save</button>
-        </div>
-      </summary>
+    <div class="panels unpopulated" id="panels">
+    <div class="panel">
+      <h3>HTML code (cleaned)
+      <aside style="float:right">
+        <button onclick="copyToClipboard('literalOut')" title="Copy to clipboard">Copy</button>
+        <button onclick="offerDownload('literalOut','text/html')" title="Save">Save</button>
+      </aside>
+      </h3>
       <div id="literalOut"><!-- --></div>
-    </details>
-    <details open="open" class="panel">
-      <summary>Displayed</summary>
+    </div>
+    <div class="panel">
+      <h3>In display</h3>
       <div id="renderedOut"><!-- --></div>
-    </details>
-    <details open="open" class="panel">
-      <summary>Markdown
-        <div style="float:right">
+    </div>
+    <div class="panel">
+      <h3>Markdown
+        <aside style="float:right">
         <button onclick="copyToClipboard('markdownOut')"  title="Copy to clipboard">Copy</button>
         <button onclick="offerDownload('markdownOut','text/plain')" title="Save">Save</button>
-      </div>
-      </summary>
+      </aside>
+      </h3>
       <div id="markdownOut"><!-- --></div>
-    </details>
+    </div>
   </div>
   </main>
   <div class="project-footer">
