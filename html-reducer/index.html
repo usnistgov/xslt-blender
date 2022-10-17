@@ -185,9 +185,9 @@ code { font-size: 105% }
     <h1>HTML Reducer</h1>
     <p style="font-weight: bold">Sanitizes. Flattens. Writes Markdown. OSCAL-friendly.</p>
     <p>Drop your HTML onto the page. Your browser will try to load it; what it can read, it converts it to a plain, simple, flat, Markdown-compatible HTML. The file source (code) is also entered into a form field where it can be edited and run again.</p>
-    <p>This is a <q>deep clean</q>: structural information is filtered away, except as might be reflected implicitly in header elements (i.e. <code>h1</code> through <code></code>h6</code>). All styling is dropped. The filter passes through all the text, but of the tagging it keeps only what works in reduced environments.</p>
-    <p>Accordingly, it also screens out any <code>script</code> or <code>style</code> that might perturb downstream consumers.</p>
-    <p>Keeping what works ensures that regularly tagged contents such as paragraphs, basic inline formatting, lists and simple tables will come through, and no data will be lost, while superfluous information constituting <q>noise</q> (you must be the judge) is screened out.</p>    
+    <p>This is a <q>deep clean</q>: structural information is filtered away, except as might be reflected implicitly in header elements (<code>h1</code> through <code></code>h6</code>). All styling is dropped. The filter passes through all the text, but of the tagging it keeps only what works safely in reduced environments.</p>
+    <p>Accordingly, it also discards any <code>script</code> or <code>style</code> that might perturb downstream consumers.</p>
+    <p>Keeping what works ensures that regularly tagged contents will come through, such as paragraphs, very basic inline formatting (such as italics or bold), lists and simple tables, while no data will be lost. Whether information screened out constitutes <q>noise</q> or <q>signal</q> will depend on the case.</p>    
     <p>All operations are accomplished entirely in the browser, without uploading, transmitting or communicating user data, or derived data, to any other system. Once cached, the application can be run off line or air-gapped, with no live access to a network, on new inputs. Similarly the only model for data persistence is the user option to save out results.</p>
 
     <details class="boxed">
