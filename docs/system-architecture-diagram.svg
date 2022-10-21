@@ -16,7 +16,7 @@
         
 
         <g transform="translate(300 500)" text-anchor="middle">
-            <rect fill="gainsboro" stroke="black" stroke-width="3" x="-280"
+            <rect fill="white" stroke="black" stroke-width="3" stroke-dasharray="12 3" x="-280"
                 width="560" y="-300" height="600"/>
             <text y="-190">XSLT Blender Runtime</text>
             
@@ -95,7 +95,7 @@
             <g transform="translate(-90 -50)">
                 <rect fill="skyblue" stroke="black" stroke-width="3" x="-170" width="340" y="-30"
                     height="60" stroke-dasharray="2 4"/>
-                <text y="5">browser DOM</text>
+                <text y="5">Browser DOM</text>
                 <!--<circle r="13" fill="red"/>-->
             </g>
             
@@ -109,7 +109,7 @@
             <g transform="translate(10 0)">
                 <rect fill="lightgreen" stroke="black" stroke-width="3" x="-85" width="170" y="-30"
                     height="80"/>
-                <text y="0" font-size="80%">application</text>
+                <text y="0" font-size="80%">Application</text>
                 <text y="35">HTML</text>
             </g>
              <g transform="translate(170 0)" font-size="80%">
