@@ -101,7 +101,9 @@ span.tagLabel,
 #displaySTS details summary + div { margin-top: 0.6em !important }
 
 
-.sts_xref:hover { text-decoration: underline }
+.sts_xref { text-decoration: underline; font-weight: bold; font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; }
+.sts_xref:hover { background-color: lightsteelblue }
+
 
 th, td { padding: 0.2rem }
 
