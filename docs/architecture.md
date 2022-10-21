@@ -1,6 +1,6 @@
 # XSLT Blender Architecture
 
-The wiki page on [[Architecture]] gives a full description of the architecture including a long description of the diagram below.
+The wiki page on [Architecture](wiki/Architecture) gives a full description of the architecture including a long description of the diagram below.
 
 ![System Architecture Diagram](system-architecture-diagram.svg)
 
