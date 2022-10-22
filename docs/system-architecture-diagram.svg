@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 840" width="500" height="480">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="500" height="400">
     
     <defs>
         <marker id="arrowhead" markerWidth="10" markerHeight="7" 
@@ -11,26 +11,30 @@
     
     <desc>Architecture diagram of XSLT Blender application</desc>
     <g alignment-baseline="baseline" font-size="30" font-family="sans-serif">
-        <rect fill="none" stroke="midnightblue" stroke-width="8" x="0" y="0" width="100%" height="100%"/>
         <rect fill="none" stroke="black" stroke-width="4" x="0" y="0" width="100%" height="100%"/>
+        <!--<rect fill="none" stroke="black" stroke-width="4" x="0" y="0" width="100%" height="100%"/>-->
         
 
         <g transform="translate(500 500)" text-anchor="middle">
-            <rect fill="white" stroke="black" stroke-width="3" stroke-dasharray="12 3"
-                x="-450" width="900" y="-300" height="500"/>
-            <text y="-190">XSLT Blender Runtime</text>
-            
-            <g transform="translate(-100 -100)" text-anchor="start">
-            <rect fill="pink" stroke="black" stroke-width="3" x="-250"
-                width="500" y="-60" height="320"/>
-            <text y="0" x="-220">XSLT Engine</text>
-                <text y="-30" font-size="80%">browser</text>
-                <text y="0" font-size="80%">component</text>
-             
+            <rect fill="white" stroke="black" stroke-width="3"
+                x="-450" width="900" y="-300" height="470"/>
+            <g transform="translate(280 80)" font-size="120%" font-weight="bold">
+            <text y="0">XSLT Blender</text>
+            <text y="40">Runtime</text>
             </g>
             
-            <g transform="translate(-80 0)">
-                
+            
+            
+            <g transform="translate(-100 -20)">
+             
+                <g transform="translate(-20 -100)" text-anchor="start">
+                    <rect fill="pink" stroke="black" stroke-width="3" x="-250"
+                        width="500" y="-60" height="320"/>
+                    <text y="0" x="-220">XSLT Engine</text>
+                    <text y="-30" font-size="80%">browser</text>
+                    <text y="0" font-size="80%">component</text>
+                    
+                </g>
             <g transform="translate(-60 -20)">
                 
             <rect fill="white" stroke="black" stroke-width="3" x="-120" width="240" y="-60" height="120"/>
@@ -66,15 +70,15 @@
                 stroke-width="3" marker-end="url(#arrowhead)" />
             <path d="M 140 40 v 55 h -15" stroke="black" fill="none"
                 stroke-width="2" marker-end="url(#arrowhead)" />
-            <path d="M 240 290 v 50" stroke="black" fill="none"
+            <path d="M 240 290 v 30" stroke="black" fill="none"
                 stroke-width="3" marker-end="url(#arrowhead)" />
             
-            <path d="M -240 300 v -50" stroke="black" fill="none"
+            <path d="M -240 280 v -30" stroke="black" fill="none"
                 stroke-width="3" marker-end="url(#arrowhead)" />
             <path d="M -240 80 v -40 h 50" stroke="black" fill="none"
                 stroke-width="3" marker-end="url(#arrowhead)" />
             
-            <g transform="translate(220 440)" text-anchor="middle">
+            <g transform="translate(200 420)" text-anchor="middle">
                 <rect fill="lightsteelblue" stroke="black" stroke-width="3" x="-90" width="180"
                     y="-60" height="120" stroke-dasharray="2 4"/>
                 <text y="0">XML input</text>
@@ -115,18 +119,18 @@
                 <text y="-10">Application</text>
                 <text y="15">JS/CSS</text>
             </g>
-            <g transform="translate(300 90)" text-anchor="middle">
+            <g transform="translate(280 90)" text-anchor="middle">
                 <rect fill="none" stroke="black" stroke-width="3" x="-130" width="260" y="-40" height="80"/>
                 <text y="10">XSLT Blender JS</text>
             </g>
             
         </g>
         
-        <g transform="translate(500 750)" text-anchor="middle">
+        <g transform="translate(500 720)" text-anchor="middle">
         
         <text y="0">Web browser instance</text>
-        <text y="40" font-size="70%">Supporting technology standards</text>
-            <text y="70" font-size="70%">HTML, CSS, XML, XSLT 1.0, ECMAScript, DOM Level 4</text>
+        <text y="30" font-size="70%">Supporting technology standards</text>
+            <text y="60" font-size="70%">HTML, CSS, XML, XSLT 1.0, ECMAScript, DOM Level 4</text>
 </g>
         
     </g>
