@@ -81,16 +81,11 @@
             <g transform="translate(200 420)" text-anchor="middle">
                 <rect fill="lightsteelblue" stroke="black" stroke-width="3" x="-90" width="180"
                     y="-60" height="120" stroke-dasharray="2 4"/>
-                <text y="0">XML input</text>
-                
+                <text y="10">XML input</text>
                 <!--<circle r="13" fill="red"/>-->
             </g>
             
         </g>
-        
-        
-        
-        
         
         <g transform="translate(500 200)" text-anchor="middle">
             <g transform="translate(-100 -50)">
