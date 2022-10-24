@@ -37,19 +37,19 @@
                 </g>
             <g transform="translate(-60 -20)">
                 
-            <rect fill="white" stroke="black" stroke-width="3" x="-120" width="240" y="-60" height="120"/>
+                <rect fill="white" stroke="black" stroke-width="3" x="-120" width="240" y="-60" height="120"  rx="15" ry="15"/>
             <text y="-10">XSLT Stylesheet</text>
             <text y="20" font-size="80%">(functional mapping)</text>
             </g>
             
             <rect fill="white" stroke="black" stroke-width="3" width="80" height="50"
-                x="-180" y="60"/>
+                x="-180" y="60" rx="10" ry="10"/>
                 <rect fill="white" stroke="black" stroke-width="3" width="80" height="50"
-                    x="-80" y="60"/>
+                    x="-80" y="60" rx="10" ry="10"/>
                 <rect fill="white" stroke="black" stroke-width="3" width="80" height="50"
-                    x="20" y="60"/>
+                    x="20" y="60" rx="10" ry="10"/>
                 <rect fill="white" stroke="black" stroke-width="3" width="80" height="50"
-                    x="80" y="-10"/>
+                    x="80" y="-10" rx="10" ry="10"/>
                 
                 
                 
@@ -79,8 +79,8 @@
                 stroke-width="3" marker-end="url(#arrowhead)" />
             
             <g transform="translate(200 420)" text-anchor="middle">
-                <rect fill="lightsteelblue" stroke="black" stroke-width="3" x="-90" width="180"
-                    y="-60" height="120" stroke-dasharray="2 4"/>
+                <rect fill="lightsteelblue" stroke="black" stroke-width="5" x="-90" width="180"
+                    y="-60" height="120"/>
                 <text y="10">XML input</text>
                 <!--<circle r="13" fill="red"/>-->
             </g>
@@ -89,28 +89,27 @@
         
         <g transform="translate(500 200)" text-anchor="middle">
             <g transform="translate(-100 -50)">
-                <rect fill="skyblue" stroke="black" stroke-width="3" x="-200" width="400" y="-30"
-                    height="60" stroke-dasharray="2 4"/>
+                <rect fill="white" stroke="black" stroke-width="3" x="-200" width="400" y="-30"
+                    height="100" stroke-dasharray="2 4"/>
                 <text y="5">Browser DOM</text>
                 <!--<circle r="13" fill="red"/>-->
             </g>
             
             <g transform="translate(-200 0)">
-                <rect fill="lightgreen" stroke="black" stroke-width="3" y="-30" height="80" x="-100"
+                <rect fill="lightgreen" stroke="black" stroke-width="3" y="-20" height="70" x="-100"
                     width="200" stroke-dasharray="2 4"/>
-                <text y="15" text-anchor="middle">HTML result</text>
+                <text y="20" text-anchor="middle">HTML result</text>
                 <!--<circle r="13" fill="red"/>-->
 
             </g>
-            <g transform="translate(0 0)">
-                <rect fill="lightgreen" stroke="black" stroke-width="3" x="-100" width="200" y="-30"
-                    height="80"/>
-                <text y="0" font-size="80%">Application</text>
-                <text y="35">HTML</text>
+            <g transform="translate(0 0)"  font-size="80%">
+                <rect fill="lightgreen" stroke="black" stroke-width="3" x="-100" width="200" y="-20"
+                    height="70" rx="15" ry="15"/>
+                <text y="20">Application HTML</text>
             </g>
              <g transform="translate(200 0)" font-size="80%">
-                <rect fill="yellow" stroke="black" stroke-width="3" y="-50" height="100" x="-100"
-                    width="200"/>
+                <rect fill="white" stroke="black" stroke-width="3" y="-50" height="100" x="-100"
+                    width="200" rx="15" ry="15"/>
                 <text y="-10">Application</text>
                 <text y="15">JS/CSS</text>
             </g>
