@@ -1,131 +1,122 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="500" height="400">
-    
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 800" width="500"
+    height="400">
+
     <defs>
-        <marker id="arrowhead" markerWidth="10" markerHeight="7" 
-            refX="0" refY="3.5" orient="auto">
-            <polygon points="0 0, 10 3.5, 0 7" />
+        <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="0"
+            refY="3.5" orient="auto">
+            <polygon points="0 0, 10 3.5, 0 7"/>
         </marker>
     </defs>
-    
+
     <desc>Architecture diagram of XSLT Blender application</desc>
     <g alignment-baseline="baseline" font-size="30" font-family="sans-serif">
-        <rect fill="none" stroke="black" stroke-width="4" x="0" y="0" width="100%" height="100%"/>
+        <rect fill="none" stroke="black" stroke-width="4" x="0" y="0"
+            width="100%" height="100%"/>
         <!--<rect fill="none" stroke="black" stroke-width="4" x="0" y="0" width="100%" height="100%"/>-->
-        
 
         <g transform="translate(500 500)" text-anchor="middle">
-            <rect fill="white" stroke="black" stroke-width="3"
-                x="-450" width="900" y="-300" height="470"/>
+            <rect fill="white" stroke="black" stroke-width="3" x="-450"
+                width="900" y="-300" height="470"/>
             <g transform="translate(280 80)" font-size="120%" font-weight="bold">
                 <text y="0">XSLT Blender</text>
                 <text y="40">Runtime</text>
             </g>
-            
-            
-            
-            <g transform="translate(-100 -20)">
 
+            <g transform="translate(-100 -20)">
                 <g transform="translate(-20 -100)" text-anchor="start">
-                    <rect fill="pink" stroke="black" stroke-width="3" x="-250" width="500" y="-60"
-                        height="320"/>
+                    <rect fill="pink" stroke="black" stroke-width="3" x="-250"
+                        width="500" y="-60" height="320"/>
                     <text y="0" x="-220">XSLT Engine</text>
                     <text y="-30" font-size="80%">browser</text>
                     <text y="0" font-size="80%">component</text>
-
                 </g>
                 <g transform="translate(-60 -20)">
-
-                    <rect fill="white" stroke="black" stroke-width="3" x="-120" width="240" y="-60"
-                        height="120" rx="15" ry="15"/>
+                    <rect fill="white" stroke="black" stroke-width="3" x="-120"
+                        width="240" y="-60" height="120" rx="15" ry="15"/>
                     <text y="-10">XSLT Stylesheet</text>
                     <text y="20" font-size="80%">(functional mapping)</text>
                 </g>
 
-                <rect fill="white" stroke="black" stroke-width="3" width="80" height="50" x="-180"
-                    y="60" rx="10" ry="10"/>
-                <rect fill="white" stroke="black" stroke-width="3" width="80" height="50" x="-80"
-                    y="60" rx="10" ry="10"/>
-                <rect fill="white" stroke="black" stroke-width="3" width="80" height="50" x="20"
-                    y="60" rx="10" ry="10"/>
-                <rect fill="white" stroke="black" stroke-width="3" width="80" height="50" x="80"
-                    y="-10" rx="10" ry="10"/>
-
+                <rect fill="white" stroke="black" stroke-width="3" width="80"
+                    height="50" x="-180" y="60" rx="10" ry="10"/>
+                <rect fill="white" stroke="black" stroke-width="3" width="80"
+                    height="50" x="-80" y="60" rx="10" ry="10"/>
+                <rect fill="white" stroke="black" stroke-width="3" width="80"
+                    height="50" x="20" y="60" rx="10" ry="10"/>
+                <rect fill="white" stroke="black" stroke-width="3" width="80"
+                    height="50" x="80" y="-10" rx="10" ry="10"/>
                 <text y="140" font-size="80%">XSLT modules and resources</text>
 
             </g>
-            
-            </g>
+        </g>
 
         <g transform="translate(500 40)" text-anchor="middle">
-            <rect fill="white" stroke="black" stroke-width="3" x="-400" y="-15" height="200"
-                width="800"  stroke-dasharray="2 4"/>
+            <rect fill="white" stroke="black" stroke-width="3" x="-400" y="-15"
+                height="200" width="800" stroke-dasharray="2 4"/>
             <text y="50">Interactive display</text>
-            
+
             <path d="M 130 40 h 110 v 30" stroke="black" fill="none"
-                stroke-width="3" marker-end="url(#arrowhead)" />
+                stroke-width="3" marker-end="url(#arrowhead)"/>
             <path d="M 140 40 v 55 h -15" stroke="black" fill="none"
-                stroke-width="2" marker-end="url(#arrowhead)" />
-            <path d="M 240 290 v 30" stroke="black" fill="none"
-                stroke-width="3" marker-end="url(#arrowhead)" />
-            
-            <path d="M -240 280 v -30" stroke="black" fill="none"
-                stroke-width="3" marker-end="url(#arrowhead)" />
+                stroke-width="2" marker-end="url(#arrowhead)"/>
+            <path d="M 240 300 v 30" stroke="black" fill="none" stroke-width="3"
+                marker-end="url(#arrowhead)"/>
+
+            <path d="M -240 280 v -20" stroke="black" fill="none"
+                stroke-width="3" marker-end="url(#arrowhead)"/>
             <path d="M -240 80 v -40 h 50" stroke="black" fill="none"
-                stroke-width="3" marker-end="url(#arrowhead)" />
-            
+                stroke-width="3" marker-end="url(#arrowhead)"/>
+
             <g transform="translate(200 420)" text-anchor="middle">
-                <rect fill="lightsteelblue" stroke="black" stroke-width="5" x="-90" width="180"
-                    y="-60" height="120"/>
+                <rect fill="lightsteelblue" stroke="black" stroke-width="5"
+                    x="-90" width="180" y="-50" height="100"/>
                 <text y="10">XML input</text>
                 <!--<circle r="13" fill="red"/>-->
             </g>
-            
+
         </g>
-        
+
         <g transform="translate(500 200)" text-anchor="middle">
-            
-             <g transform="translate(200 0)" font-size="80%">
-                <rect fill="white" stroke="black" stroke-width="3" y="-50" height="120" x="-520"
-                    width="640" rx="15" ry="15"/>
+            <g transform="translate(280 110)" text-anchor="middle">
+                <rect fill="white" stroke="black" stroke-width="3" x="-130"
+                    width="260" y="-40" height="80"/>
+                <text y="10">XSLT Blender JS</text>
+            </g>
+            <g transform="translate(200 0)" font-size="80%">
+                <rect fill="white" stroke="black" stroke-width="3" y="-50"
+                    height="120" x="-520" width="640" rx="15" ry="15"/>
                 <text y="-10">Application</text>
                 <text y="15">JS/CSS</text>
             </g>
             <g transform="translate(-100 -50)">
-                <rect fill="skyblue" stroke="black" stroke-width="3" x="-200" width="400" y="-30"
-                    height="60" stroke-dasharray="2 4"/>
+                <rect fill="skyblue" stroke="black" stroke-width="3" x="-200"
+                    width="400" y="-30" height="60" stroke-dasharray="2 4"/>
                 <text y="5">Browser DOM</text>
                 <!--<circle r="13" fill="red"/>-->
             </g>
-            
-            <g transform="translate(-240 0)"  text-anchor="middle" font-size="80%">
-                <rect fill="lightgreen" stroke="black" stroke-width="3" y="-30" height="80" x="-60"
-                    width="120" stroke-dasharray="2 4"/>
+            <g transform="translate(-240 0)" text-anchor="middle"
+                font-size="80%">
+                <rect fill="lightgreen" stroke="black" stroke-width="3" y="-30"
+                    height="80" x="-60" width="120" stroke-dasharray="2 4"/>
                 <text y="-0">HTML</text>
                 <text y="35" text-anchor="middle">result</text>
                 <!--<circle r="13" fill="red"/>-->
-                
             </g>
             <g transform="translate(-40 0)">
-                <rect fill="lightgreen" stroke="black" stroke-width="3" x="-140" width="280" y="-30"
-                    height="80" rx="15" ry="15"/>
+                <rect fill="lightgreen" stroke="black" stroke-width="3" x="-140"
+                    width="280" y="-30" height="80" rx="15" ry="15"/>
                 <text y="15">Application HTML</text>
             </g>
-            
-            <g transform="translate(280 90)" text-anchor="middle">
-                <rect fill="white" stroke="black" stroke-width="3" x="-130" width="260" y="-40" height="80"/>
-                <text y="10">XSLT Blender JS</text>
-            </g>
-            
         </g>
-        
+
         <g transform="translate(500 720)" text-anchor="middle">
-        
-        <text y="0">Web browser instance</text>
-        <text y="30" font-size="70%">Supporting technology standards</text>
-            <text y="60" font-size="70%">HTML, CSS, XML, XSLT 1.0, ECMAScript, DOM Level 4</text>
-</g>
-        
+            <text y="0">Web browser instance</text>
+            <text y="30" font-size="70%">Supporting technology standards</text>
+            <text y="60" font-size="70%">HTML, CSS, XML, XSLT 1.0, ECMAScript,
+                DOM Level 4</text>
+        </g>
+
     </g>
 </svg>
