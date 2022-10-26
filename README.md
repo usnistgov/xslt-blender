@@ -4,7 +4,9 @@ A library of XML/XSLT functionality for execution in a browser, illustrated thro
 
 See the [XSLT Blender Portal](https://pages.nist.gov/xslt-blender) page for the demonstrations. There is a single portal (maintained in XML) and a library of scripts, with each demonstration adding its own capabilities and customizations. 
 
-Come back here to see source code for both library and demonstrations, as well as project documentation.
+This repository contains source code for both library and demonstrations, as well as project documentation. Projects will describe themselves both in demonstration and with their own README files.
+
+Also see [the project wiki](wiki:Home) for more detailed and extensive coverage.
 
 ## Aims and background
 
@@ -138,7 +140,9 @@ See directories
 
 ## Installation
 
-The repository presents a set of web browser-based demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability.
+The repository presents a set of web browser-based demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability. They can be installed to run locally. Such an installation is also a [testbed for development](#serving-a-testbed-site) (below) inasmuch as the site administrator can easily modify, extend, add and replace applications or parts of applications.
+
+When serving your derived XSLT Blender framework, take care to provide its exterior ("dress") with new design that distinguishes it as your work, especially removing all NIST- or distributor-related branding or indicators including (but not limited to) logos, headers and footers, font settings, theme colors and page links, replacing them with your own. License notices should retain acknowledgements of upstream contributors: you should not appropriate or "borrow" their (our) design, so changes to site-level CSS and hosting pages will be necessary for you to publish a clone in good faith, while proper credits are always acceptable. As the goal of XSLT Blender is to provide a platform for application development, such refurbishment can be considered a first step in local customization and extension. Congratulations and welcome.
 
 ### Serving from localhost
 
@@ -148,10 +152,11 @@ To install (globally) and then run a server in node js, for example:
 
 ```
 $ npm install -g http-server
+[... some good stuff ...]
 $ http-server
 ```
 
-This will start a web server on port 8080. From there a link to localhost will load the demonstration site:
+This will start a web server on port 8080. Pointing your browser to localhost will load the demonstration site:
 
 https://localhost:8080
 
@@ -161,7 +166,7 @@ A page will show. XSLT Blender functionality can be confirmed by proceeding to l
 
 XSLT Blender Applications can also be served directly on the web, or pushed into a Github or Gitlab Pages site (such as what you might be reading), or other repository host, for wide availability.
 
-When serving your derived XSLT Blender application, take care to provide a new design that distinguishes it as your work, especially removing all NIST- or distributor-related branding or indicators including (but not limited to) logos, font settings, theme colors and page links, replacing them with your own. License notices should retain acknowledgements of upstream contributors: you should not steal or "borrow" their (our) design, so changes to site-level CSS and hosting pages will be necessary for you to host a clone in good faith. As the goal of XSLT Blender is to provide a platform for application development, such refurbishment can be considered a first step in local customization and extension.
+XSLT Blender can also be integrated with static site generators like Jekyll and Hugo, for the best of multiple possible worlds.
 
 For more guidance in this area please make inquiries.
 
@@ -211,7 +216,7 @@ Note that applications have full access to XSLT without having to modify the lib
 
 ### Serving a testbed site
 
-As they are designed to be delivered over the Internet using a browser, for application it is most convenient to run a server locally, enabling a tight loop between code revision and execution. The model however is the same. This in turn makes deployment easy, since it amounts to copying.
+As they are designed to be delivered over the Internet using a browser, for application it is often convenient to run a server locally, enabling a tight loop between code revision and execution. This in turn makes deployment easy, since it amounts to copying.
 
 As [noted above](#serving-from-localhost), with NPM, start a local server by opening a Linux/WSL prompt in the `xslt-blender` directory, and invoking `npm serve`, or simply `http-server` with that npm module installed.
 
