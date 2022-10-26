@@ -61,8 +61,12 @@
                 stroke-width="3" marker-end="url(#arrowhead)"/>
             <path d="M 140 40 v 55 h -15" stroke="black" fill="none"
                 stroke-width="2" marker-end="url(#arrowhead)"/>
-            <path d="M 240 300 v 30" stroke="black" fill="none" stroke-width="3"
+            
+            <path d="M 240 310 v 20" stroke="black" fill="none" stroke-width="3"
                 marker-end="url(#arrowhead)"/>
+            <path d="M 200 310 v 30 h -50" stroke="black" fill="none"
+                stroke-width="2" marker-end="url(#arrowhead)"/>
+            
 
             <path d="M -240 280 v -20" stroke="black" fill="none"
                 stroke-width="3" marker-end="url(#arrowhead)"/>
