@@ -62,13 +62,6 @@ Tools to support auditing XSLT are also planned as demonstration projects.
 
 Functionality of an XSLT transformation can and should be tested independently of the application stack. This is because as a "least-powered", declarative language, XSLT 1.0 is relatively easy to secure from system execution exploits, in comparison to fully expressive 3GL languages such as Java or Javascript.
 
-We limit ourselves to XSLT 1.0 for several reasons:
-
-- The viability for client-side XSLT 3.0 in similar applications is already being shown
-- In contrast to other options, the actual capabilities of XSLT 1.0 (an obsolete or obsolescent technology) has arguably *never* been widely understood (despite [repeated demonstration](https://www.balisage.net/Proceedings/topics/XSLT.html)), due to the immaturity until recently of Javascript support for resource handling in support of on-the-page XSLT infrastructure (e.g., asynchronous web and file system interaction)
-- By delivering functionality, demonstrations can serve as useful and instructive examples for data processing systems in miniature - small models, open to emulation and study
-- XSLT 1.0's limitations also make it easier to secure
-
 Since an XSLT processor's job -- the requirement it addresses -- is to produce for a given input a result that is *deterministic* and *conformant to a known rule set* (i.e. the language specification) -- it is isolated from any system interaction. Often, an XSLT application has only two points of exposure for any given runtime additional to the XSLT itself, namely a single nominal *source* and a single nominal *result*, whose handling is managed by a single calling application (in the case of XSLT Blender, the page Javascript). This isolation makes it both more robust and more traceable. (See the [[Vulnerabilities]] page.) Unlike Javascript, for example, XSLT cannot use http POST or PUT, and has no interface with browser events. Moreover, by default (that is, until modified to do otherwise), an XSLT transformation does nothing with data but 'dump' it, and the application does nothing with a dump but display it. For a display application this is a safe default. For applications that work on unsafe inputs (such as for example HTML or SVG inputs containing raw, executable script), it enforces sanitization by design.
 
 ### Typescript code review

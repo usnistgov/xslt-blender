@@ -210,7 +210,7 @@ The latest `lib` outputs will be pushed to the repository, so you only have to c
 
 In the project subdirectory, enter `npm install` to install or reinstall the Typescript configuration.
 
-Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries.
+Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries, saved in `lib` and also open for inspection.
 
 Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless they go beyond the transformation (mapping) requirements ably addressed by XSLT.
 
