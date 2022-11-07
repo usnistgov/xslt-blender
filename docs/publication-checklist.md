@@ -79,17 +79,17 @@ NOTES: The information you provide in the inventory will help users locate your 
    - [ ] The data is distributed with the code. *N/A*
    - [ ] The data is made available in a separate published data set. *N/A*
 
-What NIST system(s) host the data to be accessed? ___________________________________ *N/A*
+What NIST system(s) host the data to be accessed? *Demo portal is hosted on [pages.nist.gov](http://pages.nist.gov/xslt-blender)*.
 
-How will the data be accessed from remote clients (e.g., using what protocols / APIs)?  *Users provide their own data for applications, which does not migrate off their systems*
+How will the data be accessed from remote clients (e.g., using what protocols / APIs)?  *Applications are served to users' machines via https as self-contained collections of resources including scripting. Users provide their own data for applications for local processing without exposure.*
 
-What coordination is required between the release/update of the software and the maintenance of the data sources? *None. Applications are designed to fail gracefully on bad inputs, and are isolated inside browser runtime.*
+What coordination is required between the release/update of the software and the maintenance of the data sources? *Applications are designed to fail gracefully on bad inputs, and are isolated inside browser runtime. The project operates under a rolling release, "always complete, always developing" strategy: new applications, features and bug fixes are added by merging code to the project repo for deployment to pages.nist.gov. While there are no versioned releases for the project as a whole, particular demonstrations may be versioned, or track versions of dependent technologies and standards.*
 
-Data storage (e.g., location, cost, redundancy, etc.) is being managed by ______________________  *N/A* 
+Data storage (e.g., location, cost, redundancy, etc.) is being managed by *the [Github project repository](https://github.com/usnistgov/xslt-blender) and by NIST administrators of pages.nist.gov and github.com/usnistgov* 
 
-Backup and restoration is being managed by ________________  *N/A*
+Backup and restoration is being managed by *ditto*
 
-Retention policy ________________________________  *N/A*
+Retention policy *ditto*
 
 NOTE: Data storage, backup, restoration, retention, etc. are managed by OISM if data is uploaded to AWS via MIDAS.
 
