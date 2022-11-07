@@ -162,7 +162,3 @@ Signature of code’s ‘author’/’owner’ _________________________________
 Signature of reviewer ______________________________________
 Signature of author’s supervisor________________________________
 
-
- 
-
-

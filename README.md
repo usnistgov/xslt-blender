@@ -6,7 +6,7 @@ See the [XSLT Blender Portal](https://pages.nist.gov/xslt-blender) page for the 
 
 This repository contains source code for both library and demonstrations, as well as project documentation. Projects will describe themselves both in demonstration and with their own README files.
 
-Also see [the project wiki](wiki:Home) for more detailed and extensive coverage.
+Also see [the project wiki](https://github.com/usnistgov/xslt-blender/wiki) for more detailed and extensive coverage.
 
 ## Aims and background
 
@@ -67,9 +67,9 @@ We limit ourselves to XSLT 1.0 for several reasons:
 - The viability for client-side XSLT 3.0 supporting applications -- more than one, considerably more ambitious -- is already being shown
 - In contrast to other options, the actual capabilities of XSLT 1.0 have arguably *never* been widely understood (despite [repeated demonstration](https://www.balisage.net/Proceedings/topics/XSLT.html)), due in part to the immaturity until recently of Javascript support for resource handling in support of on-the-page XSLT infrastructure (e.g., asynchronous web and file system interaction)
 - By delivering functionality, demonstrations can serve as useful and instructive examples for data processing systems in miniature - small models, open to emulation and study
-- XSLT 1.0's limitations make it easier to deploy and use securely (see [Testing](Testing.md) along with wiki pages on [[Assessment]] and [[Controls]])
+- XSLT 1.0's limitations make it easier to deploy and use securely (see [Testing](Testing.md) along with wiki pages on [Assessment](https://github.com/usnistgov/xslt-blender/wiki/Assessment) and [Controls](https://github.com/usnistgov/xslt-blender/wiki/Controls))
 
-Sticking with XSLT 1.0 for demonstrations, code bases can be small and relatively easy to audit. [[Vulnerabilities]] of the architecture, specifications and tools are well understood and preventable or mitigable. XSLT processors and their dependencies (such as parsers) have been well tested, and their degree of conformance with the relevant specifications is high.
+Sticking with XSLT 1.0 for demonstrations, code bases can be small and relatively easy to audit. [Vulnerabilities]((https://github.com/usnistgov/xslt-blender/wiki/Vulnerabilities)) of the architecture, specifications and tools are well understood and preventable or mitigable. XSLT processors and their dependencies (such as parsers) have been well tested, and their degree of conformance with the relevant specifications is high.
 
 XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, and Javascript (more precisely, ECMAScript) in particular is *finally* able to provide the level of support needed in web pages, to orchestrate transformations and interactions together. Using modern Javascript we are able to deploy asynchronous, defensible subroutines for acquiring resources and applying transformation logic flexibly, in a range of different scenarios, to achieve useful data processing operations in the browser, supporting display and interactivity.
 
@@ -158,7 +158,7 @@ $ http-server
 
 This will start a web server on port 8080. Pointing your browser to localhost will load the demonstration site:
 
-https://localhost:8080
+http://localhost:8080
 
 A page will show. XSLT Blender functionality can be confirmed by proceeding to load the directory and navigate.
 
@@ -184,7 +184,7 @@ Over time, projects will show a range of different approaches and user interface
 
 ### Project design
 
-See the page on [[Architecture]] for a schematic of a typical project.
+See the page on [Architecture](https://github.com/usnistgov/xslt-blender/wiki/Architecture) for a schematic of a typical project along with more information on project design.
 
 By inspecting source code -- both statically and running in a demo -- an analyst should be able to determine the components of any given project. Demonstrations should be self-explanatory, assuming relevant background knowledge. Please do research or make inquiries!
 
@@ -201,8 +201,6 @@ Scripting and application logic used in this site falls into four categories:
 This describes the general pattern: in the case of individual demonstrations, it may be muddied or complicated by special requirements. For example, there may be more than one XSLT transformation, or none at all for a CSS-only project. A code base may be fairly large and complex, or quite small. A small code base may do useful things with large data sets. Etc.
 
 To compile Typescript libraries from source, nodeJS and npm are assumed. But for many purposes this will not be necessary.
-
-Also see the [[Architecture]] wiki page.
 
 ### Compiling
 
@@ -230,7 +228,7 @@ With a site up and running, XSLT can be tested directly in the application. You 
 
 Applications are typically tested by development under load with representative sample documents (including representations of 'pathological' inputs).
 
-See [TESTING](TESTING.md) for more about testing and the kinds of testing performed. See the [[Assessment]] page on the wiki for information about second- and third-party assessment, both for functional testing and for security.
+See [TESTING](./TESTING.md) for more about testing and the kinds of testing performed. See the [Assessment](https://github.com/usnistgov/xslt-blender/wiki/Assessment) page on the wiki for information about second- and third-party assessment, both for functional testing and for security.
 
 Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is robust against hard failures entailing threats such as data exfiltration or denial of service. Unless you provide your own code to these code bases, the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout, dropped contents or data "dumps" to your screen -- or in extreme cases (with stylesheets not properly tested), by suspending your browser.
 

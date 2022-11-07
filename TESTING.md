@@ -1,18 +1,18 @@
 # Testing
 
-Also see the [Assessment](wiki/Assessment) wiki page for background related to testing, with information on third-party auditing and testing.
+Also see the [Assessment](https://github.com/usnistgov/xslt-blender/wiki/Assessment) wiki page for background related to testing, with information on third-party auditing and testing.
 
 This page describes in general the testing that has been done, while the wiki describes methods for testing as part of assessment and offers advice for assessing XSLT.
 
 ## Layered architecture and least power
 
-See the wiki, for example the pages on [Architecture](wiki/Architecture) and [Controls](wiki/Controls).
+See the wiki, for example the pages on [Architecture](https://github.com/usnistgov/xslt-blender/wiki/Architecture) and [Controls](https://github.com/usnistgov/xslt-blender/wiki/Controls).
 
 The layered architecture of an XML/XSLT-based system makes it possible to "divide and conquer" the testing problem, by helping to discriminate between kinds of testing, to determine which testing approaches provide defense against actual risks, to manage testing, and to isolate issues and bugs. Because the implementation is supported by robust standards including HTML5, DOM, CSS and ECMAScript, commodity tools are used where possible, rendering it possible to concentrate testing efforts effectively.
 
 ## System Components
 
-See the [Architecture](wiki/Architecture) page for details on system components. The summary below describes how different components are tested.
+See the [Architecture](https://github.com/usnistgov/xslt-blender/wiki/Architecture) page for details on system components. The summary below describes how different components are tested.
 
 ### Commodity display/UI
 
@@ -58,7 +58,7 @@ Since all source code is committed to the repository, and applications are self-
 
 The xslt-blender libraries and demo applications are currently under development. At this time, rigorous auditing providing for a secure code review has not been performed. Assigned developers of xslt-blender, and colleagues performing code review independent of developers who have implemented a particular feature, make a best attempt effort during code review to identify potential issues, including security issues, to confirm them, and to identify proper mitigations.
 
-Tools to support auditing XSLT are also planned as demonstration projects. How to audit XSLT is not as well understood as it needs to be. Documentation and demonstration tooling may be able to help bridge that gap. Experienced XSLT developers are familiar with[Vulnerabilities](wiki/Vulnerabilities) of the technology and its dependencies: documenting these is a first step to sharing and generalizing this knowledge.
+Tools to support auditing XSLT are also planned as demonstration projects. How to audit XSLT is not as well understood as it needs to be. Documentation and demonstration tooling may be able to help bridge that gap. Experienced XSLT developers are familiar with[Vulnerabilities](https://github.com/usnistgov/xslt-blender/wiki/Vulnerabilities) of the technology and its dependencies: documenting these is a first step to sharing and generalizing this knowledge.
 
 Functionality of an XSLT transformation can and should be tested independently of the application stack. This is because as a "least-powered", declarative language, XSLT 1.0 is relatively easy to secure from system execution exploits, in comparison to fully expressive 3GL languages such as Java or Javascript.
 
