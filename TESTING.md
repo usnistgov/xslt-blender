@@ -52,21 +52,19 @@ Applications are also tested across browsers before deployment to ensure consist
 
 ## Audits / code review
 
-Since all source code is committed to the repository, and applications are self-contained, code audits are straightforward.
+Since all source code is committed to the repository, and applications are self-contained, code audits can be clearly bounded.
 
 ### XSLT code review
 
-The xslt-blender libraries and demo applications are currently under development. At this time, rigorous auditing providing for a secure code review has not been performed. Assigned developers of xslt-blender, and colleagues performing code review independent of developers that implemented a particular feature, make a best attempt effort during code review to identify potential issues  including security issues, confirm them, and identify proper mitigations.
+The xslt-blender libraries and demo applications are currently under development. At this time, rigorous auditing providing for a secure code review has not been performed. Assigned developers of xslt-blender, and colleagues performing code review independent of developers who have implemented a particular feature, make a best attempt effort during code review to identify potential issues, including security issues, to confirm them, and to identify proper mitigations.
 
-Tools to support auditing XSLT are also planned as demonstration projects. "How to Audit XSLT" is not as well understood as it needs to be; over time we hope to 
+Tools to support auditing XSLT are also planned as demonstration projects. How to audit XSLT is not as well understood as it needs to be. Documentation and demonstration tooling may be able to help bridge that gap. Experienced XSLT developers are familiar with[Vulnerabilities](wiki/Vulnerabilities) of the technology and its dependencies: documenting these is a first step to sharing and generalizing this knowledge.
 
 Functionality of an XSLT transformation can and should be tested independently of the application stack. This is because as a "least-powered", declarative language, XSLT 1.0 is relatively easy to secure from system execution exploits, in comparison to fully expressive 3GL languages such as Java or Javascript.
 
-Since an XSLT processor's job -- the requirement it addresses -- is to produce for a given input a result that is *deterministic* and *conformant to a known rule set* (i.e. the language specification) -- it is isolated from any system interaction. Often, an XSLT application has only two points of exposure for any given runtime additional to the XSLT itself, namely a single nominal *source* and a single nominal *result*, whose handling is managed by a single calling application (in the case of XSLT Blender, the page Javascript). This isolation makes it both more robust and more traceable. (See the [[Vulnerabilities]] page.) Unlike Javascript, for example, XSLT cannot use http POST or PUT, and has no interface with browser events. Moreover, by default (that is, until modified to do otherwise), an XSLT transformation does nothing with data but 'dump' it, and the application does nothing with a dump but display it. For a display application this is a safe default. For applications that work on unsafe inputs (such as for example HTML or SVG inputs containing raw, executable script), it enforces sanitization by design.
-
 ### Typescript code review
 
-The developer is seeking code review from colleagues and interested users. Informal code reviews have already been conducted.
+The developer welcomes code review from colleagues and interested users. Informal code reviews have already been conducted.
 
 ## Unit testing
 
