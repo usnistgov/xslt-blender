@@ -18,7 +18,7 @@ section#front > *:first-child { margin-top: 0em }
 
 #panels.unpopulated { display: none }
 
-.panel { border: thin inset gainsboro; padding: 0.2em }
+.panel { border: thin inset gainsboro; padding: 0.2em; background-color: gainsboro }
 
 .panel > div { padding: 0.8em }
 .panel > div:not(:empty) { border-top: thin solid black }
@@ -185,15 +185,17 @@ section#front > *:first-child { margin-top: 0em }
     <summary>Is this site a preview, demo, mockup or spoof? - <i><b>How you can know</b></i></summary>
     <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
   </details>
-  <main>
+  <main class="draft">
     <section id="front">
     <h1>HTML Reducer</h1>
     <p style="font-weight: bold">Sanitizes. Flattens. Writes Markdown. OSCAL-friendly.</p>
+    <details class="boxed">
     <p>Drop your HTML onto the page. Your browser will try to load it; what it can read, it converts it to a plain, simple, flat, Markdown-compatible HTML. The file source (code) is also entered into a form field where it can be edited and run again.</p>
     <p>This is a <q>deep clean</q>: structural information is filtered away, except as might be reflected implicitly in header elements (<code>h1</code> through <code></code>h6</code>). All styling is dropped. The filter passes through all the text, but of the tagging it keeps only what works safely in reduced environments.</p>
     <p>Accordingly, it also discards any <code>script</code> or <code>style</code> that might perturb downstream consumers.</p>
     <p>Keeping what works ensures that regular tagging of elements at the line and inline level will come through: this includes paragraphs, very basic inline formatting (such as italics or bold), lists and simple tables. Other tagging is removed, but no data is lost. Whether information screened out constitutes <q>noise</q> or <q>signal</q> will depend on the case.</p>    
     <p>All operations are accomplished entirely in the browser, without uploading, transmitting or communicating user data, or derived data, to the server (which delivers the application) or to any other system. Once cached, the application can be run off line or air-gapped, with no live access to a network, on new inputs. Similarly the only model for data persistence is the user option to save out results.</p>
+    </details>
     <details class="boxed">
     <summary>Tasks / TODO</summary>
     <ul>

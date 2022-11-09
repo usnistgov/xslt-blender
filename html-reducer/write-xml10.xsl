@@ -41,10 +41,7 @@
     </xsl:template>
     
     <xsl:template name="lf-and-indent">
-        <xsl:for-each select="preceding-sibling::*[1]">
-        <xsl:text>&#10;&#10;</xsl:text>
-            
-        </xsl:for-each>
+        <xsl:text>&#10;</xsl:text>
         <xsl:for-each select="parent::*/ancestor::*">
             <xsl:text>  </xsl:text>
         </xsl:for-each>
