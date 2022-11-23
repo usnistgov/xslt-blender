@@ -298,6 +298,10 @@ function fileXMLContent(fileToRead: File): Promise<Document> {
     return fileParsedContent(fileToRead, "application/xml")
 }
 
+function fileHTMLContent(fileToRead: File): Promise<Document> {
+    return fileParsedContent(fileToRead, "text/html")
+}
+
 type ParseableMIMEType = "text/html" | "text/xml" | "application/xml" | "application/xhtml+xml" | "image/svg+xml"
 
 // Reads file and intercepts parser errors for expected type
@@ -353,6 +357,7 @@ function removeClassFromElementsByClass(removeFromClass: string, theClass: strin
 }
 
 // any automagic way to export everything?
-export { fileTextContent, fileXMLContent, getXMLviaHTTP, writeOBJtoXML, spliceIntoPage,
+export { fileTextContent, fileXMLContent, fileHTMLContent,
+         getXMLviaHTTP, writeOBJtoXML, clearElementById, spliceIntoPage,
          parseXMLLiteral, parseAndTransformXMLLiteral, parseAndTransformXMLatHREF,
          xslt1ResultDocument, xsltEngineForHREF };
