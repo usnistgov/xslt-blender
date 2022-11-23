@@ -4,7 +4,7 @@
     "module": "es6",
     "lib": ["es6", "dom", "es2015", "DOM.Iterable"],
     "declaration": true,
-    "outDir": "pub/lib",
+    "outDir": "lib",
     "rootDir": "src",
     "strict": true,
     "types": ["node", "mocha"],

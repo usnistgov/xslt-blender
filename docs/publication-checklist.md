@@ -35,9 +35,9 @@ The amount of documentation, testing, and support that you should provide will v
 
 Documentation is available as appropriate:
 
- - [x] Integrated with the source code *Each project has its own readme and inline documentation*
+ - [x] Integrated with the source code *Each project has its own readme and inline documentation; top level documentation is in a /docs directory*
  - [x] On separate web pages (e.g., www.nist.gov, pages.nist.gov) at URL(s): *Site presents demonstrations as web pages, each one with its own documentation*
- - [ ] In a separate publication at URL(s):_____________________________________________
+ - [x] In a separate publication at URL(s): https://github.com/usnistgov/xslt-blender/wiki *includes guidance on system architecture and assessment*
  - [ ] Other
 
 Documentation includes, as appropriate:
@@ -87,9 +87,9 @@ What coordination is required between the release/update of the software and the
 
 Data storage (e.g., location, cost, redundancy, etc.) is being managed by *the [Github project repository](https://github.com/usnistgov/xslt-blender) and by NIST administrators of pages.nist.gov and github.com/usnistgov* 
 
-Backup and restoration is being managed by *ditto*
+Backup and restoration is being managed by *Ditto*
 
-Retention policy *ditto*
+Retention policy *Ditto*
 
 NOTE: Data storage, backup, restoration, retention, etc. are managed by OISM if data is uploaded to AWS via MIDAS.
 
