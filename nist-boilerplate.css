@@ -20,7 +20,7 @@ main > *:first-child { margin-top: 0em }
 #nistfootergoeshere { z-index: -1; position: relative }
 
 details.boxed { width: fit-content; padding: 0.4em;
-    margin-bottom: 1em }
+    margin: 0.25em 0em}
 
 details.boxed[open] { outline: thin dotted black }
 

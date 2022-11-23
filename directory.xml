@@ -9,8 +9,16 @@
             <p>Use this Previewer to see how a NISO STS-tagged document <i>might</i> appear in display (that is, in your browser, cast dynamically from its source tagging).</p>
         </description>
     </project>
-    <project entry="directory.xml">
-        <name>Reflection</name>
+    <project entry="html-reducer">
+        <name>HTML Reducer</name>
+        <line>Get your Markdown here</line>
+        <description>
+            <p>Sanitizes and strips HTML down into a markdown-friendly subset, displaying the result. You can save the resulting cleaned-up HTML or a Markdown rendition, or both.</p>
+            <p>This application can be used either to scrub down HTML or to evaluate it for such scrubbing by checking to see what comes through.</p>
+            <p>At time of writing, this is experimental and needs testing, but demonstrates the principle.</p>
+        </description>
+    </project>
+    <project entry="directory.xml">    <name>Reflection</name>
         <line>XML served up crude</line>
         <description>
             <p>The (same) directory to demonstrations on this site, loaded into your browser as XML.</p>
