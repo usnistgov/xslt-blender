@@ -15,7 +15,7 @@ p { margin: 0.6em 0em; max-width: 54em; line-height: 1.62 }
 #displaySTS > section.sts_standard { display: block; background-color: lemonchiffon; padding: 1vw; border: medium inset black;
   font-family: "Merriweather Web", Georgia,Cambria,"Times New Roman",Times,serif }
 
-h1, h2, h3, h4, h5, h6, summary, *:before { font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; }
+h1, h2, h3, h4, h5, h6, summary, .reflect, *:before { font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; }
 
 aside > *:last-child { margin-bottom: 0em }
 
@@ -38,7 +38,7 @@ aside > *:last-child { margin-bottom: 0em }
 
 #displaySTS > section.sts_standard > section:last-child > details { margin-bottom: 0em }
 
-#displaySTS > section > section.sts_body { width: fit-content; background-color: white; display: block; border: thin solid black }
+#displaySTS > section > section.sts_body { background-color: white; display: block; border: thin solid black }
 
 #displaySTS > section > section { background-color: inherit }
 
@@ -48,13 +48,33 @@ aside > *:last-child { margin-bottom: 0em }
 
 #displaySTS div.sts_table-wrap-group { padding-left: 0rem }
 
+#displaySTS div.sts_caption { padding-left: 0rem }
+
+#displaySTS div.sts_caption *:first-child { margin-top: 0em }
+#displaySTS div.sts_caption *:last-child { margin-bottom: 0em }
+
 #displaySTS div.labeled { margin: 0.2em 0em; padding: 0.3em; border: thin dotted gray }
 #displaySTS div.boxed   { margin: 0.2em 0em; padding: 0.3em; outline: thin solid gray }
 #displaySTS div.boxed.labeled { border: none }
 
+#displaySTS div.sts_boxed-text,
+#displaySTS figure.sts_fig         { margin: 0.2em 0em; width: fit-content; padding: 0.8rem; outline: medium outset darkgrey }
+
+#displaySTS figure.sts_fig *:first-child { margin-top: 0em }
+#displaySTS figure.sts_fig *:last-child  { margin-bottom: 0em }
+
+
 .sts_xref:hover { text-decoration: underline }
 
 /*#displaySTS div > * { margin: 0em }*/
+
+span.reflect { display: inline-block; border: thin solid black;
+                    font-size: 80%; font-weight: normal;
+                    color: black;
+                    padding: 0.1em 0.4em;
+                    border-radius: 0.25em;
+                    margin-bottom: 0.2em;
+                    margin-left: 0.4em }
 
 span.tagLabel,
 #displaySTS div.labeled:before { display: inline-block; 
@@ -76,7 +96,9 @@ span.tagLabel,
   { content: none }
 
 #displaySTS div.sts_list, #displaySTS div.sts_list div { border: none; padding: 0em; margin: 0em }
-#displaySTS div.sts_list, #displaySTS div.sts_list *:first-child { padding: 0em; margin: 0em }
+
+#displaySTS div.sts_list, #displaySTS div.sts_list p:first-child { padding: 0em; margin: 0em }
+
 #displaySTS div.sts_list div.sts_list-item { margin-left: 1em }
 
 #displaySTS div.sts_list-item { display: grid; grid-template-columns: 2em 1fr; gap: 0.2em }

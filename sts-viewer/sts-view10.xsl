@@ -26,6 +26,8 @@
     
     <xsl:template match="app/title | app/label" priority="49"/>
     
+    <xsl:template match="fig/label" priority="49"/>
+    
     <xsl:template match="table-wrap/title | table-wrap/label" priority="49"/>
     
     <xsl:template match="@id">
@@ -88,6 +90,14 @@
             <xsl:apply-templates/>
         </details>
     </xsl:template>
+    
+    <xsl:template match="table-wrap[not(label | title | caption)]">
+        <div>
+            <xsl:apply-templates/>
+        </div>
+    </xsl:template>
+    
+    <xsl:template match="tr[not(normalize-space(.))]"/>
     
     <!--<xsl:template match="sec[@sec-type='assessment-objective']"/>
     <xsl:template match="sec[@sec-type='assessment-methods']"/>
@@ -162,6 +172,12 @@
         </summary>
     </xsl:template>
     
+    <xsl:template match="fig" mode="sec.head">
+        <h4>
+            <xsl:apply-templates mode="sec.head" select="label | title | caption"/>
+        </h4>
+    </xsl:template>
+    
     <xsl:template match="caption" mode="sec.head">
         <!-- emitting a colon when both title and label are given -->
         <xsl:for-each select="child::title/parent::caption/../label">
@@ -188,7 +204,7 @@
     </xsl:template>
     
     <!-- picked up in sec.head mode -->    
-    <xsl:template match="table-wrap/caption/title | app/title"/>
+    <xsl:template match="table-wrap/caption/title | app/title | fig/caption/title"/>
     
     <xsl:template match="label | title" mode="sec.head">
         <xsl:for-each select="preceding-sibling::label">
@@ -347,6 +363,46 @@
         </pre>
     </xsl:template>
     
+    <xsl:template match="fig">
+        <figure>
+            <xsl:apply-templates select="@*"/>            
+            <xsl:call-template name="add.class"/>
+            <xsl:apply-templates select="." mode="sec.head"/>
+            <xsl:apply-templates/>
+        </figure>
+    </xsl:template>
+    
+    <!-- tricky maneuver avoids producing an empty element when no content comes back -->
+    <xsl:template match="caption">
+        <xsl:variable name="sth">
+            <xsl:apply-templates/>
+        </xsl:variable>
+        <xsl:if test="string($sth)">
+            <div>
+                <xsl:apply-templates select="@*"/>            
+                <xsl:call-template name="add.class"/>
+                <xsl:copy-of select="."/>
+            </div>
+        </xsl:if>
+    </xsl:template>
+    
+    <xsl:template match="graphic">
+        <p>
+            <span class="reflect">
+            <xsl:text>graphic</xsl:text>
+            <xsl:apply-templates select="@*"/>
+            </span>
+        </p>
+    </xsl:template>
+    
+    <xsl:template match="graphic/@*">
+        <span class="reflect">
+            <xsl:value-of select="local-name()"/>
+            <xsl:text>: </xsl:text>
+            <xsl:value-of select="."/>
+        </span>
+    </xsl:template>
+    
     <!--
     table | col | thead | tr | th | tbody | td
     -->
@@ -406,13 +462,13 @@
     </xsl:template>
 
     <!-- overriding fallback class 'labeled' for things with titles -->
-    <xsl:template match="*[title]" mode="class">
+    <xsl:template match="*[title][not(self::caption)] | *[caption/title]" mode="class">
         <xsl:text>titled sts_</xsl:text>
         <xsl:value-of select="local-name()"/>
     </xsl:template>
     
 <!-- add anything here that shouldn't be marked 'labeled' -->
-    <xsl:template priority="2" match="app-group | table-wrap | table-wrap-group | ref-list | ref | def-list | def-item | term | def | term-sec | term-display | preformat" mode="class">
+    <xsl:template priority="2" match="app-group | table-wrap | table-wrap-group | ref-list | ref | def-list | def-item | term | def | term-sec | term-display | preformat  | boxed-text | caption | fig" mode="class">
         <xsl:text>sts_</xsl:text>
         <xsl:value-of select="local-name()"/>
     </xsl:template>
