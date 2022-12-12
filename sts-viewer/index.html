@@ -122,34 +122,39 @@
     <h1>STS Viewer</h1>
     <p>A simple preview of an STS XML document, rendering its structures and text contents into a simple layout for proofing.</p>
     <p>Load your STS XML below: the application does its best to process and display it. All processing is in your browser.</p>
-    <p>Feedback on this demonstration is welcome on the public <a href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
-      to community discussions on the public <a href="https://mulberrytech.com/STS/NISO-STS-List.html">NISO STS List</a> mailing list.</p>
-    <details class="boxed">
+    <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
+      to community discussions on the public <a class="external" href="https://mulberrytech.com/STS/NISO-STS-List.html">NISO STS List</a> mailing list.</p>
+    <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
+      onchange="filterAndShowXMLFiles(this.files)" />
+    <button style="float:right" onclick="clearPage()">Clear page</button>
+    <div id="displaySTS"><!-- --></div>
+    <details class="boxed arrayed">
       <summary>About NISO STS</summary>
-      <p><a href="https://www.niso.org/standards-committees/sts">NISO STS</a> (ANSI/NISO Z39.102-2017, Standards Tag Suite) is a standardized set of XML tags
+      <p><a class="external" href="https://www.niso.org/standards-committees/sts">NISO STS</a> (ANSI/NISO Z39.102-2017, Standards Tag Suite) is a standardized set of XML tags
         supporting the creation, maintenance and publication of standards and guidelines documents. Based on work at ISO
         (International Standards Organization) and the US National Library of Medicine (NIH/NLM/NCBI), NISO STS benefits from participation and adoption by standards development organizations (SDOs), publishers, information service providers, data aggregators, archives and libraries.</p>
       <p>More resources on this format can be found at the <a href="https://niso-sts.org/">NISO STS Supporting Materials</a> web site.</p>
       <p>To test this demonstration, a couple of public examples may be tried:</p>
       <ul>
-        <li><a href="https://niso-sts.org/downloadables/samples/NISO-STS-Standard-1-0.XML">NISO STS Tag Library</a> in NISO STS</li>
-        <li><a href="https://niso-sts.org/downloadables/samples/rfc8142.xml">Small example of IETF RFC</a> in NISO STS</li>
+        <li><a class="external" href="https://niso-sts.org/downloadables/samples/NISO-STS-Standard-1-0.XML">NISO STS Tag Library</a> in NISO STS</li>
+        <li><a class="external" href="https://niso-sts.org/downloadables/samples/rfc8142.xml">Small example of IETF RFC</a> in NISO STS</li>
         <li>Or use your own STS XML or best guess (this application does not validate against a schema)</li>
       </ul>
       <p>In this demonstration, markers such as <span class="tagLabel">Element</span> indicate elements that have not yet been coded in the transformation. Over time as we add features, these will be seen less frequently.</p>
-      <p>Limitations: basic structures and fallback processing are provided for, but areas are still in need of development. Your examples of valid STS are welcome as use cases for refinement and new features. See the <a href="https://github.com/usnistgov/xslt-blender">project repository documentation</a> and its <a href="https://github.com/usnistgov/xslt-blender/issues">Issues board</a>.</p>
+      <p>Limitations: basic structures and fallback processing are provided for, but areas are still in need of development. Your examples of valid STS are welcome as use cases for refinement and new features. See the <a class="external" href="https://github.com/usnistgov/xslt-blender">project repository documentation</a> and its <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Issues board</a>.</p>
       <p>NISO, the <a href="https://niso.org/">National Information Standards Organization</a>, is a nonprofit membership organization that publishes technical standards related to information management, processing, and exchange. NISO has no affiliation with NIST, the <a href="https?//nist.gov">National Institute for Standards and Technology</a>, a Bureau of the US Department of Commerce. This project is developed at NIST in support of public use of a non-proprietary encoding technology illustrating the power of external specification in combination with declarative design principles.</p>
-      <p>This viewer application is maintained on <a href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
-    </details>
-    <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
-      onchange="filterAndShowXMLFiles(this.files)" />
-    <button style="float:right" onclick="clearPage()">Clear page</button>
-    <div id="displaySTS"><!-- --></div>
+      <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
+   </details>
+    <details class="boxed arrayed">
+    <summary>Is this site a demonstration, a service or both?</summary>
+    <p>This application is a demonstration of a service, in the form of a service. In that respect, it is not a service, even while (to the extent you find it serviceable) users are invited to use it as one.</p>
+      <p>No guarantees or warranties are provided, however, and as it serves no business goal directly and does not sustain itself, some day it will stop functioning or simply disappear, potentially without notice. Either it will no longer have a host, or a technology dependency will have changed or been disrupted. That day is currently expected not to occur before 2027.</p>
+      <p>The best way to ensure access to the application over the long term is to replicate it. See the <a class="external" href="https://github.com/usnistgov/xslt-blender/wiki/Technology-Transfer">project wiki page on Tech Transfer</a> for more details on how these projects are designed to be standards-based, accessible, portable, adaptable over time and unhindered by practical impediments to wide deployment, either technical or legal.</p></details>
   </main>
   <div class="project-footer">
     <p><i>STS Viewer</i> is an <a  href="https://pages.nist.gov/xslt-blender">XSLT Blender</a> project using XSLT 1.0 capabilities built into your browser, with no external dependencies.</p>
     <p>Disclaimers apply; no warranty should or can be assumed.</p>
-    <p>See the code and contact the developers in the <a
+    <p>See the code and contact the developers in the <a class="external" 
       href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
   </div>
   <div id="nistfootergoeshere"><footer class="nist-footer">
