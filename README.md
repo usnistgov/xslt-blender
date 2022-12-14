@@ -75,6 +75,8 @@ XSLT 1.0 remains what it was in 1999, but the Internet has grown up around it, a
 
 Entire (albeit small and simple) applications can be written with *no* dependencies on external libraries. The basic capability that XSLT offers -- casting data from one descriptive format into another at arbitrary levels of granularity, while retaining structure and organization -- is simple, difficult to abuse or break, yet flexible in use, making XSLT applications well-suited to following the [Rule of Least Power](https://www.w3.org/2001/tag/doc/leastPower.html). When a code base is small, and the boundaries of its yard (its domain of capability) are well marked, there is less to go wrong. Hence the site tagline, "Least Power, Greatest Effect".
 
+This also makes this project suitable for "weightless technology transfer" as described on the [project wiki page](https://github.com/usnistgov/xslt-blender/wiki/Technology-Transfer)).
+
 ### Project origins
 
 This work is informed by daily and weekly practice with XSLT, and inspired by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
