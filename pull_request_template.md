@@ -5,7 +5,8 @@
 Within the scope of work,
 
 - [ ] All readme files and documentation resources are current
-- [ ] Everything touched has been double checked for parsing as appropriate (wf/valid)
+- [ ] Initial comments look reasonable
+- [ ] Everything touched has been checked for parsing as appropriate (wf/valid)
 - [ ] Everything is tested in multiple browsers (minimally: FF and Chrome)
 - [ ] The top-level directory is current or planned for updating
 - [ ] As appropriate, outbound external links are marked as `class="external"` (drives popup)
