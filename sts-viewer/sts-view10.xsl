@@ -5,21 +5,8 @@
     exclude-result-prefixes="xlink"
     version="1.0">
     
-<!--      
-      STS Viewer to do
-      
-      o footnotes as 'aside'
-      o pretty table css
-      o special handling for 'overview' sec?
-      
-      OSCAL->STS to do
-      o Link from family header to Table C
-      o check withdrawn controls - Table C but also the primary listing
-      AC-3(1), AC-3(6), AT-3(4) (moved to), AU-15
-      
-      
-      
-      -->
+<!-- Expected input: any valid NISO STS document -->
+
     <xsl:import href="fallback.xsl"/>
 
     <xsl:template match="sec/title | sec/label" priority="49"/>
