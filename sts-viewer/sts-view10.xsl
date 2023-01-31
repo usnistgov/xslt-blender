@@ -368,7 +368,7 @@
             <div>
                 <xsl:apply-templates select="@*"/>            
                 <xsl:call-template name="add.class"/>
-                <xsl:copy-of select="."/>
+                <xsl:copy-of select="$sth"/>
             </div>
         </xsl:if>
     </xsl:template>
