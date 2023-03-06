@@ -107,6 +107,25 @@
         </section>
     </xsl:template>
     
+<!--    shim for JATS -->
+    <xsl:template match="article">
+        <article>
+            <xsl:apply-templates select="@*"/>            
+            <xsl:call-template name="add.class"/>
+            <xsl:apply-templates select="." mode="page.head"/>
+            <xsl:apply-templates/>
+        </article>
+    </xsl:template>
+    
+    <xsl:template match="article" mode="page.head">
+        <header>
+            <xsl:for-each select="child::front/*/title-group/article-title">
+                <h1>
+                    <xsl:apply-templates mode="page.head"/>
+                </h1>
+            </xsl:for-each>
+        </header>
+    </xsl:template>
     
     <xsl:template match="standard" mode="page.head">
         <header>
@@ -374,12 +393,20 @@
     </xsl:template>
     
     <xsl:template match="graphic">
-        <p>
-            <span class="reflect">
-            <xsl:text>graphic</xsl:text>
-            <xsl:apply-templates select="@*"/>
-            </span>
-        </p>
+        <xsl:variable name="imgID" select="concat('grphc-',generate-id(.))"/>
+        <div class="graphicBox">
+            <p>
+                <form>
+                    <label for="load_{$imgID}" class="img_label" id="label_{$imgID}">
+                        <xsl:text>Load file </xsl:text>
+                        <xsl:apply-templates select="@*"/>
+                    </label>
+                    <input type="file" accept="image/png, image/jpeg, image/jpg" id="load_{$imgID}"
+                        name="load_{$imgID}" onchange="loadGraphic(this.files[0],'{ $imgID }','{ string(@xlink:href) }')"/>
+                </form>
+            </p>
+        <img id="{ $imgID }"/>
+        </div>
     </xsl:template>
     
     <xsl:template match="graphic/@*">

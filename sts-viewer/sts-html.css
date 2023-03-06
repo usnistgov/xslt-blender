@@ -15,6 +15,9 @@ p { margin: 0.6em 0em; max-width: 54em; line-height: 1.62 }
 #displaySTS > section.sts_standard { display: block; background-color: lemonchiffon; padding: 1vw; border: medium inset black;
   font-family: "Merriweather Web", Georgia,Cambria,"Times New Roman",Times,serif }
 
+#displaySTS > article.sts_article { display: block; background-color: whitesmoke; padding: 1vw; border: medium inset black;
+  font-family: "Merriweather Web", Georgia,Cambria,"Times New Roman",Times,serif }
+
 h1, h2, h3, h4, h5, h6, summary, .reflect, *:before { font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; }
 
 aside > *:last-child { margin-bottom: 0em }
@@ -58,7 +61,7 @@ aside > *:last-child { margin-bottom: 0em }
 #displaySTS div.boxed.labeled { border: none }
 
 #displaySTS div.sts_boxed-text,
-#displaySTS figure.sts_fig         { margin: 0.2em 0em; width: fit-content; padding: 0.8rem; outline: medium outset darkgrey }
+#displaySTS figure.sts_fig         { margin: 0.2em 0em; padding: 0.8rem; outline: medium outset darkgrey }
 
 #displaySTS figure.sts_fig *:first-child { margin-top: 0em }
 #displaySTS figure.sts_fig *:last-child  { margin-bottom: 0em }
@@ -179,6 +182,13 @@ table.control-matrix .control-title { width: 60% }
 
 #displaySTS div.fail { color: darkred; background-color: orange; padding: 0.4em }
 .fail code { font-weight: bold; font-size: 110% }
+
+#displaySTS div.warn { color: midnightblue; background-color: lemonchiffon; padding: 0.4em }
+.warn code { font-weight: bold; font-size: 110% }
+
+.graphicBox label { margin-right: 1em; padding: 0.4em }
+.aligned { display: none }
+.unknown  { color: darkred; background-color: pink }
 
 /* prevent sub and sup from shifting the line leading */
 sup, sub {
