@@ -85,11 +85,3 @@ Other XSLT modules (`fallback.xsl` and `sts-tags-and-names.xsl`) only need to be
 For license information see the [repository readme](../README.md). (Public domain: reuse encouraged with credits.)
 
 The lead developer of this project is Wendell Piez, w e n d e l l (dot) p i e z (at) n i s t (dot) g o v (NIST/ITL/CSD, Secure Systems and Applications Group).
-
-## Tasks
-
-- [ ] test XSLTs under XSLT 3.0
-- [ ] set up sample suite?
-- [ ] document other application scenarios
-- [ ] formal 508 checking (with notes)
-- [ ] 'print-media' CSS

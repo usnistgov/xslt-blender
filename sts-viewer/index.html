@@ -48,6 +48,15 @@
       return spliceIntoPage(targetID, resultDocument, true);
     }
     
+    function loadGraphic(file,graphicID,expectedName) {
+       // const fr = new FileReader();
+       const anURL = URL.createObjectURL(file)
+       const expect = expectedName.split('/').pop().split('#')[0].split('?')[0];
+       const labelClass = ( file.name === expect ? 'aligned' : 'unknown' );
+       document.getElementById('label_'+graphicID).classList.add(labelClass);
+       document.getElementById(graphicID).src = anURL;
+     }
+
     const viewSection = eID => {
       let who = document.getElementById(eID); 
       let openers = getAncestorDetails(who);
