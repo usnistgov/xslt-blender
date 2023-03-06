@@ -7,9 +7,13 @@
     version="1.0">
 
     <xsl:template match="/*">
-        <div class="fail">
-            <p>Fail: can't process a <code><xsl:value-of select="local-name()"/></code> document ... this tool handles (only) STS <code>standard</code>.</p>
+        <xsl:if test="not(self::standard)">
+            
+        <div class="warn">
+            <p>Warning: seeing a document named <code><xsl:value-of  select="local-name(.)"/></code> ... this tool is designed and tested for STS <code>standard</code> documents (in no namespace).</p>
         </div>
+        </xsl:if>
+        <xsl:apply-templates/>
     </xsl:template>
     
     <!--without a better rule, make a div -->
