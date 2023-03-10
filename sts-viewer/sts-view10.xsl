@@ -39,13 +39,21 @@
     
     <xsl:template match="p">
         <xsl:param name="fn-label"/>
-        <xsl:apply-templates select="descendant::fn" mode="fn-aside"/>
+        <xsl:apply-templates select="*" mode="fn-aside"/>
         <p>
             <xsl:apply-templates select="@*"/>            
             <xsl:call-template name="add.class"/>
             <xsl:apply-templates/>            
         </p>
     </xsl:template>
+    
+    <xsl:template match="*" mode="fn-aside">
+        <xsl:apply-templates mode="fn-aside"/>
+    </xsl:template>
+    
+    <xsl:template match="p" mode="fn-aside"/>
+    
+    <xsl:template match="text()" mode="fn-aside"/>
     
     <xsl:template match="p//fn/label"/>
     
