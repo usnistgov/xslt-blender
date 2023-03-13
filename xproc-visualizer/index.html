@@ -87,6 +87,14 @@ details.boxed[open] { background-color: white }
      // spliceIntoPage(targetID, svgg, true);
     }
   
+    /* selects textarea#linkcopy and copies it to the system clipboard */
+    function copyToClipboard(whoToCopy) {
+      const copyToCopy = document.getElementById(whoToCopy);
+      // to select text ...
+      window.getSelection().selectAllChildren(copyToCopy);
+      document.execCommand('copy');
+    }
+
     </script>
         
 </head>
@@ -136,8 +144,9 @@ details.boxed[open] { background-color: white }
         onchange="filterAndShowXMLFiles(this.files); clearElementById('showMermaid')" />
     <button style="float:right" onclick="clearPage();">Reset</button>
       <pre contenteditable="true" spellcheck="false" id="xprocMermaid">flowchart TB&#xA;xproc[(XPROC)]</pre>
-      <button onclick="refreshMermaid('xprocMermaid','showMermaid');">Run Mermaid</button>
-      <div id="showMermaid"><!--flowchart TB&#xA;xproc[(XPROC)]--></div>
+    <button onclick="copyToClipboard('xprocMermaid');">Copy to clipboard</button>
+    <button onclick="refreshMermaid('xprocMermaid','showMermaid');">Run Mermaid</button>
+    <div id="showMermaid"><!--flowchart TB&#xA;xproc[(XPROC)]--></div>
       
     <details class="boxed arrayed">
       <summary>About XProc</summary>
