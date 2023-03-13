@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <title>XProc Visualizer</title>
+  <meta charset="utf-8" />
+  <style type="text/css" xml:space="preserve">
+#xprocMermaid { display: block; border: thin solid black;
+  margin: 1em 0em; padding: 0.6em; white-space: pre-wrap;
+  font-family: monospace; background-color: white }
+label { font-weight: bold }
+details.boxed[open] { background-color: white }
+
+  </style>
+  <link rel="stylesheet" href="../nist-boilerplate.css" type="text/css" />
+  <link rel="stylesheet" href="../nist-combined.css"/>
+  
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+
+  <!-- https://github.com/usnistgov/pages-root/wiki/Adding-NIST-required-branding-and-features-to-your-site -->
+  <!-- 'leave notice' -->
+  <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+  <script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
+  
+  <!-- Google analytics    -->
+  <script async type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NIST&subagency=github&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c">
+</script>
+  
+  <script type="module">
+    
+    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
+      window.mermaidAPI = mermaid;   
+    
+    
+      import { fileXMLContent, spliceIntoPage, xslt1ResultDocument, xsltEngineForHREF, clearElementById } from "../lib/xslt-blender.js";
+
+      // todo: replace with something a little less cumbersome?
+      window.xslt1ResultDocument = xslt1ResultDocument;
+      window.fileXMLContent = fileXMLContent;
+      window.spliceIntoPage = spliceIntoPage;
+      // window.parseAndTransformXMLLiteral = parseAndTransformXMLLiteral;
+      window.xsltEngineForHREF = xsltEngineForHREF;
+      window.clearElementById = clearElementById;
+
+  </script>
+   
+   <script type="text/javascript">
+
+    async function filterAndShowXMLFiles(fileSet) {
+      for (const eachFile of fileSet) {
+        const maybeXProcXML = await fileXMLContent(eachFile);
+        if (maybeXProcXML) {
+          viewAndShowXML(maybeXProcXML, "xprocMermaid");
+        }
+      }
+    }
+
+   async function viewAndShowXML(xmlDocument, targetID) {
+     // move this up outside the function call for memoability?
+     const viewerXSLTEngine = await xsltEngineForHREF('xproc-mermaid-flowchart.xsl');
+     const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
+     spliceIntoPage(targetID, resultDocument, true);
+     //const editBox = document.getElementById(targetID);
+     //editBox.innerHTML = resultDocument.childNodes[0].nodeValue;
+   }
+
+   const clearLoader = () => {
+     let emptyList = new DataTransfer();
+     let noFiles = emptyList.files;
+     document.getElementById("loadXProc").files = noFiles;
+   }
+   
+   const clearPage = () => {
+     const startMermaid = "flowchart TB\nxproc[(XPROC)]";
+     clearLoader();
+     clearElementById('showMermaid');
+     document.getElementById('xprocMermaid').innerHTML = startMermaid;
+   }
+   
+   async function refreshMermaid(sourceID,targetID) {
+     const mermaidCode = document.getElementById(sourceID).innerText.trim();
+     // const mermaidCode = "flowchart TB; A -> B";
+     const svgg = await mermaidAPI.render('mermaidSVG', mermaidCode);
+     document.getElementById(targetID).innerHTML = svgg.svg.trim(); 
+     // console.log(svgg);
+     // spliceIntoPage(targetID, svgg, true);
+    }
+  
+    </script>
+        
+</head>
+
+<body>
+  <div id="nistheadergoeshere">
+    <header class="nist-header" id="nist-header" role="banner">
+      
+      <a href="https://www.nist.gov/"
+        title="National Institute of Standards and Technology"
+        class="nist-header__logo-link" rel="home">
+        <svg aria-hidden="true" class="nist-header__logo-icon" version="1.1"
+          xmlns="http://www.w3.org/2000/svg" width="24" height="32"
+          viewBox="0 0 24 32">
+          <path
+            d="M20.911 5.375l-9.482 9.482 9.482 9.482c0.446 0.446 0.446 1.161 0 1.607l-2.964 2.964c-0.446 0.446-1.161 0.446-1.607 0l-13.25-13.25c-0.446-0.446-0.446-1.161 0-1.607l13.25-13.25c0.446-0.446 1.161-0.446 1.607 0l2.964 2.964c0.446 0.446 0.446 1.161 0 1.607z"
+          />
+        </svg>
+        <svg class="nist-header__logo-image" version="1.1"
+          xmlns="http://www.w3.org/2000/svg" viewBox="-237 385.7 109.7 29.3">
+          <title>National Institute of Standards and Technology</title>
+          <g>
+            <path class="st0"
+              d="M-231,415h-6v-23.1c0,0,0-4.4,4.4-5.8c4-1.3,6.6,1.3,6.6,1.3l19.7,21.3c1,0.6,1.4,0,1.4-0.6v-22h6.1V409
+              c0,1.9-1.6,4.4-4,5.3c-2.4,0.9-4.9,0.9-7.9-1.7l-18.5-20c-0.5-0.5-1.8-0.6-1.8,0.4L-231,415L-231,415z"/>
+            <path class="st0"
+              d="M-195,386.1h6.1v20.7c0,2.2,1.9,2.2,3.6,2.2h26.8c1.1,0,2.4-1.3,2.4-2.7c0-1.4-1.3-2.8-2.5-2.8H-176
+              c-3,0.1-9.2-2.7-9.2-8.5c0-7.1,5.9-8.8,8.6-9h49.4v6.1h-12.3V415h-6v-22.9h-30.2c-2.9-0.2-4.9,4.7-0.2,5.4h18.6
+              c2.8,0,7.4,2.4,7.5,8.4c0,6.1-3.6,9-7.5,9H-185c-4.5,0-6.2-1.1-7.8-2.5c-1.5-1.5-1.7-2.3-2.2-5.3L-195,386.1
+              C-194.9,386.1-195,386.1-195,386.1z"/>
+          </g>
+        </svg>
+      </a>      
+    </header>
+  </div>
+  <details id="sec-notice">
+    <summary>Is this site a preview, demo, mockup or spoof? - <i><b>How you can know</b></i></summary>
+    <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
+  </details>
+  <main class="draft">
+    <h1>XProc Visualizer  / <i>alpha</i></h1>
+    <h2>XProc pipeline as Mermaid flowchart</h2>
+    <p>An XSLT 1.0 transformation is applied to your XProc 1.0 to create <a class="external" href="https://mermaid.js.org/">Mermaid</a> notation representing the pipeline as a flowchart. The code can be adjusted in place, rendered dynamically on the page, and copied out into your Mermaid-aware application, wiki or site.</p>
+    <p>Feedback on this demonstration may be directed to the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Currently the application does only the basics: examples of real-life XProc illustrating requirements would be especially welcome.</p>
+    
+      <label for="loadXProc">Load your XProc 1.0 </label><input type="file" id="loadXProc" name="loadXProc" title="Load XProc 1.0 XML"
+        onchange="filterAndShowXMLFiles(this.files)" />
+    <button style="float:right" onclick="clearPage();">Reset</button>
+      <pre contenteditable="true" spellcheck="false" id="xprocMermaid">flowchart TB&#xA;xproc[(XPROC)]</pre>
+      <button onclick="refreshMermaid('xprocMermaid','showMermaid');">Run Mermaid</button>
+      <div id="showMermaid"><!--flowchart TB&#xA;xproc[(XPROC)]--></div>
+      
+    <details class="boxed arrayed">
+      <summary>About XProc</summary>
+      <p>XProc is An XML Pipeline Language, a declarative syntax for describing and architecting data processing pipelines. Currently this application is coded to (a subset of) <a class="external" href="https://www.w3.org/TR/xproc/">W3C XProc 1.0</a> -- with apologies, as XProc 3.0 is still on our horizon.</p>
+      <p>Also note this is <i>early</i> and many pipeline features (steps) have not yet been tested or coded. There has been testing on some basic examples but there is more to be done.</p>
+      <p>Information on XProc can be found at <a href="https://www.xproc.org/">XProc.org</a>, a web presence maintained by the current organizers and developers.</p>
+      <!--<p>To test this demonstration, a couple of public examples may be tried [tbd]:</p>
+      <ul>
+        <li><a class="external" href="https://niso-sts.org/downloadables/samples/NISO-STS-Standard-1-0.XML">NISO STS Tag Library</a> in NISO STS</li>
+        <li><a class="external" href="https://niso-sts.org/downloadables/samples/rfc8142.xml">Small example of IETF RFC</a> in NISO STS</li><!-\-\-\->
+        <li>Or use your own XProc 1.0 or best guess (this application does not validate against a schema)</li>
+      </ul>-->
+   </details>
+    <details class="boxed arrayed">
+      <summary>About Mermaid</summary>
+      <p><a class="external" href="https://mermaid.js.org/">Mermaid</a> is an award-winning open source project providing diagramming and charting tools in Javascript for use in web-based applications. Inspired by Markdown, the basic concept is to design and deploy a <i>text-based syntax</i> to represent the conceptual structures or abstractions that constitute elements for a formal visual representation, such as a flowchart, entity relationship diagram, or state diagram. In this demonstration, an XProc pipeline is translated into <a class="external" href="https://mermaid.js.org/syntax/flowchart.html">Mermaid flowchart syntax</a>.</p>
+    </details>
+    <details class="boxed arrayed">
+    <summary>For best results</summary>
+      <p>The syntax written to the screen is a simple, if partial, reflection of the XProc source, with no additional information. Consequently some of the graphics it makes can easily <a class="external" href="https://mermaid.js.org/syntax/flowchart.html">be improved</a> with one or two touches to the code. If you have two paths crossing, <a class="external" href="https://mermaid.js.org/syntax/flowchart.html#minimum-length-of-a-link">try lengthening one of them</a>, for example by changing <code>--></code> to <code>---></code> in your Mermaid. Every extra hyphen adds a 'step' of vertical space to a node in the diagram. <code>----></code> will indicate a path should take two extra steps, etc. Often, one or two of these correctly placed in your diagram will untangle paths.</p></details>
+    <details class="boxed arrayed"><summary>Is this site a demonstration, a service or both?</summary>
+      <p>This application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/xproc-visualizer">Github, with documentation</a>. Like other applications on this site, this resource is provided by NIST primarily as an educational demonstration of how a service can be created, not as a fully operational service.</p>
+      <p>No guarantees or warranties are provided by NIST that the demo service will be maintained, updated, upgraded, or always available. While NIST intends to keep the demonstration running, NIST also reserves the right to stop supporting it, or to remove or rework it, without prior warning.</p>
+      <p>The best way to ensure access to the application over the long term is to replicate it. See the <a class="external" href="https://github.com/usnistgov/xslt-blender/wiki/Maintenance-and-Support">project wiki page on Maintenance and Support</a> for more details on how these projects are designed to be standards-based, accessible, portable, adaptable over time and unhindered by practical impediments to wide deployment, either technical or legal.</p></details>
+  </main>
+  <div class="project-footer">
+    <p><i>XProc Visualizer</i> is an <a  href="https://pages.nist.gov/xslt-blender">XSLT Blender</a> project using XSLT 1.0 capabilities built into your browser. This application also integrates <a class="external" href="https://mermaid.js.org/">Mermaid.js</a>.</p>
+    <p>Disclaimers apply; no warranty should or can be assumed.</p>
+    <p>See the code and contact the developers in the <a class="external" 
+      href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
+  </div>
+  <div id="nistfootergoeshere"><footer class="nist-footer">
+    <div class="nist-footer__inner">
+      <div class="nist-footer__menu" role="navigation">
+        <ul>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/privacy-policy">Site Privacy</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/oism/accessibility">Accessibility</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/privacy">Privacy Program</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/oism/copyrights">Copyrights</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.commerce.gov/vulnerability-disclosure-policy">Vulnerability Disclosure</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/no-fear-act-policy">No Fear Act Policy</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/foia">FOIA</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.nist.gov/environmental-policy-statement">Environmental Policy</a>
+          </li>
+          <li class="nist-footer__menu-item ">
+            <a href="https://www.nist.gov/summary-report-scientific-integrity">Scientific Integrity</a>
+          </li>
+          <li class="nist-footer__menu-item ">
+            <a href="https://www.nist.gov/nist-information-quality-standards">Information Quality Standards</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.commerce.gov/">Commerce.gov</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.science.gov/">Science.gov</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://www.usa.gov/">USA.gov</a>
+          </li>
+          <li class="nist-footer__menu-item">
+            <a href="https://vote.gov/">Vote.gov</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <div class="nist-footer__logo">
+      <a href="https://www.nist.gov/" title="National Institute of Standards and Technology" class="nist-footer__logo-link" rel="home">
+        <img src="https://pages.nist.gov/nist-header-footer/images/nist_logo_brand_white.svg" alt="National Institute of Standards and Technology logo"/>
+      </a>
+    </div>
+  </footer>
+  </div>
+  </body>
+</html>
