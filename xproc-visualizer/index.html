@@ -50,14 +50,15 @@ details.boxed[open] { background-color: white }
       for (const eachFile of fileSet) {
         const maybeXProcXML = await fileXMLContent(eachFile);
         if (maybeXProcXML) {
-          viewAndShowXML(maybeXProcXML, "xprocMermaid");
+          viewAndShowXML(maybeXProcXML, "xprocMermaid", eachFile.name);
         }
       }
     }
 
-   async function viewAndShowXML(xmlDocument, targetID) {
+   async function viewAndShowXML(xmlDocument, targetID, filename) {
      // move this up outside the function call for memoability?
      const viewerXSLTEngine = await xsltEngineForHREF('xproc-mermaid-flowchart.xsl');
+     viewerXSLTEngine.setParameter(null, "filename", filename);
      const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
      spliceIntoPage(targetID, resultDocument, true);
      //const editBox = document.getElementById(targetID);

@@ -15,8 +15,11 @@
     <xsl:variable name="upper">ABCDEFGHIJKLMNOPQRSTUVWXYZ</xsl:variable>
     <xsl:variable name="lower">abcdefghijklmnopqrstuvwxyz</xsl:variable>
     
+    <xsl:param name="filename"/>
+    
     <xsl:template match="/*">
-        <xsl:text xml:space="preserve">%%{ init: {
+        <xsl:if test="$filename">---&#xA;<xsl:value-of select="$filename"/>&#xA;---</xsl:if>
+        <xsl:text xml:space="preserve">&#xA;%%{ init: {
   'flowchart': { 'curve': 'linear' },
   'themeVariables': {
     'primaryColor':       'whitesmoke',
