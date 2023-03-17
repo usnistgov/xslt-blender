@@ -6,6 +6,10 @@
                 exclude-result-prefixes="xs math"
                 version="1.0">
     
+<!-- Purpose: strip almost everything from HTML leaving only the safest and most innocuous code -->
+<!--    Input: an XML-well-formed HTML file -->
+<!--    Output: An XML-well-formed HTML file, scrubbed -->
+
     <xsl:param name="report-cleanup">no</xsl:param>
     
     <xsl:variable name="noisy" select="$report-cleanup = 'yes'"/>
