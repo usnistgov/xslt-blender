@@ -42,7 +42,10 @@
     <xsl:template mode="md" match="xh:p | p">
         <!--<xsl:call-template name="conditional-lf"/>-->
         <xsl:call-template name="lf"/>
-        <xsl:apply-templates mode="md"/>
+        <xsl:variable name="out">
+          <xsl:apply-templates mode="md"/>
+        </xsl:variable>
+        <xsl:value-of select="normalize-space($out)"/>
     </xsl:template>
     
     <xsl:template mode="md" match="

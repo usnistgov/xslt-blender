@@ -6,7 +6,8 @@
                 exclude-result-prefixes="xs math"
                 version="1.0">
     
-    <!--very crude serializer relies on XML output method for escaping at the character level -->
+    <!-- Purpose: A very crude XML serializer writes tags for XML --> 
+    <!-- relies on XML output method for escaping at the character level -->
     <xsl:output method="html" omit-xml-declaration="yes"/>
     
     <xsl:template match="/*">

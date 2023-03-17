@@ -18,7 +18,16 @@
             <p>At time of writing, this is experimental and needs testing, but demonstrates the principle.</p>
         </description>
     </project>
-    <project entry="directory.xml">    <name>Reflection</name>
+    <project entry="xproc-visualizer">
+        <name>XProc Visualizer (alpha)</name>
+        <line>XProc 1.0 as a Mermaid flowchart</line>
+        <description>
+            <p>Converts XProc into <a href="https://mermaid.js.org/syntax/flowchart.html">Mermaid Flowchart Syntax</a> and makes it available for converting live into a graphic, using Mermaid.</p>
+            <p>Under development and still pretty rudimentary.</p>
+        </description>
+    </project>
+    <project entry="directory.xml">
+        <name>Reflection</name>
         <line>XML served up crude</line>
         <description>
             <p>The (same) directory to demonstrations on this site, loaded into your browser as XML.</p>
