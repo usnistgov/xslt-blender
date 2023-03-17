@@ -1,7 +1,12 @@
 /*  CSS for HTML rendition of project XML */ 
 
+
+.project-directory { display: grid;
+grid-template-columns: repeat(auto-fill, minmax(26em,1fr));
+gap: 0.4em }
+
 section.project {
-  border: thin solid black; padding: 0.4em; margin-top: 0.6em }
+  border: medium outset lightsteelblue; padding: 1.2em }
 
 section > *:first-child { margin-top: 0em }
 section > button:first-child + * { margin-top: 0em }
@@ -11,7 +16,7 @@ p.highlight { font-style: italic }
 
 button.jump { float: right; clear: both }
 
-section.project.planned { background-color: gainsboro; color: #AAA; border: thin dotted black }
+section.project.planned { background-color: gainsboro; color: #AAA; border: thin inset black }
 
 section.project.planned:hover { color: darkslategrey }
 
