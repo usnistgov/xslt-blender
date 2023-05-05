@@ -2,14 +2,98 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en">
 
 <head>
-  <title>STS Viewer</title>
+  <title>STS Checker</title>
+  
+  
   <meta charset="utf-8" />
+  
+  
   <style type="text/css" xml:space="preserve">
 
   </style>
   <link rel="stylesheet" href="../nist-boilerplate.css" type="text/css" />
   <link rel="stylesheet" href="../nist-combined.css"/>
   <link rel="stylesheet" href="sts-html.css" type="text/css" />
+  
+  <style type="text/css">
+    
+    #checkerReport { outline: thin solid black; padding: 0.4em; background-color: oldlace; border: medium solid pink; margin-top: 1em }
+    
+    #checkerReport > *:first-child { margin-top: 0em }
+    
+    .outline .xpath { display: inline-block; border: thin solid black; padding: 0.2rem }
+    .inline { display: inline-block }
+    .inline.title { font-weight: bold; padding: 0.2rem; background-color: lightsteelblue; border: thin solid midnightblue }
+    .inline.label { padding: 0.2rem; background-color: black; color: white; border: thin solid black }
+    
+    details.outline { padding-left: 1em }
+    div.outline { margin-left: 1.85em }
+    
+    div.xrefmap { padding: 0.2em; outline: thin dotted black }
+    div.xrefmap:before { content: attr(data-tag); display: inline-block; background-color: black; color: white; font-size: 70% }
+    
+    .citation { line-height: 1.8em }
+    
+    .citation span { padding: 0.2rem; outline: thin dotted black }
+    .citation span:hover { outline: thin solid green; background-color: lightgreen }
+    .citation span.labeled:hover:before { content: attr(data-tag); font-style: normal; padding: 0.2rem; margin-right: 0.2em; background-color: darkgreen; color: white; font-size: 80% }
+    .citation .run-in { font-size: inherit }
+    
+    span.attribute.inline { padding: 0.2rem; outline: thin solid black; padding-right: 0.4rem }
+    span.attrs .inline { margin-right: 0.4em }
+    
+    span.attribute.inline:before { content: attr(data-gi); padding: 0.2rem; background-color: black; color: white; font-size: 80%; margin-right: 0.4em }
+    
+    div.xrefmap p { display: inline; background-color: powderblue; padding: 0.3em }
+    
+    div.xrefmap p > span { background-color: gainsboro; margin: 0.2em }
+    
+    div.xrefCheck { display: flex; gap: 1em }
+    
+    details.reportView summary { margin: 0.6em 0em }
+    
+    details.reportView .outline summary { margin: 0em }
+
+    .reportView .view { display: flex; flex-wrap: wrap; gap: 0.4em }
+    
+    .report { outline: thin solid black; padding: 0.4em; margin-top: 1em; background-color: white }
+
+    div.view { margin-top: 0.6em }
+    .view .report { max-width: 36em; margin: 0em }
+
+    details.xrefGroup { outline: thin dotted black; padding: 0em; }
+  
+    details.xrefGroup summary { background-color: lavender;
+      padding: 0.2em; margin: 0em; }
+  
+    div.xrefCheck p { margin: 0em }
+    
+    p.xref { display: grid; grid-template-columns: 6fr 3fr 1fr; max-width: 54em;
+      outline: thin solid black; padding: 0.2em;}
+    
+    p.xref span { }
+    
+    .xrefRid { font-family: monospace }
+    
+    .error { background-color: yellow; color: red; font-weight: bold }
+    .warning { background-color: yellow; color: orange; font-weight: bold }
+    
+    /* div.outline.fn { display: inline-block; margin: 0em } */
+    
+    
+    .outline .xpath, .xrefCheck .xpath { display: inline-block; border: thin solid black; padding: 0.2rem }
+    .outline .xpath, .xrefCheck .xpath { color: grey }
+    .outline .xpath:hover, .xrefCheck .xpath:hover { color: black; background-color: white }
+    
+    
+    .xref span.xpath,
+    .xref span.error,
+    .xref span.warning { grid-column: 1 / -1; }
+    
+    tt.c:hover { cursor: copy }
+    tt.c:active { color: forestgreen; cursor: grabbing }
+    
+  </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script type="text/javascript" id="MathJax-script" async="async"
   src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js">
@@ -36,57 +120,32 @@
       for (const eachFile of fileSet) {
         const maybeSTSXML = await fileXMLContent(eachFile);
         if (maybeSTSXML) {
-          viewAndShowXML(maybeSTSXML, "displaySTS");
+          viewAndShowXML(maybeSTSXML, "checkedSTS");
         }
       }
     }
 
     async function viewAndShowXML(xmlDocument, targetID) {
       // move this up outside the function call for memoability?
-      const viewerXSLTEngine = await xsltEngineForHREF('sts-view10.xsl');
+      const viewerXSLTEngine = await xsltEngineForHREF('sts-checker.xsl');
       const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
       return spliceIntoPage(targetID, resultDocument, true);
     }
-    
-    function loadGraphic(file,graphicID,expectedName) {
-       // const fr = new FileReader();
-       const anURL = URL.createObjectURL(file)
-       const expect = expectedName.split('/').pop().split('#')[0].split('?')[0];
-       const labelClass = ( file.name === expect ? 'aligned' : 'unknown' );
-       document.getElementById('label_'+graphicID).classList.add(labelClass);
-       document.getElementById(graphicID).src = anURL;
-     }
 
-    const viewSection = eID => {
-      let who = document.getElementById(eID); 
-      let openers = getAncestorDetails(who);
-      openers.forEach(o => { o.open = true; } );
-      who.scrollIntoView( {behavior: 'smooth'} );
-    }
-    
-    const getAncestorDetails = el => {
-      let ancestors = [];
-      while (el) {
-        if (el.localName === 'details') { ancestors.unshift(el); }
-        el = el.parentNode;
-      }
-      return ancestors;
-    }
-    
-    
-   const highlightAside = (fnNo) => {
-     const fn = 'fn-' + fnNo;
-     const fnr = 'fnref-' + fnNo;
-     [fn, fnr].forEach( (e) => { document.getElementById(e).classList.toggle("flashing") } );
-   }
-
-   const clearPage = () => {
-     const clearing = document.getElementById('displaySTS');
-     let emptyList = new DataTransfer();
-     let noFiles = emptyList.files;
-     while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
+    const clearPage = () => {
+      const clearing = document.getElementById('checkedSTS');
+      let emptyList = new DataTransfer();
+      let noFiles = emptyList.files;
+      while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
        document.getElementById("loadSTS").files = noFiles;
      }
+
+
+    const clipboardCopy = async (who) => {
+      let cp = who.innerHTML;
+      try { await navigator.clipboard.writeText(cp); }
+      catch (err) { console.error('Failed to copy: ', err); }
+    }
 
     </script>
         
@@ -127,31 +186,20 @@
     <summary>Is this site a preview, demo, mockup or spoof? - <i><b>How you can know</b></i></summary>
     <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
   </details>
-  <main>
-    <h1>STS Viewer</h1>
-    <p>A simple preview of an STS XML document, rendering its structures and text contents into a simple layout for proofing.</p>
-    <p>For an alternative <i>analytic</i> view, in support of data quality assurance and assessment, see the <a href="checker.html">STS Checker</a> utility application.</p>
-    <p>Load your STS XML below: the application does its best to process and display it. All processing is in your browser.</p>
-    <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
-      to community discussions on the public <a class="external" href="https://mulberrytech.com/STS/NISO-STS-List.html">NISO STS List</a> mailing list.</p>
+  <main class="draft">
+    <h1>STS Checker</h1>
+    <p>Load your STS XML document for an analytic summary report of findings and potential issues, produced in your browser. Subject to its limitations, the application will also work on other JATS-based formats such as JATS and BITS.</p>
+    <p>A <a href="index.html">Generic STS Preview</a> utility is also available on this site.</p>
+    <p>Feel free to offer ideas for further development on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board.</p>
     <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
       onchange="filterAndShowXMLFiles(this.files)" />
     <button style="float:right" onclick="clearPage()">Clear page</button>
-    <div id="displaySTS"><!-- --></div>
+    <div id="checkedSTS"><!-- --></div>
     <details class="boxed arrayed">
-      <summary>About NISO STS</summary>
-      <p><a class="external" href="https://www.niso.org/standards-committees/sts">NISO STS</a> (ANSI/NISO Z39.102-2017, Standards Tag Suite) is a standardized set of XML tags
-        supporting the creation, maintenance and publication of standards and guidelines documents. Based on work at ISO
-        (International Standards Organization) and the US National Library of Medicine (NIH/NLM/NCBI), NISO STS benefits from participation and adoption by standards development organizations (SDOs), publishers, information service providers, data aggregators, archives and libraries.</p>
-      <p>More resources on this format can be found at the <a href="https://niso-sts.org/">NISO STS Supporting Materials</a> web site.</p>
-      <p>To test this demonstration, a couple of public examples may be tried:</p>
-      <ul>
-        <li><a class="external" href="https://niso-sts.org/downloadables/samples/NISO-STS-Standard-1-0.XML">NISO STS Tag Library</a> in NISO STS</li>
-        <li><a class="external" href="https://niso-sts.org/downloadables/samples/rfc8142.xml">Small example of IETF RFC</a> in NISO STS</li>
-        <li>Or use your own STS XML or best guess (this application does not validate against a schema)</li>
-      </ul>
-      <p>In this demonstration, markers such as <span class="tagLabel">Element</span> indicate elements that have not yet been coded in the transformation. Over time as we add features, these will be seen less frequently.</p>
-      <p>Limitations: basic structures and fallback processing are provided for, but areas are still in need of development. Your examples of valid STS are welcome as use cases for refinement and new features. See the <a class="external" href="https://github.com/usnistgov/xslt-blender">project repository documentation</a> and its <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Issues board</a>.</p>
+      <summary>About the Checker</summary>
+      <p>See the <a href="index.html">STS Viewer</a> for a reading (preview) display for STS XML.</p>
+      <p>This application produces several analytic views of a NISO STS document (an XML document nominally valid and conformant to NISO STS tagging standards). These analytic views are provided in support of data and encoding quality assessment, especially analysis and assessments that can be aided, but not performed, under automation.</p>
+      <p>This checker comes without warranty or guarantee, but may prove useful to the extent its findings are meaningful and accurate. Everything proposed by the checker  should be considered unconfirmed until checked against. In particular, the 'checking' (representation) provided by this application is unrelated to the nominal <i>validation</i> of any instance against any schema, whether provided, directed or implied. It provides checking against its own criteria, as documented.</p>
       <p>NISO, the <a href="https://niso.org/">National Information Standards Organization</a>, is a nonprofit membership organization that publishes technical standards related to information management, processing, and exchange. NISO has no affiliation with NIST, the <a href="https?//nist.gov">National Institute for Standards and Technology</a>, a Bureau of the US Department of Commerce. This project is developed at NIST in support of public use of a non-proprietary encoding technology illustrating the power of external specification in combination with declarative design principles.</p>
       <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
    </details>
@@ -162,7 +210,7 @@
       <p>The best way to ensure access to the application over the long term is to replicate it. See the <a class="external" href="https://github.com/usnistgov/xslt-blender/wiki/Maintenance-and-Support">project wiki page on Maintenance and Support</a> for more details on how these projects are designed to be standards-based, accessible, portable, adaptable over time and unhindered by practical impediments to wide deployment, either technical or legal.</p></details>
   </main>
   <div class="project-footer">
-    <p><i>STS Viewer</i> is an <a  href="https://pages.nist.gov/xslt-blender">XSLT Blender</a> project using XSLT 1.0 capabilities built into your browser, with no external dependencies.</p>
+    <p><i>STS Checker</i> is an <a  href="https://pages.nist.gov/xslt-blender">XSLT Blender</a> project using XSLT 1.0 capabilities built into your browser, with no external dependencies.</p>
     <p>Disclaimers apply; no warranty should or can be assumed.</p>
     <p>See the code and contact the developers in the <a class="external" 
       href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
