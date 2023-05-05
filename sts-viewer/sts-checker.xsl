@@ -27,24 +27,52 @@
             <details class="outliner reportView">
                 <summary>Outline</summary>
                 <xsl:call-template name="outline-description"/>
-                <xsl:apply-templates select="//body | //back" mode="outliner"/>
+                <xsl:apply-templates select="child::*" mode="outliner"/>
             </details>
+            <xsl:variable name="checkResults">
+                        <xsl:apply-templates select="/descendant::xref[not(@ref-type)][1]" mode="checkxref-group">
+                            <xsl:with-param name="us" select="/descendant::xref[not(@ref-type)]"/>
+                        </xsl:apply-templates>
+                        <xsl:apply-templates select="$xref-groupers" mode="checkxref-group">
+                            <xsl:sort select="@ref-type"/>
+                        </xsl:apply-templates>
+                    </xsl:variable>
             <details class="reportView">
-                <summary>Questionable cross-references (<tt class="tag">xref</tt>)</summary>
+                <summary>Questionable cross-references (<tt class="xpath">xref</tt>)</summary>
                 <div class="xrefCheck">
                     <!--<xsl:call-template name="report-broken-xrefs"/>-->
-                    <xsl:apply-templates select="/descendant::xref[not(@ref-type)][1]" mode="checkxref-group">
-                        <xsl:with-param name="us" select="/descendant::xref[not(@ref-type)]"/>
-                    </xsl:apply-templates>
-                    <xsl:apply-templates select="$xref-groupers" mode="checkxref-group">
-                        <xsl:sort select="@ref-type"/>
-                    </xsl:apply-templates>
+                    <xsl:copy-of select="$checkResults"/>
+                    <xsl:if test="not(normalize-space(string($checkResults)))">
+                        <xsl:variable name="xrefs" select="//xref"/>
+                        <xsl:choose>
+                            <xsl:when test="boolean($xrefs[2])">
+                                <p>
+                                    <b>Congratulations</b>
+                                    <xsl:text>, all </xsl:text>
+                                    <xsl:value-of select="count(//xref)"/>
+                                    <xsl:text> cross-references check out.</xsl:text>
+                                    <span class="xpath">
+                                        <tt class="c" onclick="clipboardCopy(this);">/descendant::xref</tt>
+                                    </span>
+                                </p>
+                            </xsl:when>
+                            <xsl:when test="boolean($xrefs[1])">
+                                <p>The single cross-reference checks out. </p>
+                                <xsl:apply-templates select="$xrefs[1]" mode="xpathme"/>
+                            </xsl:when>
+                            <xsl:otherwise>
+                                <p>No cross-references to check.</p>
+                            </xsl:otherwise>
+                        </xsl:choose>
+                    </xsl:if>
                 </div>
             </details>
             <xsl:if test="//fig">
                 <details class="reportView">
                     <summary>Figures (<tt class="tag">fig</tt>)</summary>
-                    <xsl:apply-templates select="//fig" mode="report"/>
+                    <div class="view">
+                      <xsl:apply-templates select="//fig" mode="report"/>
+                    </div>
                 </details>
             </xsl:if>
             <xsl:if test="//table-wrap | //table[not(ancestor::table-wrap)]">
@@ -88,9 +116,6 @@
             </div>
         </div>
     </xsl:template>
-    
-    
-    
     
     <xsl:template match="graphic">
         <div class="graphicBox">
@@ -162,32 +187,34 @@
         <xsl:variable name="further">
             <xsl:apply-templates mode="outliner"/>
         </xsl:variable>
+        <xsl:variable name="outline-text">
+            <xsl:apply-templates select="label" mode="inline"/>
+            <xsl:apply-templates select="@id" mode="inline"/>
+            <xsl:apply-templates select="title" mode="inline"/>
+            <xsl:call-template name="xpathme"/>
+        </xsl:variable>
         <xsl:choose>
             <xsl:when test="normalize-space(string($further))">
                 <details class="outline { local-name() }">
                     <summary>
-                        <xsl:apply-templates select="label" mode="inline"/>
-                        <xsl:apply-templates select="@id" mode="inline"/>
-                        <xsl:apply-templates select="title" mode="inline"/>
-                        <xsl:call-template name="xpathme"/>
+                        <xsl:copy-of select="$outline-text"/>
                     </summary>
                     <xsl:copy-of select="$further"/>
                 </details>
             </xsl:when>
             <xsl:when test="title | label">
                 <div class="outline { local-name() }">
-                    <xsl:apply-templates select="title | label" mode="inline"/>
-                    <xsl:call-template name="xpathme"/>
+                    <xsl:copy-of select="$outline-text"/>
                 </div>
             </xsl:when>
         </xsl:choose>
     </xsl:template>
     
-    <xsl:template mode="outliner" match="body | back" priority="101">
+    <!--<xsl:template mode="outliner" match="body | back" priority="101">
         <div class="outline { local-name() }">
             <xsl:apply-templates mode="outliner"/>
         </div>
-    </xsl:template> 
+    </xsl:template>--> 
     
     <xsl:template mode="outliner" match="list-item" priority="9">
         <xsl:apply-templates mode="outliner"/>
@@ -209,7 +236,7 @@
         </span>
     </xsl:template>
     
-    <xsl:template name="xpathme">
+    <xsl:template name="xpathme" mode="xpathme" match="*">
         <span class="xpath">
             <tt class="c" onclick="clipboardCopy(this);">
               <xsl:apply-templates select="." mode="path"/>

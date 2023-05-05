@@ -20,7 +20,7 @@
             </head>
             <body>
                 <xsl:call-template name="nist-head"/>
-                <main id="main">
+                <main id="main" class="directory">
                     <h1>XSLT Blender Demonstrations</h1>
                     <xsl:apply-templates/>
                 </main>

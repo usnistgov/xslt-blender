@@ -9,6 +9,13 @@
             <p>Use this Previewer to see how a NISO STS-tagged document <i>might</i> appear in display (that is, in your browser, cast dynamically from its source tagging).</p>
         </description>
     </project>
+    <project entry="sts-viewer/checker.html">
+        <name>STS Checker</name>
+        <line>How does the STS submission look?</line>
+        <description>
+            <p>An XSLT shows an analytical view of an STS document. Using the <a href="sts-viewer">previewer</a> as a basis, this application provides several views useful for assessing the tagging - its nature and quality - of an STS or JATS/BITS document.</p>
+        </description>
+    </project>
     <project entry="html-reducer">
         <name>HTML Reducer</name>
         <line>Get your Markdown here</line>
@@ -44,13 +51,24 @@
         </description>
     </project>
     <project status="planned">
+        <name>XSLT 1.0-based Schematron-alike</name>
+        <line>Design and test your own rules in your own browser</line>
+        <description>
+            <p>Design your Schematron or a close analog: with this utility and end-user can to compose new rules (using XPath 1.0) and apply them to their own data, without exposure.</p>
+            <p>Not quite a Schematron editor so much as a workbench - although supporting actual Schematron and writing out (saving as) Schematron would be a nice-to-have.</p>
+            <p>This could be nice to have in rudimentary form even if not actual ISO Schematron.</p>
+        </description>
+    </project>
+    <project status="planned">
         <name>OSCAL Boilerplate</name>
         <line>Styling your OSCAL with CSS</line>
         <description>
             <p>Like any XML, OSCAL XML can be displayed in the browser natively, using CSS for layout and typography, almost entirely meeting requirements for many simple applications for document review and the like.</p>
             <p>Where <q>almost entirely</q> isn't enough, a project such as <a href="https://dcl.ils.indiana.edu/teibp/">TEI Boilerplate</a> demonstrates how even a very lightweight XSLT shim can do the rest.</p>
-            <p>In this application, one should be able to load an OSCAL file and then either load or edit CSS and have it applied dynamically. A small accompanying chart would document where the XSLT transformation intervenes to expand text (for example: parameter value insertions), create links or map into HTML directly. This would enable the user effectively to control the entire look/feel of the document as presented, on top of a plain and transparent OSCAL foundation and framing.</p>
         </description>
+        <tldr summary="More details">
+            <p>One should be able to load an OSCAL file and then either load or edit CSS, and have it applied dynamically (laid onto the page). A small 'shim' XSLT transformation could take care of complications such as expanding parameter value insertions, making links etc. With just a little of their own code, the user could effectively control the entire look/feel of the document as presented, on top of a plain and transparent OSCAL foundation and framing. Also it shouldn't matter (or shouldn't matter much) which OSCAL model is being used.</p>
+        </tldr>
     </project>
     <project status="planned">
         <name>OSCAL to STS conversion</name>
@@ -64,19 +82,15 @@
         <line>XSLT, what could go wrong? Risk assessment guidelines and helper application</line>
         <description>
             <p>For more on this topic as it applies to this site, see the <a href="https://github.com/usnistgov/xslt-blender/wiki/Assessment">Assessment</a> page on the project wiki.</p>
+            
+        </description>
+        <tldr summary="An XSLT 1.0 Linter, and then some">
             <p>A transformation offered from a page can help expose and highlight known risks associated with XSLT and the XML-based systems that support them (parser ecosystem etc.) An XSLT loaded by the user can be run through an XSLT, to query and report back on calls and dependencies through static analysis, including (more ideas please) <code>xsl:import</code>, <code>xsl:include</code>, <code>document()</code>, parameter usage etc. - as findings of potential application security vulnerabilities. This could include fine points such as use of <code>xsl:copy</code> passing through unsanitized scripts, etc.</p>
             <p>Such an XSLT diagnostic could also report interesting findings (to code analysts) such as target tag set and namespace; mode usage; key usage; <code>xsl:apply-templates/@select</code> and so forth. (In XSLT 2.0, tunnel parameters, stylesheet variables and micropipelines.) Think of this less as a style guide or (de-)linter, more of an analytic crunch-out/synopsis.</p>
             <p>This can be done separately for XSLT 1.0 and XSLT 3.0, with XSLT 1.0 being an easier lift.</p>
             <p>The page can also cover <q>when you need to assess XSLT</q>, giving attention to the layered architecture and understanding potential threats in context. So you don't end up mistaking the risks or costs and thus losing opportunities.</p>
             <p>Once confirmed, these findings identify vulnerabilities. Those vulnerabilities can inform higher-level risk management about the application and its purpose.</p>
-        </description>
-    </project>
-    <project status="planned">
-        <name>STS Fitness Checking</name>
-        <line>How does the STS submission look?</line>
-        <description>
-            <p>An XSLT can render a document for display; it can also discover and signal where known issues are detected, requirements are not satisfied, or rules are broken.</p>
-        </description>
+        </tldr>
     </project>
     <project status="planned">
         <name>Site Templating</name>

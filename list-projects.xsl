@@ -45,6 +45,15 @@
         </section>
     </xsl:template>
     
+    <xsl:template match="project/tldr">
+        <details class="tldr">
+            <summary>
+                <xsl:value-of select="@summary"/>
+            </summary>
+            <xsl:apply-templates/>
+        </details>
+    </xsl:template>
+    
     <xsl:template match="link">
         <p class="link">
             <a href="{@href}" class="external">

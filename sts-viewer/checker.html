@@ -17,7 +17,7 @@
   
   <style type="text/css">
     
-    #checkerReport { outline: thin solid black; padding: 0.4em; background-color: lemonchiffon; margin-top: 1em }
+    #checkerReport { outline: thin solid black; padding: 0.4em; background-color: oldlace; border: medium solid pink; margin-top: 1em }
     
     #checkerReport > *:first-child { margin-top: 0em }
     
@@ -59,7 +59,7 @@
     .report { outline: thin solid black; padding: 0.4em; margin-top: 1em; background-color: white }
 
     div.view { margin-top: 0.6em }
-    .view .report { max-width: 24em; margin: 0em }
+    .view .report { max-width: 36em; margin: 0em }
 
     details.xrefGroup { outline: thin dotted black; padding: 0em; }
   
@@ -80,15 +80,18 @@
     
     /* div.outline.fn { display: inline-block; margin: 0em } */
     
-    .outline .xpath { color: grey }
-    .outline .xpath:hover { color: black; background-color: white }
+    
+    .outline .xpath, .xrefCheck .xpath { display: inline-block; border: thin solid black; padding: 0.2rem }
+    .outline .xpath, .xrefCheck .xpath { color: grey }
+    .outline .xpath:hover, .xrefCheck .xpath:hover { color: black; background-color: white }
+    
     
     .xref span.xpath,
     .xref span.error,
     .xref span.warning { grid-column: 1 / -1; }
     
     tt.c:hover { cursor: copy }
-    
+    tt.c:active { color: forestgreen; cursor: grabbing }
     
   </style>
   <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
@@ -185,7 +188,8 @@
   </details>
   <main class="draft">
     <h1>STS Checker</h1>
-    <p>Load your STS XML document for an analytic summary report of findings and potential issues, produced in your browser.</p>
+    <p>Load your STS XML document for an analytic summary report of findings and potential issues, produced in your browser. Subject to its limitations, the application will also work on other JATS-based formats such as JATS and BITS.</p>
+    <p>A <a href="index.html">Generic STS Preview</a> utility is also available on this site.</p>
     <p>Feel free to offer ideas for further development on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board.</p>
     <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
       onchange="filterAndShowXMLFiles(this.files)" />
