@@ -1,12 +1,15 @@
 /*  CSS for HTML rendition of project XML */ 
 
-
 .project-directory { display: grid;
 grid-template-columns: repeat(auto-fill, minmax(26em,1fr));
 gap: 0.4em }
 
 section.project {
   border: medium outset lightsteelblue; padding: 1.2em }
+
+.directory section.project { margin-top: 0.8em }
+
+.tldr { margin-top: 0.8em }
 
 section > *:first-child { margin-top: 0em }
 section > button:first-child + * { margin-top: 0em }
