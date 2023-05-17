@@ -39,24 +39,28 @@ div.unknown * { margin: 0em}
   <script async="async" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NIST&subagency=github&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c">
 </script>
   <script type="module">
-      import { fileXMLContent, spliceIntoPage, xslt1ResultDocument, xsltEngineForHREF, parseXMLLiteral } from "../lib/xslt-blender.js";
+      import { fileXMLContent, spliceIntoPage, xsltEngineForHREF, parseXMLLiteral } from "../lib/xslt-blender.js";
+      // import { setupXSLTEngine } from "../lib/xslt-blender.js";
 
       // todo: replace with something a little less cumbersome?
       window.fileXMLContent = fileXMLContent;
       window.spliceIntoPage = spliceIntoPage;
-      window.xslt1ResultDocument = xslt1ResultDocument;
       // window.parseAndTransformXMLLiteral = parseAndTransformXMLLiteral;
       window.xsltEngineForHREF = xsltEngineForHREF;
       window.parseXMLLiteral = parseXMLLiteral;
+      // window.setupXSLTEngine = setupXSLTEngine
 
   </script>
    
    <script type="text/javascript">
      
+    // var loadedOSCAL = New Document();
+
     async function loadOSCAL(fileSet) {
       for (const eachFile of fileSet) {
         const anXML = await fileXMLContent(eachFile);
         if (anXML) {
+          loadedOSCAL = anXML;
           viewAndTransformXMLwithXSLT(anXML, 'show-loaded-xml.xsl', 'OSCALfile');
           document.getElementById('loadOSCALpanel').open = true;
         }
@@ -66,7 +70,7 @@ div.unknown * { margin: 0em}
     async function viewAndTransformXMLwithXSLT(xmlDocument, xsltHREF, targetID) {
       // move this up outside the function call for memoability?
       const viewerXSLTEngine = await xsltEngineForHREF(xsltHREF);
-      const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
+      const resultDocument = viewerXSLTEngine.transformToDocument(xmlDocument);
       return spliceIntoPage(targetID, resultDocument, true);
     }
     
@@ -85,7 +89,7 @@ div.unknown * { margin: 0em}
       // instead of simply loading we must parse and load the textbox content, defending w/ try/catch on parsing etc.
       // also can we find CSS to auto-line number a textbox or 'pre' box?
       
-      const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
+      const resultDocument = viewerXSLTEngine.transformToDocument(xmlDocument, );
       return spliceIntoPage(targetID, resultDocument, true);
     }
 
@@ -100,7 +104,30 @@ div.unknown * { margin: 0em}
       }
     }
    
+    function refreshPageCSS()  { return true }
+
+    async function applyXSLT() {
+        // const OSCALloadButton = document.getElementById('loadOSCALButton');
+        // const loadedOSCAL = await fileXMLContent(OSCALloadButton.files[0]);
+        const XSLTLiteral = document.getElementById('XSLTeditbox').value;
+        // console.log(XSLTLiteral);
+        if (!loadedOSCAL) { throw new Error('No OSCAL Loaded'); }
+        else {
+          const OSCALxml = loadedOSCAL;
+          const ViewerXSLT = parseXMLLiteral(XSLTLiteral);
+          //console.log(ViewerXSLT);
+          const xsltEngine = new XSLTProcessor();
+          xsltEngine.importStylesheet(ViewerXSLT);
+
+          // const XSLTEngine = setupXSLTEngine(ViewerXSLT);
+          // console.log(XSLTEngine);
+          const resultDocument = xsltEngine.transformToDocument(loadedOSCAL);
+          return spliceIntoPage('displayOSCAL', resultDocument, true);
+          }
+        }
+
     
+
     </script>
         
 </head>
