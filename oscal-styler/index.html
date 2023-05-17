@@ -26,6 +26,7 @@ div.unknown * { margin: 0em}
 
 .editbox { width: 100%; box-sizing: border-box; margin-top: 0.6em; }
 
+.codePanel { min-width: 30vw}
   </style>
   <link rel="stylesheet" href="../nist-boilerplate.css" type="text/css" />
   <link rel="stylesheet" href="../nist-combined.css"/>
@@ -104,6 +105,16 @@ div.unknown * { margin: 0em}
       }
     }
    
+    const clearLoad = (loadButtonID, clearDivID) => {
+      const clearing = document.getElementById(clearDivID);
+      clearing.closest("details").open = false; // close the ancestor details
+      let emptyList = new DataTransfer();
+      let noFiles = emptyList.files;
+      if (clearing.value) { clearing.value =  '' };
+      while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
+      document.getElementById(loadButtonID).files = noFiles;
+    }
+
     function refreshPageCSS()  { return true }
 
     async function applyXSLT() {
@@ -170,16 +181,16 @@ div.unknown * { margin: 0em}
   <main class="draft">
     <h1>OSCAL Styler</h1>
     <p>An XSLT 1.0 workbench set up for <a href="https://pages.nist.gov/OSCAL">OSCAL, the Open Security Controls Assessment Language</a>.</p>
-    <p>Load your OSCAL XML below along with XSLT 1.0 and CSS code. Activate <button onclick="document.getElementById('applyButton').click;">Apply Styles</button> and the loaded data will be transformed (using the XSLT) and rendered (using the CSS). Starter XSLTs for the different OSCAL formats produce a fully functional viewer, ready for the user to enhance and modify; start from scratch; or load your own XSLT to test it. No data is sent to any server.</p>
+    <p>Load your OSCAL XML below along with XSLT 1.0 and CSS code. Activate <button onclick="document.getElementById('applyButton').click;">Apply Styles</button> and the loaded data will be transformed using the XSLT and rendered on the page using the CSS. Load your own XSLT to test it, or (soon) load a pre-made XSLT and enhance and modify it in the page, applying it to see the results dynamically. No data is sent to any server.</p>
     <p>The OSCAL Styler is inspired by M. Honnen's awesome <a href="https://martin-honnen.github.io/xslt3fiddle/">XSLT Fiddle</a> (client-side version), which supports advanced XSLT up to XSLT 3.0/3.1 via the SaxonJS library. See also the spare but impressive <a class="external" href="http://i-like-robots.github.io/xslt-fiddle/">XSLT Fiddle</a> by Github user <tt>i-like-robots</tt>.</p>
     <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
       to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
     <details class="boxed"><summary>Load and edit styles</summary>
     <div class="panels">
-    <details>
+    <details class="codePanel">
       <summary>XSLT 1.0 <input type="file" accept=".xsl, .xslt" id="loadXSLTButton" name="loadXSLTButton" title="Load OSCAL" onchange="dropFileText(this.files,'XSLTeditbox');this.parentElement.parentElement.open = true;"
       /><!-- pulldown here for loading -->
-        <button style="float:right" onclick="document.getElementById('XSLTeditbox').value = '';">Clear</button></summary>
+        <button style="float:right" onclick="clearLoad('loadXSLTButton','XSLTeditbox');">Clear</button></summary>
       <textarea id="XSLTeditbox" class="editbox" spellcheck="false" rows="48"></textarea>
      
     </details>
@@ -187,10 +198,10 @@ div.unknown * { margin: 0em}
         <button id="applyButton" onclick="applyXSLT(); refreshPageCSS();">Apply&#xA0;Styles</button>
       </div>
       
-    <details>
+    <details class="codePanel">
       <summary>CSS <input type="file" id="loadCSSButton" accept=".css" name="loadCSSButton" title="Load CSS" onchange="dropFileText(this.files,'CSSeditbox');this.parentElement.parentElement.open = true;"
       />
-        <button style="float:right" onclick="document.getElementById('CSSeditbox').value = '';">Clear</button></summary>
+        <button style="float:right" onclick="clearLoad('loadCSSButton','CSSeditbox');">Clear</button></summary>
       <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="48"></textarea>
       
     </details>
@@ -202,7 +213,7 @@ div.unknown * { margin: 0em}
     <details class="boxed" id="loadOSCALpanel">
       <summary>Load OSCAL <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files)" 
       />
-        <button style="float:right" onclick="clearOSCAL()">Clear OSCAL</button></summary>
+        <button style="float:right" onclick="clearLoad('loadOSCALButton','OSCALfile')">Clear OSCAL</button></summary>
       <div id="OSCALfile">
         <!-- x -->
       </div>
