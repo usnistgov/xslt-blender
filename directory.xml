@@ -1,6 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
 <projects>
+    <project entry="oscal-styler">
+        <name>OSCAL Styler</name>
+        <line>XSLT like it's 1999</line>
+        <description>
+            <p>This is a <q>fiddle</q> application permitting users to provide and edit XSLT 1.0 and CSS, and apply it in the browser to OSCAL that they also provide themselves. This can actually be useful, and not only for demonstration.</p>
+        </description>
+    </project>
+    <project status="planned">
+        <name>OSCAL Painter</name>
+        <line>Less lines, more color</line>
+        <description>
+            <p>This will be a reduced version of the <b>OSCAL Styler</b>, except the XSLT will be hard-coded to show a kind of OSCAL 'boilerplate' in the HTML result, given only enough transformation to be visible in the DOM, usefully supported by HTML semantics (e.g. linking), and addressable by CSS.</p>
+            <p>The approach to here takes inspiration from <a href="https://dcl.ils.indiana.edu/teibp/">TEI Boilerplate</a>.</p>
+        </description>
+    </project>
     <project entry="sts-viewer">
         <name>NISO STS Viewer</name>
         <line>Preview your NISO STS document</line>
@@ -58,17 +73,6 @@
             <p>Not quite a Schematron editor so much as a workbench - although supporting actual Schematron and writing out (saving as) Schematron would be a nice-to-have.</p>
             <p>This could be nice to have in rudimentary form even if not actual ISO Schematron.</p>
         </description>
-    </project>
-    <project status="planned">
-        <name>OSCAL Boilerplate</name>
-        <line>Styling your OSCAL with CSS</line>
-        <description>
-            <p>Like any XML, OSCAL XML can be displayed in the browser natively, using CSS for layout and typography, almost entirely meeting requirements for many simple applications for document review and the like.</p>
-            <p>Where <q>almost entirely</q> isn't enough, a project such as <a href="https://dcl.ils.indiana.edu/teibp/">TEI Boilerplate</a> demonstrates how even a very lightweight XSLT shim can do the rest.</p>
-        </description>
-        <tldr summary="More details">
-            <p>One should be able to load an OSCAL file and then either load or edit CSS, and have it applied dynamically (laid onto the page). A small 'shim' XSLT transformation could take care of complications such as expanding parameter value insertions, making links etc. With just a little of their own code, the user could effectively control the entire look/feel of the document as presented, on top of a plain and transparent OSCAL foundation and framing. Also it shouldn't matter (or shouldn't matter much) which OSCAL model is being used.</p>
-        </tldr>
     </project>
     <project status="planned">
         <name>OSCAL to STS conversion</name>
