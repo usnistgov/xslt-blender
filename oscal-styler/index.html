@@ -148,6 +148,20 @@ div.unknown * { margin: 0em}
         }
     }
 
+    
+    // mainly cribbed from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data
+    function acquireXSLT(HREF,targetID) { 
+        const target = document.getElementById(targetID);
+        fetch(HREF) // returns a promise
+        .then((response) => {
+            if (!response.ok) {  throw new Error(`HTTP error: ${response.status}`); }
+            return response.text();
+        })
+        .then((text) => { target.value = text;  })
+        .catch((error) => { console.log = `Could not fetch XSLT from ${HREF}: ${error}`; }
+        );
+    }
+
     </script>
         
 </head>
@@ -214,6 +228,7 @@ div.unknown * { margin: 0em}
     <div class="codePanel">
       <p>XSLT 1.0 <input type="file" accept=".xsl, .xslt" id="loadXSLTButton" name="loadXSLTButton" title="Load OSCAL" onchange="dropFileText(this.files,'XSLTeditbox');this.parentElement.parentElement.open = true;"
       /><!-- pulldown here for loading -->
+        <button class="floatButton" onclick="acquireXSLT('oscal-basic-display.xsl','XSLTeditbox');">Load starter OSCAL XSLT 1.0</button>
         <button class="floatButton" onclick="clearLoad('loadXSLTButton','XSLTeditbox');">Clear</button></p>
       <textarea id="XSLTeditbox" class="editbox" spellcheck="false" rows="48"></textarea>
      
