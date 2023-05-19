@@ -2,41 +2,6 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns="http://www.w3.org/1999/xhtml" xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0">
 
-  <xsl:template match="/">
-    <html>
-      <head>
-        <xsl:apply-templates select="descendant::oscal:title[1]" mode="title"/>
-        <style type="text/css">
-
-.control { margin:1em; padding: 1em; border: thin dotted black }
-.control > *:first-child { margin-top: 0em }
-
-h1, h2, h3, h4, h5, h6 { font-family: sans-serif }
-h3 { font-size: 120% }
-
-div, section { border-left: thin solid black; padding-left: 0.5em; margin-left: 0.5em }
-
-section h3     { font-size: 160% }
-section h3     { font-size: 140% }
-div h3         { font-size: 130% }
-div div h3     { font-size: 120% }
-div div div h3 { font-size: 110% }
-
-.param { font-style: italic }
-.insert, .choice { border: thin solid black; padding: 0.1em }
-
-.subst  { color: midnightblue; font-family: sans-serif; font-sizea; 85% } 
-
-.param .em { font-style: roman }
-
-        </style>
-      </head>
-      <body>
-        <xsl:apply-templates/>
-      </body>
-    </html>
-  </xsl:template>
-
   <xsl:template match="oscal:catalog">
     <div class="catalog">
       <xsl:apply-templates/>
@@ -49,29 +14,19 @@ div div div h3 { font-size: 110% }
     </h2>
   </xsl:template>
 
-  <xsl:template match="oscal:title" mode="title">
-    <xsl:value-of select="."/>
-  </xsl:template>
-
-
   <xsl:template match="oscal:group">
     <section class="group">
       <xsl:apply-templates/>
     </section>
   </xsl:template>
 
-  <!--<xsl:key name="declarations" match="oscal:control-spec" use="@type"/>
-  
-  <xsl:key name="declarations" match="oscal:property | oscal:statement | oscal:parameter"
-    use="concat(@context,'#',@role)"/>-->
-
   <xsl:key name="assignment" match="oscal:param" use="@id"/>
 
-  <xsl:template match="oscal:control | oscal:subcontrol | oscal:component | oscal:part">
+  <xsl:template match="oscal:control | oscal:part">
     <div class="{local-name()} {@class}">
       <xsl:copy-of select="@id"/>
       <xsl:call-template name="make-title">
-        <xsl:with-param name="runins" select="oscal:prop[@class = 'name']"/>
+        <xsl:with-param name="runins" select="oscal:prop[@name = 'label']"/>
       </xsl:call-template>
       <xsl:apply-templates/>
     </div>
@@ -98,7 +53,7 @@ div div div h3 { font-size: 110% }
 
   <xsl:template match="oscal:prop" mode="run-in">
     <span class="run-in subst">
-      <xsl:apply-templates/>
+      <xsl:value-of select="@value"/>
     </span>
     <xsl:text> </xsl:text>
   </xsl:template>
@@ -113,21 +68,16 @@ div div div h3 { font-size: 110% }
       </span>
       <xsl:apply-templates/>
     </p>
-
   </xsl:template>
-
+  
   <xsl:template match="oscal:prop">
     <p class="prop {@name}">
       <span class="subst">
-        <xsl:apply-templates select="." mode="title"/>
+        <xsl:value-of select="@name"/>
         <xsl:text>: </xsl:text>
       </span>
       <xsl:apply-templates select="@value"/>
     </p>
-  </xsl:template>
-
-  <xsl:template match="*" mode="title">
-    <xsl:value-of select="@class"/>
   </xsl:template>
 
   <xsl:template match="oscal:p">
@@ -136,35 +86,36 @@ div div div h3 { font-size: 110% }
     </p>
   </xsl:template>
 
-  <xsl:template match="oscal:insert">
+  <xsl:template match="oscal:insert" priority="101">
     <xsl:variable name="param-id" select="@param-id"/>
-    <xsl:variable name="closest-param"
-      select="ancestor-or-self::*/oscal:param[@id = $param-id][last()]"/>
-    <!-- Providing substitution via declaration not yet supported -->
     <span class="insert">
-      <xsl:for-each select="$closest-param">
-        <span class="subst">
-          <xsl:apply-templates/>
-        </span>
-      </xsl:for-each>
-      <xsl:if test="not($closest-param)">
-        <xsl:apply-templates/>
-      </xsl:if>
+      <xsl:variable name="param" select="key('assignment',@id-ref)"/>
+      <xsl:apply-templates select="$param" mode="param-insert"/>
+        <xsl:if test="not($param)"><i>broken parameter reference</i></xsl:if>
     </span>
   </xsl:template>
 
+  <xsl:template mode="param-insert" match="oscal:param">
+    <xsl:apply-templates mode="param-insert" select="oscal:value"/>
+  </xsl:template>
+  
+  <xsl:template mode="param-insert" match="oscal:param[not(oscal:value)]">
+    <xsl:apply-templates mode="param-insert" select="oscal:label"/>
+  </xsl:template>
+  
+  
   <xsl:template match="oscal:ol">
     <ol class="ol">
       <xsl:apply-templates/>
     </ol>
   </xsl:template>
+  
   <xsl:template match="oscal:li">
     <li class="li">
       <xsl:apply-templates/>
     </li>
   </xsl:template>
 
-  <!-- only handles some kinds of links, and not yet fetching value from link targets -->
   <xsl:template match="oscal:link">
     <p class="link">
       <a class="xref">
@@ -180,18 +131,11 @@ div div div h3 { font-size: 110% }
     </div>
   </xsl:template>
 
-  <xsl:template match="oscal:em | oscal:i | oscal:b | oscal:strong | oscal:code | oscal:q">
-    <xsl:element name="{ local-name()}">
+  <xsl:template match="oscal:table | oscal:p | oscal:li | oscal:ul | oscal:pre |
+    oscal:table//* | oscal:p//* | oscal:li//* | oscal:pre//*">
+    <xsl:element name="{ local-name()}" namespace="http://www.w3.org/1999/xhtml">
       <xsl:apply-templates/>
     </xsl:element>
   </xsl:template>
-
-  <xsl:template match="oscal:citation">
-    <p class="citation">
-      <xsl:apply-templates/>
-    </p>
-  </xsl:template>
-
-
 
 </xsl:stylesheet>

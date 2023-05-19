@@ -6,17 +6,16 @@
   <meta charset="utf-8" />
   <style type="text/css" xml:space="preserve" id="pageStyle">
 
-/* .panels {
+ .panels {
   display: grid;
-  grid-template-columns: 1fr min-content 1fr;
-  gap: 0.2em;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.8em;
   margin-top: 1em;
-  } */
+  }
   
 .panels > * { display: inline-block; vertical-align: text-top; outline: thin solid black; padding: 0.4em; margin: 0.25em 0em; }
 
-#applyButtonBox { outline: none }
-#applyButtonBox button { margin: none; font-weight: bold }
+.boxed.fullwidth { width: 100% }
 
 div.oscal { padding: 0.6em; outline: medium inset forestgreen; background-color: lightgreen }
 div.oscal * { margin: 0em}
@@ -24,9 +23,15 @@ div.oscal * { margin: 0em}
 div.unknown { padding: 0.6em; outline: medium inset red; background-color: pink }
 div.unknown * { margin: 0em}
 
-.editbox { width: 100%; box-sizing: border-box; margin-top: 0.6em; }
+.editbox { width: 100%; box-sizing: border-box; margin-top: 0.6em; resize: both; }
 
 .codePanel { min-width: 30vw}
+
+.floatButton { float:right; margin-left: 0.6em }
+
+#displayFrame { width: 100%; height: 62vh }
+
+
   </style>
   <link rel="stylesheet" href="../nist-boilerplate.css" type="text/css" />
   <link rel="stylesheet" href="../nist-combined.css"/>
@@ -55,45 +60,27 @@ div.unknown * { margin: 0em}
    
    <script type="text/javascript">
      
-    // var loadedOSCAL = New Document();
+    let loadedOSCAL = new Document();
 
+    // const showLoadXSLTEngine = new XSLTProcessor();
+    // showLoadXSLTEngine = await xsltEngineForHREF('show-loaded-xml.xsl');
+    
     async function loadOSCAL(fileSet) {
+      const viewerXSLTEngine = await xsltEngineForHREF('show-loaded-xml.xsl');
+          
       for (const eachFile of fileSet) {
         const anXML = await fileXMLContent(eachFile);
         if (anXML) {
           loadedOSCAL = anXML;
-          viewAndTransformXMLwithXSLT(anXML, 'show-loaded-xml.xsl', 'OSCALfile');
+
+          const resultDocument = viewerXSLTEngine.transformToDocument(loadedOSCAL);
+
+          spliceIntoPage('OSCALfile', resultDocument, true);
           document.getElementById('loadOSCALpanel').open = true;
         }
       }
     }
-
-    async function viewAndTransformXMLwithXSLT(xmlDocument, xsltHREF, targetID) {
-      // move this up outside the function call for memoability?
-      const viewerXSLTEngine = await xsltEngineForHREF(xsltHREF);
-      const resultDocument = viewerXSLTEngine.transformToDocument(xmlDocument);
-      return spliceIntoPage(targetID, resultDocument, true);
-    }
     
-    // async function filterAndShowXMLFiles(fileSet, targetID) {
-    //  for (const eachFile of fileSet) {
-    //    const maybeXML = await fileXMLContent(eachFile);
-    //    if (maybeXML) {
-    //      viewAndShowXML(maybeXML, targetID);
-    //    }
-    //  }
-    // }
-
-    async function viewAndShowXML(xmlDocument, targetID) {
-      
-      // const viewerXSLTEngine = await xsltEngineForHREF('sts-view10.xsl');
-      // instead of simply loading we must parse and load the textbox content, defending w/ try/catch on parsing etc.
-      // also can we find CSS to auto-line number a textbox or 'pre' box?
-      
-      const resultDocument = viewerXSLTEngine.transformToDocument(xmlDocument, );
-      return spliceIntoPage(targetID, resultDocument, true);
-    }
-
     function dropFileText(fileSet,whereID) {
       for (const eachFile of fileSet) {
         let where = document.getElementById(whereID)
@@ -107,7 +94,7 @@ div.unknown * { margin: 0em}
    
     const clearLoad = (loadButtonID, clearDivID) => {
       const clearing = document.getElementById(clearDivID);
-      clearing.closest("details").open = false; // close the ancestor details
+      // clearing.closest("details").open = false; // close the ancestor details
       let emptyList = new DataTransfer();
       let noFiles = emptyList.files;
       if (clearing.value) { clearing.value =  '' };
@@ -115,29 +102,47 @@ div.unknown * { margin: 0em}
       document.getElementById(loadButtonID).files = noFiles;
     }
 
-    function refreshPageCSS()  { return true }
+    function refreshPageCSS()  { 
+      const userCSS = document.getElementById('CSSeditbox').value;
+      const frameDocument = document.getElementById('displayFrame').contentDocument;
+      const newStyle = frameDocument.createElement('style');
+      newStyle.setAttribute('id','userCSS');
+      newStyle.append(userCSS);
+      frameDocument.getElementById('userCSS')?.remove();
+      frameDocument.head.append(newStyle);
+      // while (frameDocument.body.firstChild && frameDocument.body.removeChild(frameDocument.body.firstChild));
+      //        return frameDocument.body.append(transformResult);
+      //  return true      
+
+     }
 
     async function applyXSLT() {
         // const OSCALloadButton = document.getElementById('loadOSCALButton');
         // const loadedOSCAL = await fileXMLContent(OSCALloadButton.files[0]);
         const XSLTLiteral = document.getElementById('XSLTeditbox').value;
         // console.log(XSLTLiteral);
-        if (!loadedOSCAL) { throw new Error('No OSCAL Loaded'); }
+        if (!loadedOSCAL) { alert('Please load your OSCAL XML document'); }
         else {
           const OSCALxml = loadedOSCAL;
           const ViewerXSLT = parseXMLLiteral(XSLTLiteral);
-          //console.log(ViewerXSLT);
-          const xsltEngine = new XSLTProcessor();
-          xsltEngine.importStylesheet(ViewerXSLT);
+          const errorNode = ViewerXSLT.querySelector("parsererror");
 
-          // const XSLTEngine = setupXSLTEngine(ViewerXSLT);
-          // console.log(XSLTEngine);
-          const resultDocument = xsltEngine.transformToDocument(loadedOSCAL);
-          return spliceIntoPage('displayOSCAL', resultDocument, true);
+          if (errorNode) {  alert("XSLT Stylesheet does not parse") }
+          else { 
+            const xsltEngine = new XSLTProcessor();
+            try {
+              xsltEngine.importStylesheet(ViewerXSLT);
+              const frameDocument = document.getElementById('displayFrame').contentDocument;
+              const transformResult = xsltEngine.transformToFragment(loadedOSCAL, frameDocument);
+              frameDocument.body.replaceChildren();
+              // while (frameDocument.body.firstChild && frameDocument.body.removeChild(frameDocument.body.firstChild));
+              return frameDocument.body.append(transformResult);
+              // if (resultDocument) { return spliceIntoPage('displayOSCAL', resultDocument, true); }
+              // return .body.append(resultDocument);
+            } catch(e) { alert("Failure applying XSLT 1.0" ); console.log(e); }
           }
         }
-
-    
+    }
 
     </script>
         
@@ -185,41 +190,44 @@ div.unknown * { margin: 0em}
     <p>The OSCAL Styler is inspired by M. Honnen's awesome <a href="https://martin-honnen.github.io/xslt3fiddle/">XSLT Fiddle</a> (client-side version), which supports advanced XSLT up to XSLT 3.0/3.1 via the SaxonJS library. See also the spare but impressive <a class="external" href="http://i-like-robots.github.io/xslt-fiddle/">XSLT Fiddle</a> by Github user <tt>i-like-robots</tt>.</p>
     <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
       to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
-    <details class="boxed"><summary>Load and edit styles</summary>
+
+      <details class="boxed" id="loadOSCALpanel">
+        <summary>Load OSCAL <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files)" 
+        />
+          <button style="float:right" onclick="loadedOSCAL = undefined; clearLoad('loadOSCALButton','OSCALfile');">Clear OSCAL</button></summary>
+        <div id="OSCALfile">
+          <!-- x -->
+        </div>
+      </details>
+  
+
+      <details class="boxed fullwidth"><summary>Load and edit styles
+      <button class="applyButton floatButton" onclick="applyXSLT(); refreshPageCSS();">Apply&#xA0;Styles</button>
+        
+    </summary>
     <div class="panels">
-    <details class="codePanel">
-      <summary>XSLT 1.0 <input type="file" accept=".xsl, .xslt" id="loadXSLTButton" name="loadXSLTButton" title="Load OSCAL" onchange="dropFileText(this.files,'XSLTeditbox');this.parentElement.parentElement.open = true;"
+    <div class="codePanel">
+      <p>XSLT 1.0 <input type="file" accept=".xsl, .xslt" id="loadXSLTButton" name="loadXSLTButton" title="Load OSCAL" onchange="dropFileText(this.files,'XSLTeditbox');this.parentElement.parentElement.open = true;"
       /><!-- pulldown here for loading -->
-        <button style="float:right" onclick="clearLoad('loadXSLTButton','XSLTeditbox');">Clear</button></summary>
+        <button class="floatButton" onclick="clearLoad('loadXSLTButton','XSLTeditbox');">Clear</button></p>
       <textarea id="XSLTeditbox" class="editbox" spellcheck="false" rows="48"></textarea>
      
-    </details>
-      <div id="applyButtonBox" class="boxed">
-        <button id="applyButton" onclick="applyXSLT(); refreshPageCSS();">Apply&#xA0;Styles</button>
-      </div>
+    </div>
       
-    <details class="codePanel">
-      <summary>CSS <input type="file" id="loadCSSButton" accept=".css" name="loadCSSButton" title="Load CSS" onchange="dropFileText(this.files,'CSSeditbox');this.parentElement.parentElement.open = true;"
+    <dive class="codePanel">
+      <p>CSS <input type="file" id="loadCSSButton" accept=".css" name="loadCSSButton" title="Load CSS" onchange="dropFileText(this.files,'CSSeditbox');this.parentElement.parentElement.open = true;"
       />
-        <button style="float:right" onclick="clearLoad('loadCSSButton','CSSeditbox');">Clear</button></summary>
-      <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="48"></textarea>
+        <button class="floatButton" onclick="clearLoad('loadCSSButton','CSSeditbox');">Clear</button></p>
+      <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="48">body { background-color: white }</textarea>
       
-    </details>
+    </dive>
     </div>
     </details>
     
-    <button style="float:right" onclick="applyXSLT(); refreshPageCSS();">Apply&#xA0;Styles</button>
-    
-    <details class="boxed" id="loadOSCALpanel">
-      <summary>Load OSCAL <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files)" 
-      />
-        <button style="float:right" onclick="clearLoad('loadOSCALButton','OSCALfile')">Clear OSCAL</button></summary>
-      <div id="OSCALfile">
-        <!-- x -->
-      </div>
-    </details>
-    
-    <div id="displayOSCAL"><!-- --></div>
+    <iframe name="displayFrame" id="displayFrame">Loading frame ...</iframe>
+
+  </div>
+
     <details class="boxed arrayed">
       <summary>Who is this for</summary>
       <ul>

@@ -24,10 +24,12 @@ Not suitable for people who "don't want to deal" with source code or processes. 
   - [x] Another button to clear
   - [ ] Test and defend e.g. against conflicts, overloading, bleeding
 - [ ] Hit a Clear All button to clear everything
+- [ ] Deploy an OSCAL Painter application to do CSS only - decorate your OSCAL in the browser 
 
 Write up approaches
 
 - [ ] 'Least Power' minimal XSLT for styling
+    - OSCAL is copied through and sometimes *wrapped* (not mapped over to) HTML 
     - parameter expansion, uuid manipulation and links
     - ids and classes are copied, with local-name() appended to @class
     - other attributes are mapped to @data-*
