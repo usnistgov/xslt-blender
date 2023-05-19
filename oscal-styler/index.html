@@ -102,6 +102,10 @@ div.unknown * { margin: 0em}
       document.getElementById(loadButtonID).files = noFiles;
     }
 
+    function clearDisplay() {
+      document.getElementById('displayFrame').contentDocument.body.replaceChildren()
+    }
+   
     function refreshPageCSS()  { 
       const userCSS = document.getElementById('CSSeditbox').value;
       const frameDocument = document.getElementById('displayFrame').contentDocument;
@@ -202,7 +206,8 @@ div.unknown * { margin: 0em}
   
 
       <details class="boxed fullwidth"><summary>Load and edit styles
-      <button class="applyButton floatButton" onclick="applyXSLT(); refreshPageCSS();">Apply&#xA0;Styles</button>
+        <button class="applyButton floatButton" onclick="applyXSLT(); refreshPageCSS();">Apply&#xA0;Styles</button>
+        <button class="clearButton floatButton" onclick="clearDisplay();">Clear Display</button>
         
     </summary>
     <div class="panels">
@@ -214,13 +219,13 @@ div.unknown * { margin: 0em}
      
     </div>
       
-    <dive class="codePanel">
+    <div class="codePanel">
       <p>CSS <input type="file" id="loadCSSButton" accept=".css" name="loadCSSButton" title="Load CSS" onchange="dropFileText(this.files,'CSSeditbox');this.parentElement.parentElement.open = true;"
       />
         <button class="floatButton" onclick="clearLoad('loadCSSButton','CSSeditbox');">Clear</button></p>
       <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="48">body { background-color: white }</textarea>
       
-    </dive>
+    </div>
     </div>
     </details>
     
