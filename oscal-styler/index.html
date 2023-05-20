@@ -45,121 +45,100 @@ div.unknown * { margin: 0em}
   <!-- Google analytics    -->
   <script async="async" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NIST&subagency=github&pua=UA-66610693-1&yt=true&exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c">
 </script>
-  <script type="module">
-      import { fileXMLContent, spliceIntoPage, xsltEngineForHREF, parseXMLLiteral } from "../lib/xslt-blender.js";
-      // import { setupXSLTEngine } from "../lib/xslt-blender.js";
+<script type="module">
+    import { fileXMLContent, spliceIntoPage, xsltEngineForHREF, parseXMLLiteral } from "../lib/xslt-blender.js";
 
-      // todo: replace with something a little less cumbersome?
-      window.fileXMLContent = fileXMLContent;
-      window.spliceIntoPage = spliceIntoPage;
-      // window.parseAndTransformXMLLiteral = parseAndTransformXMLLiteral;
-      window.xsltEngineForHREF = xsltEngineForHREF;
-      window.parseXMLLiteral = parseXMLLiteral;
-      // window.setupXSLTEngine = setupXSLTEngine
+    // todo: replace with something a little less cumbersome?
+    window.fileXMLContent = fileXMLContent;
+    window.spliceIntoPage = spliceIntoPage;
+    window.xsltEngineForHREF = xsltEngineForHREF;
+    window.parseXMLLiteral = parseXMLLiteral;
 
-  </script>
+</script>
    
-   <script type="text/javascript">
+<script type="text/javascript">
      
     let loadedOSCAL = new Document();
 
-    // const showLoadXSLTEngine = new XSLTProcessor();
-    // showLoadXSLTEngine = await xsltEngineForHREF('show-loaded-xml.xsl');
-    
     async function loadOSCAL(fileSet) {
       const viewerXSLTEngine = await xsltEngineForHREF('show-loaded-xml.xsl');
-          
       for (const eachFile of fileSet) {
         const anXML = await fileXMLContent(eachFile);
         if (anXML) {
+          const resultDocument = viewerXSLTEngine.transformToDocument(anXML);
           loadedOSCAL = anXML;
-
-          const resultDocument = viewerXSLTEngine.transformToDocument(loadedOSCAL);
-
           spliceIntoPage('OSCALfile', resultDocument, true);
-          document.getElementById('loadOSCALpanel').open = true;
         }
-      }
-    }
-    
-    function dropFileText(fileSet,whereID) {
-      for (const eachFile of fileSet) {
-        let where = document.getElementById(whereID)
-        let frdr = new FileReader();
-        frdr.onload = function () {
-          where.value = frdr.result
-        }
-        frdr.readAsText(eachFile);
       }
     }
    
     const clearLoad = (loadButtonID, clearDivID) => {
       const clearing = document.getElementById(clearDivID);
-      // clearing.closest("details").open = false; // close the ancestor details
-      let emptyList = new DataTransfer();
-      let noFiles = emptyList.files;
-      if (clearing.value) { clearing.value =  '' };
-      while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
+      const emptyList = new DataTransfer();
+      const noFiles = emptyList.files;
+      if (clearing.value) { clearing.value = '' };
+      clearing.replaceChildren();
       document.getElementById(loadButtonID).files = noFiles;
     }
 
     function clearDisplay() {
-      document.getElementById('displayFrame').contentDocument.body.replaceChildren()
+      document.getElementById('displayFrame').contentDocument.body.replaceChildren();
     }
-   
-    function refreshPageCSS()  { 
+
+    function refreshPageCSS() {
       const userCSS = document.getElementById('CSSeditbox').value;
       const frameDocument = document.getElementById('displayFrame').contentDocument;
       const newStyle = frameDocument.createElement('style');
-      newStyle.setAttribute('id','userCSS');
+      newStyle.setAttribute('id', 'userCSS');
       newStyle.append(userCSS);
       frameDocument.getElementById('userCSS')?.remove();
       frameDocument.head.append(newStyle);
-      // while (frameDocument.body.firstChild && frameDocument.body.removeChild(frameDocument.body.firstChild));
-      //        return frameDocument.body.append(transformResult);
-      //  return true      
-
-     }
-
-    async function applyXSLT() {
-        // const OSCALloadButton = document.getElementById('loadOSCALButton');
-        // const loadedOSCAL = await fileXMLContent(OSCALloadButton.files[0]);
-        const XSLTLiteral = document.getElementById('XSLTeditbox').value;
-        // console.log(XSLTLiteral);
-        if (!loadedOSCAL) { alert('Please load your OSCAL XML document'); }
-        else {
-          const OSCALxml = loadedOSCAL;
-          const ViewerXSLT = parseXMLLiteral(XSLTLiteral);
-          const errorNode = ViewerXSLT.querySelector("parsererror");
-
-          if (errorNode) {  alert("XSLT Stylesheet does not parse") }
-          else { 
-            const xsltEngine = new XSLTProcessor();
-            try {
-              xsltEngine.importStylesheet(ViewerXSLT);
-              const frameDocument = document.getElementById('displayFrame').contentDocument;
-              const transformResult = xsltEngine.transformToFragment(loadedOSCAL, frameDocument);
-              frameDocument.body.replaceChildren();
-              // while (frameDocument.body.firstChild && frameDocument.body.removeChild(frameDocument.body.firstChild));
-              return frameDocument.body.append(transformResult);
-              // if (resultDocument) { return spliceIntoPage('displayOSCAL', resultDocument, true); }
-              // return .body.append(resultDocument);
-            } catch(e) { alert("Failure applying XSLT 1.0" ); console.log(e); }
-          }
-        }
     }
 
-    
+    // graps text contents of XSLTeditbox and does its best to apply it to the currently loaded document
+    async function applyXSLT() {
+      const XSLTLiteral = document.getElementById('XSLTeditbox').value;
+      if (!loadedOSCAL) { alert('Please load your OSCAL XML document'); }
+      else {
+        const OSCALxml = loadedOSCAL;
+        const ViewerXSLT = parseXMLLiteral(XSLTLiteral);
+        const errorNode = ViewerXSLT.querySelector("parsererror");
+        if (errorNode) { alert("XSLT Stylesheet does not parse") }
+        else {
+          const xsltEngine = new XSLTProcessor();
+          try {
+            xsltEngine.importStylesheet(ViewerXSLT);
+            const frameDocument = document.getElementById('displayFrame').contentDocument;
+            const transformResult = xsltEngine.transformToFragment(loadedOSCAL, frameDocument);
+            frameDocument.body.replaceChildren(); // clears the body
+            return frameDocument.body.append(transformResult);
+          } catch (e) { alert("Failure applying XSLT 1.0"); console.log(e); }
+        }
+      }
+    }
+
+    // provided a fileList object by a UI button, pastes its file contents into a textarea
+    // does not defend against multiple files
+    function dropFileText(fileSet, textareaID) {
+      for (const eachFile of fileSet) {
+        let theTextArea = document.getElementById(textareaID)
+        let frdr = new FileReader();
+        frdr.onload = () => theTextArea.value = frdr.result;
+        frdr.readAsText(eachFile);
+      }
+    }
+
     // mainly cribbed from https://developer.mozilla.org/en-US/docs/Learn/JavaScript/Client-side_web_APIs/Fetching_data
-    function acquireXSLT(HREF,targetID) { 
-        const target = document.getElementById(targetID);
-        fetch(HREF) // returns a promise
-        .then((response) => {
-            if (!response.ok) {  throw new Error(`HTTP error: ${response.status}`); }
-            return response.text();
-        })
-        .then((text) => { target.value = text;  })
-        .catch((error) => { console.log = `Could not fetch XSLT from ${HREF}: ${error}`; }
+    // grabs  file text contents and drops it into the textarea designated
+    function pasteFileContents(HREF, textareaID) {
+      const theTextArea = document.getElementById(textareaID);
+      fetch(HREF) // returns a promise
+        .then( (response) => {
+          if (!response.ok) { throw new Error(`HTTP error: ${response.status}`); }
+          return response.text();
+        } )
+        .then( (text) => { theTextArea.value = text; } )
+        .catch( (error) => { console.log = `Could not fetch XSLT from ${HREF}: ${error}`; }
         );
     }
 
@@ -205,13 +184,13 @@ div.unknown * { margin: 0em}
   <main class="draft">
     <h1>OSCAL Styler</h1>
     <p>An XSLT 1.0 workbench set up for <a href="https://pages.nist.gov/OSCAL">OSCAL, the Open Security Controls Assessment Language</a>.</p>
-    <p>Load your OSCAL XML below along with XSLT 1.0 and CSS code. Activate <button onclick="document.getElementById('applyButton').click;">Apply Styles</button> and the loaded data will be transformed using the XSLT and rendered on the page using the CSS. Load your own XSLT to test it, or (soon) load a pre-made XSLT and enhance and modify it in the page, applying it to see the results dynamically. No data is sent to any server.</p>
+    <p>Load your OSCAL XML below along with XSLT 1.0 and CSS code. Activate <button onclick="document.getElementById('applyButton').click;">Apply Styles</button> and the loaded data will be transformed using the XSLT and rendered on the page using the CSS. Load your own XSLT to test it, or load a ready-made basic XSLT and enhance and modify it in the page, applying it to see the results dynamically. No data is sent to any server.</p>
     <p>The OSCAL Styler is inspired by M. Honnen's awesome <a href="https://martin-honnen.github.io/xslt3fiddle/">XSLT Fiddle</a> (client-side version), which supports advanced XSLT up to XSLT 3.0/3.1 via the SaxonJS library. See also the spare but impressive <a class="external" href="http://i-like-robots.github.io/xslt-fiddle/">XSLT Fiddle</a> by Github user <tt>i-like-robots</tt>.</p>
     <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
       to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
 
       <details class="boxed" id="loadOSCALpanel">
-        <summary>Load OSCAL <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files)" 
+        <summary>Load OSCAL <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files); this.closest('details').open = true;" 
         />
           <button style="float:right" onclick="loadedOSCAL = undefined; clearLoad('loadOSCALButton','OSCALfile');">Clear OSCAL</button></summary>
         <div id="OSCALfile">
@@ -229,7 +208,7 @@ div.unknown * { margin: 0em}
     <div class="codePanel">
       <p>XSLT 1.0 <input type="file" accept=".xsl, .xslt" id="loadXSLTButton" name="loadXSLTButton" title="Load OSCAL" onchange="dropFileText(this.files,'XSLTeditbox');this.parentElement.parentElement.open = true;"
       /><!-- pulldown here for loading -->
-        <button class="floatButton" onclick="acquireXSLT('oscal-basic-display.xsl','XSLTeditbox');">Load starter OSCAL XSLT 1.0</button>
+        <button class="floatButton" onclick="pasteFileContents('oscal-basic-display.xsl','XSLTeditbox');">Load starter OSCAL XSLT 1.0</button>
         <button class="floatButton" onclick="clearLoad('loadXSLTButton','XSLTeditbox');">Clear</button></p>
       <textarea id="XSLTeditbox" class="editbox" spellcheck="false" rows="48"></textarea>
      
@@ -261,7 +240,7 @@ div.unknown * { margin: 0em}
       
       <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
    </details>
-    <details class="boxed arrayed">
+   <details class="boxed arrayed">
     <summary>Is this site a demonstration, a service or both?</summary>
       <p>This application is provided by NIST as an educational demonstration of how a service can be created, not as a fully operational service.</p>
       <p>No guarantees or warranties are provided by NIST that the demo service will be maintained, updated, upgraded, or always available. While NIST intends to keep the demonstration running (with <a class="external" href="https://github.com/usnistgov/xslt-blender">project source code</a> available), NIST also reserves the right to stop supporting it, or to remove or rework it, without any prior warning.</p>
