@@ -107,7 +107,7 @@ div.unknown * { margin: 0em}
       // const XSLTLiteral = document.getElementById('XSLTeditbox').value;
       const xsltEngine = await xsltEngineForHREF('oscal-html-port.xsl');
 
-      if (!loadedOSCAL) { alert('Please load your OSCAL XML document'); }
+      if (!loadedOSCAL) { alert('Please load an OSCAL XML document'); }
       else {
         const OSCALxml = loadedOSCAL;
         // const ViewerXSLT = parseXMLLiteral(XSLTLiteral);
@@ -193,12 +193,16 @@ div.unknown * { margin: 0em}
   <main class="draft">
     <h1>OSCAL Painter</h1>
     <p>Try out your own CSS formatting on your own OSCAL.</p>
-    <p>Based on the <a href="index.html">OSCAL Styler</a>, this page can be loaded with your <a href="https://pages.nist.gov/OSCAL">OSCAL</a> data and styled dynamically, with typography, layout, font settings and colors provided with your own CSS. No data is sent to any server.</p>
-    <p>The OSCAL Painter offers a <q>play set</q> of tools for users to explore the OSCAL data model and how it can be handled in a browser via an HTML surrogate. This HTML is produced by application of a generalized stylesheet, which casts OSCAL data into an isomorphic, equivalent and traceable form of HTML. To see the HTML model, load OSCAL XML and use your web developer tools to examine the result of this transformation as it populates the page. With CSS styling applied to the HTML, a web designer can provide the view with sophisticated styling, providing a customized or branded <q>look and feel</q>.</p>
-    <a>If the mapping from OSCAL into an HTML surrogate must be adapted, an application like one demonstrated by the <a href="index.html">OSCAL Styler</a> comes into play. <b>Pro tip:</b> <a href="https://www.w3.org/TR/xml-stylesheet/" class="external">CSS can be applied directly to XML in your browser</a> even without an intervening HTML conversion, or this page.</p>
-    <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
-      to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
+    <p>Load your <a href="https://pages.nist.gov/OSCAL">OSCAL</a> data and style it dynamically, with typography, layout, font settings and colors provided by your own CSS. No data is sent to any server.</p>
 
+      <details class="boxed">
+        <summary>About the Painter</summary>
+        <p>Based on the <a href="index.html">OSCAL Styler</a>, the OSCAL Painter offers a <q>play set</q> of tools for users to explore the OSCAL data model and how it can be handled in a browser via an HTML surrogate. This HTML is produced by application of a generalized stylesheet, which casts OSCAL data into an isomorphic, equivalent and traceable form of HTML. To see the HTML model, load OSCAL XML and use your web developer tools to examine the result of this transformation as it populates the page. With CSS styling applied to the HTML, a web designer can provide the view with sophisticated styling, providing a customized or branded <q>look and feel</q>.</p>
+        <a>If the mapping from OSCAL into an HTML surrogate must be adapted, an application like one demonstrated by the <a href="index.html">OSCAL Styler</a> comes into play. <b>Pro tip:</b> <a href="https://www.w3.org/TR/xml-stylesheet/" class="external">CSS can be applied directly to XML in your browser</a> even without an intervening HTML conversion, or this page.</p>
+        <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
+          to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
+    
+      </details>
       <details class="boxed" id="loadOSCALpanel">
         <summary>Load OSCAL XML <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files); this.closest('details').open = true;" 
         />
@@ -263,7 +267,7 @@ oscal-metadata *:before { content: attr(class) ": " }
         <li>Students and teachers of OSCAL, CSS, XSLT and DOM (W3C Document Object Model)</li>
       </ul>
       <p>Once you have this working take a look at the <a href="index.html">OSCAL Styler</a> application, in which you create and style your own HTML DOM.</p>
-      <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
+      <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/oscal-styler">Github, with documentation</a>.</p>
    </details>
    <details class="boxed arrayed">
     <summary>Is this site a demonstration, a service or both?</summary>

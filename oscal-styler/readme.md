@@ -11,43 +11,28 @@ Suitable for:
 
 Not suitable for people who "don't want to deal" with source code or processes. If you need black-box, lights-out styling or require exacting production values - this is not the appliance for you.
 
+Both the Styler and its configured (hard-wired) variant, the OSCAL Painter, are 'meta-applications' in the sense that the user is expected to drive them by providing what amounts to application code.
+
+This is useful for learners, and extends the range of potential uses even for something very lightweight and generic.
+
+## Original punchlist
+
 - [x] Load an OSCAL XML file from your system (or with a link) - show in "load box" (document title, metadata, element count etc.)
   - [x] borrow from STS Viewer
 - [x] Load an OSCAL XSLT 1.0 into an editing frame with a button (or from your system)
   - [x] borrow from HTML Reducer
   - [x] Hit a button to apply, show results in display
   - [x] Another button to clear
-  - [ ] Test and harden against bad inputs
+  - [x] Test and harden against bad inputs
 - [ ] Provide XSLT pre-loads 
 - [x] Load a CSS into an edit window
-  - [ ] Hit a button to apply
+  - [x] Hit a button to apply
   - [x] Another button to clear
-  - [ ] Test and defend e.g. against conflicts, overloading, bleeding
-- [ ] Hit a Clear All button to clear everything
-- [ ] Deploy an OSCAL Painter application to do CSS only - decorate your OSCAL in the browser 
+  - [x] Test and defend e.g. against conflicts, overloading, bleeding
+- [x] Hit a Clear All button to clear everything
+- [x] Deploy an OSCAL Painter application to do CSS only - decorate your OSCAL in the browser 
 
-Write up approaches
+## Discarded ideas
 
-- [ ] 'Least Power' minimal XSLT for styling
-    - OSCAL is copied through and sometimes *wrapped* (not mapped over to) HTML 
-    - parameter expansion, uuid manipulation and links
-    - ids and classes are copied, with local-name() appended to @class
-    - other attributes are mapped to @data-*
-    - except any element or attribute named '-uuid' gets special handling
-    - and UUIDs are expanded to "uuid_x" etc.
-- [ ] Comprehensive mapping into XHTML namespace - schema-driven
-- [ ] Modified identity transformations
-- [ ] Casting into altogether different vocabularies
-- [ ] Doing other things e.g. Obfuscate 'Secret Encoder Ring'
-
-Possible XSLTs
-
-- [ ] OSCAL minimal - maps into 'oscalized' HTML?
-- [ ] OSCAL all auto-generated
-- [ ] OSCAL basic / handmade
-- [ ] Generic identity transformation
-- [ ] OSCAL Obfuscator
-
-not OSCAL
-- Elisa
-- David B
+- Provide more variants
+- Heavier documentation (for now)
