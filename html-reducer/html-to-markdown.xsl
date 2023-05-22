@@ -89,6 +89,10 @@
         <xsl:text> |</xsl:text>
     </xsl:template>
 
+    <xsl:template mode="md" priority="1" match="xh:hr | hr">
+        <xsl:text>&#10;-----&#10;</xsl:text>
+    </xsl:template>
+    
     <xsl:template mode="md" priority="1" match="xh:pre | pre">
         <xsl:call-template name="lf"/>
         <xsl:text>```&#10;</xsl:text>
