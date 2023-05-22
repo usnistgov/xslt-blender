@@ -2,6 +2,12 @@
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0"
   xmlns="http://www.w3.org/1999/xhtml" xmlns:oscal="http://csrc.nist.gov/ns/oscal/1.0">
 
+  <xsl:template match="/">
+    <main class="oscal-port">
+      <xsl:apply-templates/>
+    </main>
+  </xsl:template>
+
   <xsl:template match="*">
     <xsl:call-template name="port"/>
   </xsl:template>
@@ -22,6 +28,20 @@
     </xsl:attribute>
   </xsl:template>
   
+  <xsl:template match="@id">
+    <xsl:copy-of select="."/>
+  </xsl:template>
+  
+  <xsl:template match="@uuid">
+    <xsl:attribute name="data-{ local-name() }">
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+    <xsl:attribute name="id">
+      <xsl:text>uuid_</xsl:text>
+      <xsl:value-of select="."/>
+    </xsl:attribute>
+  </xsl:template>
+  
   <xsl:template match="oscal:prop">
     <oscal-prop>
       <xsl:apply-templates select="attribute::*"/>
@@ -36,7 +56,8 @@
   </xsl:template>
   
   <xsl:template match="oscal:p | oscal:table | oscal:pre | oscal:ul | oscal:ol |
-    oscal:p//* | oscal:table//* | oscal:pre//* | oscal:ul//* | oscal:ol//*">
+    oscal:p//* | oscal:table//* | oscal:pre//* | oscal:ul//* | oscal:ol//* |
+    oscal:i | oscal:em | oscal:strong | oscal:b | oscal:q | oscal:a | oscal:code | oscal:img | oscal:sub | oscal:sup" >
       <xsl:element name="{ local-name() }" namespace="http://www.w3.org/1999/xhtml">
         <xsl:copy-of select="attribute::*"/>
         <xsl:apply-templates/>

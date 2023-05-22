@@ -29,7 +29,7 @@ div.unknown * { margin: 0em}
 
 .floatButton { float:right; margin-left: 0.6em }
 
-#displayFrame { width: 100%; height: 62vh }
+#displayFrame { width: 100%; height: 62vh; resize: both; overflow: auto; }
 
 
   </style>
@@ -197,7 +197,7 @@ div.unknown * { margin: 0em}
       to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
 
       <details class="boxed" id="loadOSCALpanel">
-        <summary>Load OSCAL <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files); this.closest('details').open = true;" 
+        <summary>Load OSCAL XML <input type="file" id="loadOSCALButton" accept=".xml, .osc, .oscal"  name="loadOSCALButton" title="Load OSCAL"  onchange="loadOSCAL(this.files); this.closest('details').open = true;" 
         />
           <button style="float:right" onclick="loadedOSCAL = undefined; clearLoad('loadOSCALButton','OSCALfile');">Clear OSCAL</button></summary>
         <div id="OSCALfile">
@@ -216,9 +216,32 @@ div.unknown * { margin: 0em}
     <div class="codePanel">
       <p>CSS <input type="file" id="loadCSSButton" accept=".css" name="loadCSSButton" title="Load CSS" onchange="dropFileText(this.files,'CSSeditbox');this.parentElement.parentElement.open = true;"
       />
+      <button class="floatButton" onclick="pasteFileContents('oscal-port.css','CSSeditbox');">Load starter CSS</button>
       <button class="clearButton floatButton" onclick="clearAll();">Clear All</button>
       <button class="floatButton" onclick="clearLoad('loadCSSButton','CSSeditbox');">Clear</button></p>
-      <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="12">body { background-color: white }</textarea>
+      <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="12">/* an illustration */
+/* Some basic CSS demonstrating how to apply rules to OSCAL as represented in an HTML DOM
+as delivered by oscal-html-port.xsl */
+
+style { display: none }
+
+body { background-color: lemonchiffon }
+
+* { display: block }
+
+p *, li *, td * { display: inline }
+i, em, b, strong, q, code, img, sub, sup { display: inline }
+
+/* in the DOM, oscal will be represented by `oscal-` prefixes on element names
+   classes are *also* assigned */
+
+oscal-control { padding: 0.5em; border: thin dotted black; margin-top: 0.5em }
+
+oscal-control > .title { font-size:120%; font-weight: bold }
+
+oscal-metadata *:before { content: attr(class) ": " }
+     
+</textarea>
       
     </div>
     </div>
