@@ -216,7 +216,7 @@ div.unknown * { margin: 0em}
     <div class="codePanel">
       <p>CSS <input type="file" id="loadCSSButton" accept=".css" name="loadCSSButton" title="Load CSS" onchange="dropFileText(this.files,'CSSeditbox');this.parentElement.parentElement.open = true;"
       />
-      <button class="floatButton" onclick="pasteFileContents('oscal-port.css','CSSeditbox');">Load starter CSS</button>
+      <button class="floatButton" onclick="pasteFileContents('oscal-port-html.css','CSSeditbox');">Load starter CSS</button>
       <button class="clearButton floatButton" onclick="clearAll();">Clear All</button>
       <button class="floatButton" onclick="clearLoad('loadCSSButton','CSSeditbox');">Clear</button></p>
       <textarea id="CSSeditbox" class="editbox" spellcheck="false" rows="12">/* an illustration */
@@ -232,7 +232,7 @@ body { background-color: lemonchiffon }
 p *, li *, td * { display: inline }
 i, em, b, strong, q, code, img, sub, sup { display: inline }
 
-/* in the DOM, oscal will be represented by `oscal-` prefixes on element names
+/* in the DOM, OSCAL will be represented by `oscal-` prefixes on element names
    classes are *also* assigned */
 
 oscal-control { padding: 0.5em; border: thin dotted black; margin-top: 0.5em }
