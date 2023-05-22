@@ -8,7 +8,7 @@
             <p>This is a <q>fiddle</q> application permitting users to provide and edit XSLT 1.0 and CSS, and apply it in the browser to OSCAL that they also provide themselves. This can actually be useful, and not only for demonstration.</p>
         </description>
     </project>
-    <project status="oscal-styler/painter.html">
+    <project entry="oscal-styler/painter.html">
         <name>OSCAL Painter</name>
         <line>Less lines, more color</line>
         <description>
