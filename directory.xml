@@ -8,12 +8,12 @@
             <p>This is a <q>fiddle</q> application permitting users to provide and edit XSLT 1.0 and CSS, and apply it in the browser to OSCAL that they also provide themselves. This can actually be useful, and not only for demonstration.</p>
         </description>
     </project>
-    <project status="planned">
+    <project status="oscal-styler/painter.html">
         <name>OSCAL Painter</name>
         <line>Less lines, more color</line>
         <description>
-            <p>This will be a reduced version of the <b>OSCAL Styler</b>, except the XSLT will be hard-coded to show a kind of OSCAL 'boilerplate' in the HTML result, given only enough transformation to be visible in the DOM, usefully supported by HTML semantics (e.g. linking), and addressable by CSS.</p>
-            <p>The approach to here takes inspiration from <a href="https://dcl.ils.indiana.edu/teibp/">TEI Boilerplate</a>.</p>
+            <p>A reduced version of the <b>OSCAL Styler</b> with a hard-coded transformation (XSLT) showing an OSCAL-alike 'boilerplate' in the HTML result, i.e. given only enough transformation to be visible in the DOM and addressable by CSS.</p>
+            <p>The approach to here takes inspiration from <a class="external" href="https://dcl.ils.indiana.edu/teibp/">TEI Boilerplate</a>. See <a href="https://developer.mozilla.org/en-US/docs/Web/API/Web_Components/Using_custom_elements" class="external">Mozilla Developer Network</a> on custom HTML elements.</p>
         </description>
     </project>
     <project entry="sts-viewer">
