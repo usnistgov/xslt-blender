@@ -1,26 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
     xmlns="http://www.w3.org/1999/xhtml"
-    version="1.0">
+    version="1.0"
+    xmlns:mml="http://www.w3.org/1998/Math/MathML">
     
     <xsl:import href="sts-view10.xsl"/>
 
+
     <!--<xsl:output indent="true"/>-->
-    
-    <xsl:template match="front"/>
-    
-    <!--
-    ideas:
-    
-    x figures and tables
-    ? footnotes
-    References - colors?
-      summary list of elements by type found in mixed-citation
-   
-    external links
-    x internal cross-references
-    
-    -->
+
     <xsl:template match="/*">
         <div id="checkerReport">
             <h1>Checker report</h1>
@@ -50,7 +38,7 @@
                                     <b>Congratulations</b>
                                     <xsl:text>, all </xsl:text>
                                     <xsl:value-of select="count(//xref)"/>
-                                    <xsl:text> cross-references check out.</xsl:text>
+                                    <xsl:text> cross-references check out. </xsl:text>
                                     <span class="xpath">
                                         <tt class="c" onclick="clipboardCopy(this);">/descendant::xref</tt>
                                     </span>
@@ -67,11 +55,19 @@
                     </xsl:if>
                 </div>
             </details>
+            <xsl:if test="//mml:math">
+                <details class="reportView">
+                    <summary>MathML</summary>
+                    <div class="view">
+                        <xsl:apply-templates select="//mml:math/parent::*" mode="report"/>
+                    </div>
+                </details>
+            </xsl:if>
             <xsl:if test="//fig">
                 <details class="reportView">
                     <summary>Figures (<tt class="tag">fig</tt>)</summary>
                     <div class="view">
-                      <xsl:apply-templates select="//fig" mode="report"/>
+                        <xsl:apply-templates select="//fig" mode="report"/>
                     </div>
                 </details>
             </xsl:if>
@@ -97,6 +93,9 @@
             </xsl:if>
         </div>
     </xsl:template>
+
+    <!-- This XSLT doesn't check the metadata - opportunity for extension -->
+    <xsl:template match="front"/>
     
     <xsl:template mode="report" match="*">
         <div class="report">
@@ -141,19 +140,6 @@
             <xsl:apply-templates/>
         </details>
     </xsl:template>
-    
-    <!--<xsl:template name="report-broken-xrefs">
-        <xsl:variable name="brokens" select="//xref[not(key('by-id',@rid))]"/>
-        <xsl:if test="$brokens">
-        <details class="xrefGroup">
-            <summary>Broken <tt>xref/@rid</tt>
-                <xsl:text> </xsl:text>
-                <xsl:value-of select="concat(' (', count($brokens), ')')"/>
-            </summary>
-            <xsl:apply-templates select="$brokens" mode="checkxref"/>
-        </details>
-        </xsl:if>
-    </xsl:template>-->
     
     <xsl:key name="xref-by-reftype" match="xref" use="@ref-type"/>
     
@@ -210,12 +196,6 @@
         </xsl:choose>
     </xsl:template>
     
-    <!--<xsl:template mode="outliner" match="body | back" priority="101">
-        <div class="outline { local-name() }">
-            <xsl:apply-templates mode="outliner"/>
-        </div>
-    </xsl:template>--> 
-    
     <xsl:template mode="outliner" match="list-item" priority="9">
         <xsl:apply-templates mode="outliner"/>
     </xsl:template>
@@ -252,12 +232,6 @@
         <xsl:value-of select="name()"/>
     </xsl:template>
     
-    <!--<xsl:template mode="path" match="*[@id]" priority="1001">
-        <xsl:apply-templates select=".." mode="path"/>
-        <xsl:text>/</xsl:text>
-        <xsl:value-of select="name()"/>
-    </xsl:template>-->
-    
     <xsl:template mode="path" match="*">
         <xsl:apply-templates select=".." mode="path"/>
         <xsl:variable name="myname" select="name()"/>
@@ -289,20 +263,6 @@
             <xsl:text>]</xsl:text>
         </xsl:if>
     </xsl:template>
-    
-    <!--<xsl:template mode="checkxref" match="*[not(.//xref)]"/>
-    
-    <xsl:template mode="checkxref" match="text()">
-        <xsl:if test="../xref">
-            <xsl:value-of select="."/>
-        </xsl:if>
-    </xsl:template>
-    
-    <xsl:template match="*" mode="checkxref">
-        <div class="xrefmap { local-name() }" data-tag="{ local-name() }">
-            <xsl:apply-templates mode="checkxref"/>
-        </div>
-    </xsl:template>-->
     
     <xsl:key name="by-id" match="*[@id]" use="@id"/>
     
@@ -364,7 +324,5 @@
     <xsl:template mode="targetType" match="ref">bibr</xsl:template>
     
     <xsl:template mode="targetType" match="table-wrap">table</xsl:template>
-    
-    
     
 </xsl:stylesheet>
