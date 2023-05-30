@@ -97,7 +97,7 @@ div.unknown * { margin: 0em}
     // graps text contents of XSLTeditbox and does its best to apply it to the currently loaded document
     async function applyXSLT() {
       const XSLTLiteral = document.getElementById('XSLTeditbox').value;
-      if (!loadedOSCAL) { alert('Please load your OSCAL XML document'); }
+      if (!loadedOSCAL) { alert('Please load an OSCAL XML document'); }
       else {
         const OSCALxml = loadedOSCAL;
         const ViewerXSLT = parseXMLLiteral(XSLTLiteral);
@@ -173,7 +173,9 @@ div.unknown * { margin: 0em}
               C-194.9,386.1-195,386.1-195,386.1z"/>
           </g>
         </svg>
-      </a>      
+      </a> 
+      
+      <div style="display:none" class="teaser">Style your OSCAL with XSLT 1.0 and CSS</div>
     </header>
   </div>
   <details id="sec-notice">
@@ -237,7 +239,7 @@ div.unknown * { margin: 0em}
       </ul>
       <p>More information on <a class="external" href="https://www.w3.org/TR/xslt-10/">XSLT 1.0</a> may be found on the <a href="https://github.com/usnistgov/xslt-blender/wiki">Project Wiki</a>.</p>
       
-      <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
+      <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/oscal-styler">Github, with documentation</a>.</p>
    </details>
    <details class="boxed arrayed">
     <summary>Is this site a demonstration, a service or both?</summary>

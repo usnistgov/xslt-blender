@@ -5,7 +5,7 @@
         <name>OSCAL Styler</name>
         <line>XSLT like it's 1999</line>
         <description>
-            <p>This is a <q>fiddle</q> application permitting users to provide and edit XSLT 1.0 and CSS, and apply it in the browser to OSCAL that they also provide themselves. This can actually be useful, and not only for demonstration.</p>
+            <p>This is a <q>fiddle</q> application permitting users to provide and edit XSLT 1.0 and CSS, and apply it in the browser to OSCAL that they also provide themselves. This can be useful for demonstration, testing, learning and exploration. (Some prior XSLT experience is assumed.)</p>
         </description>
     </project>
     <project entry="oscal-styler/painter.html">
@@ -44,7 +44,7 @@
         <name>XProc Visualizer (alpha)</name>
         <line>XProc 1.0 as a Mermaid flowchart</line>
         <description>
-            <p>Converts XProc into <a href="https://mermaid.js.org/syntax/flowchart.html">Mermaid Flowchart Syntax</a> and makes it available for converting live into a graphic, using Mermaid.</p>
+            <p>On this page a transformation cConverts XProc into <a href="https://mermaid.js.org/syntax/flowchart.html">Mermaid Flowchart Syntax</a> and makes it available for converting live into a graphic, using Mermaid.</p>
             <p>Under development and still pretty rudimentary.</p>
         </description>
     </project>
