@@ -31,7 +31,6 @@
     
     <xsl:template priority="5" match="std/title">
         <span>
-            <xsl:apply-templates select="@*"/>            
             <xsl:apply-templates select="@*"/>
             <xsl:apply-templates/>
         </span>
@@ -505,7 +504,7 @@
         <xsl:value-of select="local-name()"/>
     </xsl:template>
     
-    <xsl:template match="mml:*"  xmlns:mml="http://www.w3.org/1998/Math/MathML">
+    <xsl:template match="mml:*" xmlns:mml="http://www.w3.org/1998/Math/MathML">
         <xsl:copy>
             <xsl:copy-of select="@*"/>
             <xsl:apply-templates/>
