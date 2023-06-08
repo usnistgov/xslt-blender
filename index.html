@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="nist-boilerplate.css" type="text/css" />
     <link rel="stylesheet" href="nist-combined.css"/>
     
-    <script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
     
     <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
     <script type="module">
@@ -26,6 +26,7 @@
     <link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
   </head>
   <!-- templating help at https://pages.nist.gov/nist-header-footer/ -->
+  <body>
   <details id="sec-notice">
     <summary>Is this site a preview, demo, mockup or spoof? - <i><b>How you can know</b></i></summary>
     <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
@@ -63,7 +64,7 @@
           <summary style="font-style: italic">About the currently active projects</summary>
           <p>The projects listed above are active and available for testing and use.</p>
           <p>Regarding any project but especially the projects listed, we welcome ideas, constructive criticism including bug reports with samples, proposals, patches and encouragement. One available channel for feedback is our <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">project repository issues board</a>.</p>
-          <p>Developers would also be grateful to know which proposed or planned ideas are of particular interest to users.</p>
+          
           <button onclick="listIt()" class="viewprojects-button">View All Projects</button>
         </details>
         
@@ -80,6 +81,7 @@
         <button id="main-improve-page" onclick="window.location.href='https://github.com/usnistgov/xslt-blender/tree/main/index.html'">Improve this page</button>
       </div>
     </section>
+    </body>
     <script type="text/javascript">
       
       async function listIt() {
@@ -87,7 +89,7 @@
         const resultDocument = await parseAndTransformXMLatHREF('directory.xml', XSLTEngine);
         spliceIntoPage("dirList", resultDocument, true);
         // hiding the view buttons
-        [...document.getElementsByClassName('viewprojects-button')].forEach( a => a.style.visibility = 'hidden' );
+        [...document.getElementsByClassName('viewprojects-button')].forEach( a => a.style.display = 'none' );
       }
       
     </script>

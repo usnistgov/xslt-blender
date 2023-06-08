@@ -24,6 +24,7 @@ main > *:first-child { margin-top: 0em }
 
 details.boxed[open] { outline: thin dotted black }
 
+details.boxed > *:last-child { margin-bottom: 0em }
 
 details#sec-notice { margin: 0em; padding: 0.2em;
   text-align: right; font-size: smaller; background-color: lightgrey  }
