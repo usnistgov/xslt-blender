@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns="http://www.w3.org/1999/xhtml">
   <head>
     <title>XSLT Blender Home</title>
     <meta charset="utf-8" />
@@ -7,8 +7,10 @@
     <link rel="stylesheet" href="nist-boilerplate.css" type="text/css" />
     <link rel="stylesheet" href="nist-combined.css"/>
     
-    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <script> </script>
     
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+    <!-- Remove the nist-header-footer.js script to drop the NIST header and footer  -->
     <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
     <script type="module">
       import { spliceIntoPage, parseAndTransformXMLatHREF, xsltEngineForHREF } from "./lib/xslt-blender.js";
@@ -26,12 +28,12 @@
     <link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
   </head>
   <!-- templating help at https://pages.nist.gov/nist-header-footer/ -->
-  <body>
-  <details id="sec-notice">
+  <body class="nist-footer-bottom" style="background-color: whitesmoke">
+    <div style="display: none" class="teaser">A demonstration portal for XSLT 1.0 applications</div>
+    <details id="sec-notice">
     <summary>Is this site a preview, demo, mockup or spoof? - <i><b>How you can know</b></i></summary>
     <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
   </details>
-  <body class="nist-footer-bottom" style="background-color: whitesmoke">
     <main id="main">
     <h1>XSLT Blender Portal</h1>
     <p style="font-style: italic"><q>Least power, greatest effect</q></p>
@@ -74,14 +76,13 @@
     <div id="dirList" style="min-height: 10vh"><!-- directory goes here --></div>
 
     </main>
-    <section class="project-footer">
+    <div class="project-footer">
       <p>This site is maintained by the Secure Systems and Applications Group, Computer Security Division (CSD)</p>
       <p>National Institute of Standards and Technology, Information Technology Laboratory (NIST/ITL).</p>
       <div style="margin: auto 0em">
         <button id="main-improve-page" onclick="window.location.href='https://github.com/usnistgov/xslt-blender/tree/main/index.html'">Improve this page</button>
       </div>
-    </section>
-    </body>
+    </div>
     <script type="text/javascript">
       
       async function listIt() {
@@ -116,4 +117,5 @@ $(document).ready(
 
 </script>
   </body>
+  
 </html>
