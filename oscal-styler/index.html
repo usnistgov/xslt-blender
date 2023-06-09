@@ -32,8 +32,7 @@ div.unknown * { margin: 0em}
 
 #displayFrame { width: 100%; height: 62vh }
 
-
-  </style>
+</style>
   <link rel="stylesheet" href="../nist-boilerplate.css" type="text/css" />
   <link rel="stylesheet" href="../nist-combined.css"/>
   
@@ -155,8 +154,9 @@ div.unknown * { margin: 0em}
   <main class="draft">
     <h1>OSCAL Styler</h1>
     <p>An XSLT 1.0 workbench set up for <a href="https://pages.nist.gov/OSCAL">OSCAL, the Open Security Controls Assessment Language</a>.</p>
+    <p>If you wish to try styling OSCAL with CSS and have no interest in XSLT, the <a href="painter.html">OSCAL Painter</a> might be of interest.</p>
     <p>Load your OSCAL XML below along with XSLT 1.0 and CSS code. Activate <button onclick="document.getElementById('applyButton').click;">Apply Styles</button> and the loaded data will be transformed using the XSLT and rendered on the page using the CSS. Load your own XSLT to test it, or load a ready-made basic XSLT and enhance and modify it in the page, applying it to see the results dynamically. No data is sent to any server.</p>
-    <p>The OSCAL Styler is inspired by M. Honnen's awesome <a href="https://martin-honnen.github.io/xslt3fiddle/">XSLT Fiddle</a> (client-side version), which supports advanced XSLT up to XSLT 3.0/3.1 via the SaxonJS library. See also the spare but impressive <a class="external" href="http://i-like-robots.github.io/xslt-fiddle/">XSLT Fiddle</a> by Github user <cite>i-like-robots</cite>.</p>
+    <p>The OSCAL Styler is inspired by M. Honnen's pioneering <a class="external" href="https://martin-honnen.github.io/xslt3fiddle/">XSLT Fiddle</a> (client-side version), which supports advanced XSLT up to XSLT 3.0/3.1 via the SaxonJS library. See also the spare but impressive <a class="external" href="http://i-like-robots.github.io/xslt-fiddle/">XSLT Fiddle</a> by Github user <cite>i-like-robots</cite>.</p>
     <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
       to community discussions in public <a href="https://pages.nist.gov/OSCAL/contact/">OSCAL</a> channels.</p>
 
@@ -196,7 +196,6 @@ div.unknown * { margin: 0em}
     </details>
     
     <iframe name="displayFrame" id="displayFrame"> </iframe>
-
   
     <details class="boxed arrayed">
       <summary>Who is this for</summary>
@@ -221,7 +220,7 @@ div.unknown * { margin: 0em}
     <p>See the code and contact the developers in the <a class="external" 
       href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
   </div>
-  
-  
+  <script src="../site/nist-bounce.js"> </script>
+    
   </body>
 </html>

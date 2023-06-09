@@ -116,17 +116,9 @@
       window.xsltEngineForHREF = xsltEngineForHREF;
 
   </script>
-   
+  
+  <script src="viewer.js"> </script>
    <script type="text/javascript">
-
-    async function filterAndShowXMLFiles(fileSet) {
-      for (const eachFile of fileSet) {
-        const maybeSTSXML = await fileXMLContent(eachFile);
-        if (maybeSTSXML) {
-          viewAndShowXML(maybeSTSXML, "checkedSTS");
-        }
-      }
-    }
 
     async function viewAndShowXML(xmlDocument, targetID) {
       // move this up outside the function call for memoability?
@@ -134,15 +126,6 @@
       const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
       return spliceIntoPage(targetID, resultDocument, true);
     }
-
-    const clearPage = () => {
-      const clearing = document.getElementById('checkedSTS');
-      let emptyList = new DataTransfer();
-      let noFiles = emptyList.files;
-      while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
-       document.getElementById("loadSTS").files = noFiles;
-     }
-
 
     const clipboardCopy = async (who) => {
       let cp = who.innerHTML;
@@ -171,8 +154,8 @@
     <p>A <a href="index.html">Generic STS Preview</a> utility is also available on this site.</p>
     <p>Feel free to offer ideas for further development on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board.</p>
     <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
-      onchange="filterAndShowXMLFiles(this.files)" />
-    <button style="float:right" onclick="clearPage()">Clear page</button>
+      onchange="filterAndViewXMLFiles(this.files,'checkedSTS')" />
+    <button style="float:right" onclick="clearView('checkedSTS')">Clear page</button>
     <div id="checkedSTS"><!-- --></div>
     <details class="boxed arrayed">
       <summary>About the Checker</summary>
@@ -194,6 +177,7 @@
     <p>See the code and contact the developers in the <a class="external" 
       href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
   </div>
+  <script src="../site/nist-bounce.js"> </script>
   
   
   </body>

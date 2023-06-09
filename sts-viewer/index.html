@@ -31,16 +31,8 @@
 
   </script>
    
-   <script type="text/javascript">
-
-    async function filterAndShowXMLFiles(fileSet) {
-      for (const eachFile of fileSet) {
-        const maybeSTSXML = await fileXMLContent(eachFile);
-        if (maybeSTSXML) {
-          viewAndShowXML(maybeSTSXML, "displaySTS");
-        }
-      }
-    }
+  <script type="text/javascript" src="viewer.js"> </script>
+  <script type="text/javascript" xml:space="preserve">
 
     async function viewAndShowXML(xmlDocument, targetID) {
       // move this up outside the function call for memoability?
@@ -48,48 +40,7 @@
       const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
       return spliceIntoPage(targetID, resultDocument, true);
     }
-    
-    function loadGraphic(file,graphicID,expectedName) {
-       // const fr = new FileReader();
-       const anURL = URL.createObjectURL(file)
-       const expect = expectedName.split('/').pop().split('#')[0].split('?')[0];
-       const labelClass = ( file.name === expect ? 'aligned' : 'unknown' );
-       document.getElementById('label_'+graphicID).classList.add(labelClass);
-       document.getElementById(graphicID).src = anURL;
-     }
-
-    const viewSection = eID => {
-      let who = document.getElementById(eID); 
-      let openers = getAncestorDetails(who);
-      openers.forEach(o => { o.open = true; } );
-      who.scrollIntoView( {behavior: 'smooth'} );
-    }
-    
-    const getAncestorDetails = el => {
-      let ancestors = [];
-      while (el) {
-        if (el.localName === 'details') { ancestors.unshift(el); }
-        el = el.parentNode;
-      }
-      return ancestors;
-    }
-    
-    
-   const highlightAside = (fnNo) => {
-     const fn = 'fn-' + fnNo;
-     const fnr = 'fnref-' + fnNo;
-     [fn, fnr].forEach( (e) => { document.getElementById(e).classList.toggle("flashing") } );
-   }
-
-   const clearPage = () => {
-     const clearing = document.getElementById('displaySTS');
-     let emptyList = new DataTransfer();
-     let noFiles = emptyList.files;
-     while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
-       document.getElementById("loadSTS").files = noFiles;
-     }
-
-    </script>
+  </script>
   
   <script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
   <link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
@@ -113,8 +64,8 @@
     <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Or contribute
       to community discussions on the public <a class="external" href="https://mulberrytech.com/STS/NISO-STS-List.html">NISO STS List</a> mailing list.</p>
     <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
-      onchange="filterAndShowXMLFiles(this.files)" />
-    <button style="float:right" onclick="clearPage()">Clear page</button>
+      onchange="filterAndViewXMLFiles(this.files,'displaySTS')" />
+    <button style="float:right" onclick="clearView('displaySTS')">Clear page</button>
     <div id="displaySTS"><!-- --></div>
     <details class="boxed arrayed">
       <summary>About NISO STS</summary>
@@ -146,6 +97,7 @@
       href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
   </div>
   <!-- NIST footer goes here -->
+  <script src="../site/nist-bounce.js"> </script>
   
   </body>
 </html>
