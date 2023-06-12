@@ -34,35 +34,6 @@
     <button onclick="listIt()" style="margin: 2em; text-align: center">Load directory</button>
       <div id="dirList"><!-- directory goes here --></div>
     </main>
-    <script type="text/javascript">
-      
-      async function listIt() {
-        const XSLTEngine = await xsltEngineForHREF('list-projects.xsl');
-        const resultDocument = await parseAndTransformXMLatHREF('directory.xml', XSLTEngine);
-        spliceIntoPage("dirList", resultDocument, true);
-      }
-      
-    </script>
-    <script type="text/javascript">
-$(document).ready(function(){
-  // Mark external (non-nist.gov) A tags with class "external"
-  //If the adress start with https and ends with nist.gov
-  var re_nist = new RegExp('^https?:\/\/((^\/)*\.)*nist\\.gov(\/|$)'); 
-  //Regex to find address that start with https 
-  var re_absolute_address = new RegExp('^((https?:)?\/\/)');
-  $("a").each(function(){
-    var url=$(this).attr('href'); 
-    if(re_nist.test(url) || !re_absolute_address.test(url)){
-      $(this).addClass('local'); 
-    }else{
-      $(this).addClass('external');
-    } 
-  });
-  // Add leaveNotice to external A elements 
-  $('a.external').leaveNotice({
-    siteName: 'XSLT Blender Demonstration Portal',
-  });
-});
-</script>
+    <script src="../site/nist-bounce.js"> </script>
   </body>
 </html>
