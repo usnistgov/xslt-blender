@@ -5,16 +5,18 @@
     <xsl:output method="html"/>
     
     <xsl:template match="/*">
+        <div>
         <xsl:call-template name="report-processor"/>
         <xsl:call-template name="make-div"/>
+        </div>
     </xsl:template>
     
     <xsl:template match="*" name="make-div">
         <div class="{local-name()}">
             <xsl:for-each select="@key">
-                <b>
+                <xsl:attribute name="title">
                     <xsl:value-of select="."/>
-                </b>
+                </xsl:attribute>
                 <xsl:text> </xsl:text>    
             </xsl:for-each>
             <xsl:apply-templates/>

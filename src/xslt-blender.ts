@@ -229,60 +229,6 @@ function getXMLviaHTTP(httpResource: string): Promise<Document> {
     });
 }
 
-
-// Produces an XML mapping for a JSON string literal
-// see https://www.w3.org/TR/xpath-functions-31/#schema-for-json for the format
-function JSONasXML(json: string): string | void {
-    try { JSON.parse(json, obj => writeOBJtoXML(obj)) }
-    catch (error) { console.log("Could not parse JSON: ", error) };
-    // return JSON.parse(json, obj => writeOBJtoXML(obj));
-}
-
-// To write an XML file from an arbitrary JSON object, call the tagger
-function writeOBJtoXML(obj: any): string {
-    let xml: string = "";
-    for (const prop in obj) { xml += tagProperty(obj[prop], prop, true) };
-    return xml;
-}
-
-// The tagger returns tagging for anything, including its contents
-function tagProperty(obj: any, key: any, top: boolean): string {
-    const scalarTypes: string[] = ["boolean", "number", "string", "undefined"];
-    const xpathns: string = " xmlns='http://www.w3.org/2005/xpath-functions'";
-
-    // produce the start tag, with attribute syntax conditionally
-    // making xmlns attribute only when writing from the top
-    // making @key only for (named) object properties, not (enumerated) array members
-    let xml = `<${tagName(obj)}${top ? xpathns : ""}${isNaN(key) ? ` key='${key}'` : ""}>`;
-
-    // if we know the object type as a scalar, we can write the value
-    if (scalarTypes.includes(typeof obj)) { xml += obj }
-    // or for objects and arrays, we process contents recursively
-    else if (typeof obj === "object") {
-        for (const prop in obj) { xml += tagProperty(obj[prop], prop, false); }
-    };
-
-    // now the close tag
-    xml += `</${tagName(obj)}>`;
-    return xml;
-}
-
-// Utility function returns the corresponding XPath object type name
-// for any JSON object
-// see https://www.w3.org/TR/xpath-functions-31/#schema-for-json
-function tagName(jsonvalue: any): string {
-    if (jsonvalue instanceof Array) { return "array" }
-    else {
-        switch (typeof jsonvalue) {
-            case "string": return "string"; // with return, we need no break
-            case "number": return "number";
-            case "boolean": return "boolean";
-            // case "undefined": return "null";
-            default: return "map";
-        }
-    };
-}
-
 // Given a file object, we can read XML from it, intercepting parser errors
 // function fileXMLContent(fileToRead: File): Promise<Document> {
 //     return new Promise(async (resolve, reject) => {
@@ -348,16 +294,18 @@ function removeClassFromElementById(who: string, theClass: string): void {
 
 function addClassToElementsByClass(addToClass: string, newClass: string): void {
     const elements: HTMLCollection = document.getElementsByClassName(addToClass);
-    for (const elem of elements) { elem.classList.add(newClass) }
+    // for (const elem of elements) { elem.classList.add(newClass) }
+    Array.from(elements).map(e => e.classList.add(newClass) );
 }
 
 function removeClassFromElementsByClass(removeFromClass: string, theClass: string): void {
     const elements: HTMLCollection = document.getElementsByClassName(removeFromClass);
-    for (const elem of elements) { elem.classList.remove(theClass) }
+    // for (const elem of elements) { elem.classList.remove(theClass) }
+    Array.from(elements).map(e => e.classList.remove(theClass) );
 }
 
 // any automagic way to export everything?
 export { fileTextContent, fileXMLContent, fileHTMLContent,
-         getXMLviaHTTP, writeOBJtoXML, clearElementById, spliceIntoPage,
+         getXMLviaHTTP, clearElementById, spliceIntoPage,
          parseXMLLiteral, parseAndTransformXMLLiteral, parseAndTransformXMLatHREF,
          xslt1ResultDocument, xsltEngineForHREF };

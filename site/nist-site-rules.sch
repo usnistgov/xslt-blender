@@ -16,6 +16,7 @@
         </sch:rule>
         
         <sch:rule context="h3:body">
+            <sch:assert test="contains-token(child::*[1]/self::h3:div/@class,'teaser')">Teaser section missing from the body</sch:assert>
             <sch:assert test="exists(h3:script[matches(@src,'/site/nist-bounce.js$')])">NIST bounce script configuration is missing.</sch:assert>
         </sch:rule>
     </sch:pattern>
