@@ -19,6 +19,8 @@
       outline: thin dotted black
     }
     
+    #JSON-display { max-width: 48em }
+    
     #JSON-display div:before { content: attr(title) " "; font-weight: bold }
     #JSON-display div.string:before { content: attr(title) " " open-quote; font-weight: bold }
     #JSON-display div.string:after  { content: close-quote; font-weight: bold }
@@ -47,31 +49,31 @@
   <script type="text/javascript">
 
 // The tagger returns tagging for anything, including its contents
-function tag2Property(obj, key, top) {
+function tagAnyProperty(obj, key, top) {
     const scalarTypes = ["boolean", "number", "string", "undefined"];
     const xpathns = " xmlns='http://www.w3.org/2005/xpath-functions'";
 
     // produce the start tag, with attribute syntax conditionally
     // making xmlns attribute only when writing from the top
     // making @key only for (named) object properties, not (enumerated) array members
-    let xml = `<${tag2Name(obj)}${top ? xpathns : ""}${isNaN(key) ? ` key='${key}'` : ""}>`;
+    let xml = `<${tagValue(obj)}${top ? xpathns : ""}${isNaN(key) ? ` key='${key}'` : ""}>`;
 
     // if we know the object type as a scalar, we can write the value
     if (scalarTypes.includes(typeof obj)) { xml += obj }
     // or for objects and arrays, we process contents recursively
     else if (typeof obj === "object") {
-        for (const prop in obj) { xml += tag2Property(obj[prop], prop, false); }
+        for (const prop in obj) { xml += tagAnyProperty(obj[prop], prop, false); }
     };
 
     // now the close tag
-    xml += `</${tag2Name(obj)}>`;
+    xml += `</${tagValue(obj)}>`;
     return xml;
 }
 
 // Utility function returns the corresponding XPath object type name
 // for any JSON object
 // see https://www.w3.org/TR/xpath-functions-31/#schema-for-json
-function tag2Name(jsonvalue) {
+function tagValue(jsonvalue) {
     if (jsonvalue instanceof Array) { return "array" }
     else {
         switch (typeof jsonvalue) {
@@ -85,7 +87,7 @@ function tag2Name(jsonvalue) {
 }
 
 function writeSomethingJSONtoXML(someJSON) {
-    return tag2Property(someJSON, 0, true);
+    return tagAnyProperty(someJSON, 0, true);
 }
 
 function pushme() {
@@ -146,6 +148,7 @@ async function filterAndShowXML(xmlLiteral, targetID) {
   <input type="file" id="loadJSON" name="loadJSON" title="Load JSON" onchange="filterAndShowJSONFiles(this.files)" />
     <p>Load your JSON: the application does its best to parse and read it.</p>
     <p>Parser errors will be presented in an alert. The built-in JSON parser is very particular about superfluous trailing commas, so avoid them.</p>
+      <p>TODO in this project: provide an editing window for the JSON; provide a Clear button.</p>
   <div id="JSON-display">
     <!-- -->
   </div>

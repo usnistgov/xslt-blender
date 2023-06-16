@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform"
-                version="1.0">
+                version="1.0"
+                xmlns:xp="http://www.w3.org/2005/xpath-functions">
+    
     
     <xsl:output method="html"/>
     
@@ -22,6 +24,11 @@
             <xsl:apply-templates/>
         </div>
     </xsl:template>
+    
+    <!-- thumbs up and thumbs down for Boolean values -->
+    <xsl:template match="xp:boolean[.='true']/text()">&#x1F44D;</xsl:template>
+    
+    <xsl:template match="xp:boolean[.='false']/text()">&#x1F44E;</xsl:template>
     
     <xsl:template name="report-processor">
         <p>
