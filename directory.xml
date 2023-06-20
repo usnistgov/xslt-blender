@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
+<?xml-stylesheet type="text/xsl" href="site/projects-page.xsl"?>
 <projects>
     <project entry="oscal-styler">
         <name>OSCAL Styler</name>
@@ -81,12 +81,19 @@
             <p>We have XSLT 3.0 that can do this: a SaxonJS demo on OSCAL Tools?</p>
         </description>
     </project>
+    <project entry="json-mixer/json-reader.html">
+        <name>JSON Reader</name>
+        <description>
+            <p>Load JSON and spill it onto the page, as HTML.</p>
+            <p>This is a very experimental demonstration of how JSON data might be loaded and processed, emulating XPath 3.0 functionality.</p>
+            <p>To-do items here include: a <q>clear</q> button; panel for editing the JSON; bring your own XSLT like the OSCAL Styler?</p>
+        </description>
+    </project>
     <project status="planned">
         <name>XSLT Security Awareness</name>
         <line>XSLT, what could go wrong? Risk assessment guidelines and helper application</line>
         <description>
             <p>For more on this topic as it applies to this site, see the <a href="https://github.com/usnistgov/xslt-blender/wiki/Assessment">Assessment</a> page on the project wiki.</p>
-            
         </description>
         <tldr summary="An XSLT 1.0 Linter, and then some">
             <p>A transformation offered from a page can help expose and highlight known risks associated with XSLT and the XML-based systems that support them (parser ecosystem etc.) An XSLT loaded by the user can be run through an XSLT, to query and report back on calls and dependencies through static analysis, including (more ideas please) <code>xsl:import</code>, <code>xsl:include</code>, <code>document()</code>, parameter usage etc. - as findings of potential application security vulnerabilities. This could include fine points such as use of <code>xsl:copy</code> passing through unsanitized scripts, etc.</p>
@@ -118,13 +125,6 @@
         <line>Eating our own cat fud</line>
         <description>
             <p>Using OSCAL for assurance as well as for maintaining security posture.</p>
-        </description>
-    </project>
-    <project entry="json-mixer/json-reader.html" status="underway">
-        <name>JSON Reader</name>
-        <description>
-            <p>Load JSON and spill it onto the page, as HTML.</p>
-            <p>This is a very rudimentary application in place mainly for sake of testing the concept and stabilizing the (germ of a) code base that can carry it out.</p>
         </description>
     </project>
     <project status="planned">

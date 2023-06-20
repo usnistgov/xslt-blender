@@ -77,45 +77,51 @@ Entire (albeit small and simple) applications can be written with *no* dependenc
 
 This also makes this project suitable for "weightless technology transfer" as described on the [project wiki page](https://github.com/usnistgov/xslt-blender/wiki/Technology-Transfer).
 
-### Project origins
+## Project origins
 
 This work is informed by daily and weekly practice with XSLT, and inspired by research by Will Thompson and Katherine Ford (as by XSLT practitioners everywhere):
 
 - Ford, Katherine, and Will Thompson. “An Adventure with Client-Side XSLT to an Architecture for Building Bridges with Javascript.” Presented at Balisage: The Markup Conference 2018, Washington, DC, July 31 - August 3, 2018. In *Proceedings of Balisage: The Markup Conference 2018*. Balisage Series on Markup Technologies, vol. 21 (2018). https://doi.org/10.4242/BalisageVol21.Thompson01.
 
+One of the projects has been presented at JATS-Con, the annual conference of the Journal Article Tag Suite (NISO JATS, ANSI/NISO Z39.96):
+
+- Piez, Wendell. “A Generic STS Viewer on the Web”. Journal Article Tag Suite Conference (JATS-Con) Proceedings 2023. https://www.ncbi.nlm.nih.gov/books/n/jatscon23/piez/
+
 ## Repository Contents
 
 ### Repo configuration
 
-- CODEMETA.yaml
-- CODEOWNERS
-- CODE_OF_CONDUCT.md
-- CONTRIBUTORS.md
-- LICENSE.md
-- TESTING.md
-- fair-software.md
+- `CODEMETA.yaml`
+- `CODEOWNERS`
+- `CODE_OF_CONDUCT.md`
+- `CONTRIBUTORS.md`
+- `LICENSE.md`
+- `TESTING.md`
+- `fair-software.md`
 
 ### NodeJS configuration
 
-- package-lock.json
-- package.json
-- tsconfig.json
-
-### Site CSS
-
-- nist-boilerplate.css
-- nist-combined.css (copied from https://pages.nist.gov/nist-header-footer/css/)
+- `package-lock.json`
+- `package.json`
+- `tsconfig.json`
 
 ### Portal landing page
 
-- index.html
+- `index.html`
 
-### Projects directory and supporting files
+### Projects directory
 
-- directory.xml
-- list-projects.xsl
-- projects-html.css
-- projects-page.xsl
+- `directory.xml`
+
+### Site CSS and directory XSLT
+
+- `site/nist-boilerplate.css`
+- `site/nist-combined.css` (copied from https://pages.nist.gov/nist-header-footer/css/)
+- `site/list-projects.xsl`
+- `site/projects-html.css`
+- `site/projects-page.xsl`
+
+logos, graphics etc.
 
 ### Projects
 
@@ -123,8 +129,9 @@ See directories
 
 - [JSON Mixer](json-mixer) - can we do something (anything) with JSON in XSLT 1.0? yup
 - [STS Viewer](sts-viewer)
+- [OSCAL Styler](oscal-styler)
 
-(... and others to come ...)
+(... etc etc ...)
 
 ### Source and compiled Typescript
 
@@ -138,9 +145,9 @@ See directories
 
 ### This file
 
-- README.md
+- `README.md`
 
-## Installation
+## Installation and operation
 
 The repository presents a set of web browser-based demonstrations, as embedded in (delivered by) a plain web site, with no back end or dynamic capability. They can be installed to run locally. Such an installation is also a [testbed for development](#serving-a-testbed-site) (below) inasmuch as the site administrator can easily modify, extend, add and replace applications or parts of applications.
 
@@ -166,9 +173,9 @@ A page will show. XSLT Blender functionality can be confirmed by proceeding to l
 
 ### Serving on the web
 
-XSLT Blender Applications can also be served directly on the web, or pushed into a Github or Gitlab Pages site (such as what you might be reading), or other repository host, for wide availability.
+XSLT Blender applications can also be served directly on the web, or pushed into a Github or Gitlab Pages site (such as what you might be reading), or other repository host, for wide availability.
 
-XSLT Blender can also be integrated with static site generators like Jekyll and Hugo, for the best of multiple possible worlds.
+XSLT Blender can also be integrated with static site generators like Jekyll and Hugo, combining the best and worst of multiple possible worlds.
 
 For more guidance in this area please make inquiries.
 
@@ -204,19 +211,9 @@ This describes the general pattern: in the case of individual demonstrations, it
 
 To compile Typescript libraries from source, nodeJS and npm are assumed. But for many purposes this will not be necessary.
 
-### Compiling
-
-The latest `lib` outputs will be pushed to the repository, so you only have to compile from source if you modify or extend the library.
-
-In the project subdirectory, enter `npm install` to install or reinstall the Typescript configuration.
-
-Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries, saved in `lib` and also open for inspection.
-
-Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless they go beyond the transformation (mapping) requirements ably addressed by XSLT.
-
 ### Serving a testbed site
 
-As they are designed to be delivered over the Internet using a browser, for application it is often convenient to run a server locally, enabling a tight loop between code revision and execution. This in turn makes deployment easy, since it amounts to copying.
+Designed to be delivered over the Internet using a browser, any application under development can be served locally, enabling a tight loop between code revision and execution. This in turn makes deployment easy, since once an installation runs on `localhost`, it needs only to be copied. All files to be served are `*.html`, `*.js`, `*.css`, `*.xsl`, and sometimes  `*.xml`, and require only a plain generic web server configuration.
 
 As [noted above](#serving-from-localhost), with NPM, start a local server by opening a Linux/WSL prompt in the `xslt-blender` directory, and invoking `npm serve`, or simply `http-server` with that npm module installed.
 
@@ -226,15 +223,37 @@ Point your browser at `index.html` or the landing page of any demo, as served on
 
 ### Coding and testing XSLT
 
-With a site up and running, XSLT can be tested directly in the application. You may need a way to empty files from your cache or supress caching. XSLT can also be developed and tested in offline editing or coding environments, with representative sample inputs.
+With a site up and running, XSLT can be tested directly in the application. You are likely to need a way to empty files from your cache or suppress caching. 
 
-Applications are typically tested by development under load with representative sample documents (including representations of 'pathological' inputs).
+XSLT can also be developed and tested in offline editing or coding environments, with representative sample inputs.
+
+Applications are typically tested by development under load with representative sample documents, including representations of 'pathological' inputs.
 
 See [TESTING](./TESTING.md) for more about testing and the kinds of testing performed. See the [Assessment](https://github.com/usnistgov/xslt-blender/wiki/Assessment) page on the wiki for information about second- and third-party assessment, both for functional testing and for security.
 
-Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is robust against hard failures entailing threats such as data exfiltration or denial of service. Unless you provide your own code to these code bases, the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout, dropped contents or data "dumps" to your screen -- or in extreme cases (with stylesheets not properly tested), by suspending your browser.
+Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is robust against hard failures entailing threats such as data exfiltration or denial of service. Unless you provide your own code to these code bases -- and even then, as long as you restrict your efforts to the transformation layer -- the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout, dropped contents or data "dumps" to your screen -- or in extreme cases (with stylesheets not properly tested), by suspending your browser.
 
-By design, XSLT 1.0 is specifically limited. If as a developer you find yourself pushing the edges of its capabilities, consider using XSLT 3.0, a considerably more powerful language build on the same functional processing paradigm.
+By design, XSLT 1.0 is specifically limited. If as a developer you find yourself pushing the edges of its capabilities, consider using XSLT 3.0, a considerably more powerful language build on the same functional processing paradigm. More powerful capabilities come with broader security concerns, of course -- this is the principle of Least Power.
+
+### Compiling Typescript
+
+Mainly, Javascript can be developed on the page using the APIs, as demonstrated in numerous examples.
+
+To maintain, modify or extend the library, edit and compile Typescript sources. This effort rewards itself in more maintainable project code, better code reuse, and more secure applications.
+
+In the project subdirectory, enter `npm install` to install or reinstall the Typescript configuration.
+
+Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) enter `tsc` to produce Javascript runtime libraries, saved in `lib` and also open for inspection.
+
+Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless it goes beyond the transformation requirements ably addressed by XSLT.
+
+#### Beginner hints
+
+ - `npm install` to install or reinstall the configuration (based on `package.json` and `tsconfig.json`)
+ - `npm outdated` to check for outdated libraries
+ - `npm upgrade` upgrades library components
+ - `tsc` compiles everything in `src`, writing to `lib`
+
 
 ## Dependencies and licenses
 
