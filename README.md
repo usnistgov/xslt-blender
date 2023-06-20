@@ -206,15 +206,15 @@ To compile Typescript libraries from source, nodeJS and npm are assumed. But for
 
 ### Compiling Typescript
 
-Mainly, Javascript development using the APIs can be done on the page, as demonstrated in numerous examples.
+Mainly, Javascript can be developed on the page using the APIs, as demonstrated in numerous examples.
 
 To maintain, modify or extend the library, edit and compile Typescript sources. This effort rewards itself in more maintainable project code, better code reuse, and more secure applications.
 
 In the project subdirectory, enter `npm install` to install or reinstall the Typescript configuration.
 
-Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries, saved in `lib` and also open for inspection.
+Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) enter `tsc` to produce Javascript runtime libraries, saved in `lib` and also open for inspection.
 
-Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless it goes beyond the transformation (mapping) requirements ably addressed by XSLT.
+Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless it goes beyond the transformation requirements ably addressed by XSLT.
 
 #### Beginner hints
 
