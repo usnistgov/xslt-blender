@@ -90,18 +90,6 @@ function writeSomethingJSONtoXML(someJSON) {
     return tagAnyProperty(someJSON, 0, true);
 }
 
-function pushme() {
-    try {
-        const jsonxml = writeOBJtoXML(jsonexample);
-        //transformAndShowXML(jsonxml, "filter.xsl", "example")
-        //hardwired XSLT is a tiny bit faster?
-        filterAndShowXML(jsonxml, "JSON-display");
-    }
-    catch (e) { alert(e); }
-}
-
-const jsonexample = { "catalog": { "metadata": { "title": "Sample", "props": [{ "name": "some", "value": "some1" }, { "name": "some", "value": "some2" }] } } }
-
 //async function filterAndShowJSONFiles(fileSet: FileList): Promise void> {
 async function filterAndShowJSONFiles(fileSet) {
     for (const eachFile of fileSet) {
@@ -144,7 +132,6 @@ async function filterAndShowXML(xmlLiteral, targetID) {
     <h1>JSON Reader</h1>
     <p>A <q>spill test</q> showing how JSON can be read into an XML processing environment (here in your web browser).</p>
     <p>This demonstration paints what it sees back to the screen.</p>
-  <button id="pushme" onclick="pushme()">Push Me</button>
   <input type="file" id="loadJSON" name="loadJSON" title="Load JSON" onchange="filterAndShowJSONFiles(this.files)" />
     <p>Load your JSON: the application does its best to parse and read it.</p>
     <p>Parser errors will be presented in an alert. The built-in JSON parser is very particular about superfluous trailing commas, so avoid them.</p>
