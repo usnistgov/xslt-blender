@@ -32,3 +32,6 @@ details#sec-notice { margin: 0em; padding: 0.2em;
 #sec-notice p { margin: 0em; max-width: inherit }
 #sec-notice p span:before { content: '• '  } /* bullet */
 #sec-notice p span:hover { background-color: gainsboro  }
+
+#sec-notice a { color: inherit; text-decoration: inherit }
+#sec-notice a:hover { text-decoration: underline; }
