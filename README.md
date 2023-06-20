@@ -204,15 +204,24 @@ This describes the general pattern: in the case of individual demonstrations, it
 
 To compile Typescript libraries from source, nodeJS and npm are assumed. But for many purposes this will not be necessary.
 
-### Compiling
+### Compiling Typescript
 
-The latest `lib` outputs will be pushed to the repository, so you only have to compile from source if you modify or extend the library.
+Mainly, Javascript development using the APIs can be done on the page, as demonstrated in numerous examples.
+
+To maintain, modify or extend the library, edit and compile Typescript sources. This effort rewards itself in more maintainable project code, better code reuse, and more secure applications.
 
 In the project subdirectory, enter `npm install` to install or reinstall the Typescript configuration.
 
 Source code is in `src`. This is all Typescript compiled on NodeJS, so (with Typescript installed) `tsc` to produce Javascript runtime libraries, saved in `lib` and also open for inspection.
 
-Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless they go beyond the transformation (mapping) requirements ably addressed by XSLT.
+Note that applications have full access to XSLT without having to modify the libraries that are used to invoke transformations. Compiling the Typescript source (or writing, testing and deploying Javascript) is not necessary to code or extend any application, unless it goes beyond the transformation (mapping) requirements ably addressed by XSLT.
+
+#### Beginner hints
+
+ - `npm install` to install or reinstall the configuration (based on `package.json` and `tsconfig.json`)
+ - `npm outdated` to check for outdated libraries
+ - `npm upgrade` upgrades library components
+ - `tsc` compiles everything in `src`, writing to `lib`
 
 ### Serving a testbed site
 
@@ -235,6 +244,8 @@ See [TESTING](./TESTING.md) for more about testing and the kinds of testing perf
 Note that XSLT applications (and declarative XML applications in general) are built in accordance with the security principle of "Least Power". As a domain-specific-language, XSLT is robust against hard failures entailing threats such as data exfiltration or denial of service. Unless you provide your own code to these code bases, the worst they will be capable of will be "GIGO" (garbage-in-garbage-out) symptomized by incoherent layout, dropped contents or data "dumps" to your screen -- or in extreme cases (with stylesheets not properly tested), by suspending your browser.
 
 By design, XSLT 1.0 is specifically limited. If as a developer you find yourself pushing the edges of its capabilities, consider using XSLT 3.0, a considerably more powerful language build on the same functional processing paradigm.
+
+### Compiling the Typescript library
 
 ## Dependencies and licenses
 
