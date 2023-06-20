@@ -3,9 +3,9 @@
   <head>
     <title>XSLT Blender Home</title>
     <meta charset="utf-8" />
-    <link href="projects-html.css" rel="stylesheet" type="text/css"/>
-    <link rel="stylesheet" href="nist-boilerplate.css" type="text/css" />
-    <link rel="stylesheet" href="nist-combined.css"/>
+    <link href="site/projects-html.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="site/nist-boilerplate.css" type="text/css" />
+    <link rel="stylesheet" href="site/nist-combined.css"/>
     
     <script> </script>
     <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
@@ -85,7 +85,7 @@
     <script type="text/javascript">
       
       async function listIt() {
-        const XSLTEngine = await xsltEngineForHREF('list-projects.xsl');
+        const XSLTEngine = await xsltEngineForHREF('site/list-projects.xsl');
         const resultDocument = await parseAndTransformXMLatHREF('directory.xml', XSLTEngine);
         spliceIntoPage("dirList", resultDocument, true);
         // hiding the view buttons

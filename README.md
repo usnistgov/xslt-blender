@@ -105,21 +105,23 @@ One of the projects has been presented at JATS-Con, the annual conference of the
 - `package.json`
 - `tsconfig.json`
 
-### Site CSS
-
-- `nist-boilerplate.css`
-- `nist-combined.css` (copied from https://pages.nist.gov/nist-header-footer/css/)
-
 ### Portal landing page
 
 - `index.html`
 
-### Projects directory and supporting files
+### Projects directory
 
 - `directory.xml`
-- `list-projects.xsl`
-- `projects-html.css`
-- `projects-page.xsl`
+
+### Site CSS and directory XSLT
+
+- `site/nist-boilerplate.css`
+- `site/nist-combined.css` (copied from https://pages.nist.gov/nist-header-footer/css/)
+- `site/list-projects.xsl`
+- `site/projects-html.css`
+- `site/projects-page.xsl`
+
+logos, graphics etc.
 
 ### Projects
 

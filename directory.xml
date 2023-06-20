@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<?xml-stylesheet type="text/xsl" href="projects-page.xsl"?>
+<?xml-stylesheet type="text/xsl" href="site/projects-page.xsl"?>
 <projects>
     <project entry="oscal-styler">
         <name>OSCAL Styler</name>
