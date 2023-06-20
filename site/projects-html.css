@@ -29,9 +29,7 @@ section.planned a { color: currentColor }
 
 .hotlinks { font-size: smaller; margin: 1em 0em }
 
-.hotlinks * { margin: 0em }
-.hotlinks ul { margin-top: 0.5em }
-.hotlinks p  { margin-top: 0.5em }
+.hotlinks > * { margin-bottom: 0.5em; margin-top: 0.5em }
 
 .linkpanels { display: grid;
 grid-template-columns: repeat(2, 1fr);

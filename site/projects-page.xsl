@@ -10,11 +10,11 @@
         <html lang="en">
             <head>
                 <title>XSLT Blender Demonstrations</title>
-                <link href="projects-html.css" rel="stylesheet" type="text/css"/>
+                <link href="site/projects-html.css" rel="stylesheet" type="text/css"/>
                 
-                <link rel="stylesheet" href="nist-boilerplate.css" type="text/css" />
+                <link rel="stylesheet" href="site/nist-boilerplate.css" type="text/css" />
                 
-                <link rel="stylesheet" href="nist-combined.css"/>
+                <link rel="stylesheet" href="site/nist-combined.css"/>
                 <xsl:call-template name="script"/>
                 
             </head>

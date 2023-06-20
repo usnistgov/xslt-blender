@@ -6,8 +6,7 @@ declare function parseAndTransformXMLLiteral(xmlLiteral: string, xsltEngine: XSL
 declare function parseAndTransformXMLatHREF(httpResource: string, xsltEngine: XSLTProcessor): Promise<Document>;
 declare function xslt1ResultDocument(xmlDom: Document, xsltEngine: XSLTProcessor): Document;
 declare function getXMLviaHTTP(httpResource: string): Promise<Document>;
-declare function writeOBJtoXML(obj: any): string;
 declare function fileXMLContent(fileToRead: File): Promise<Document>;
 declare function fileHTMLContent(fileToRead: File): Promise<Document>;
 declare function fileTextContent(fileToRead: File): Promise<string>;
-export { fileTextContent, fileXMLContent, fileHTMLContent, getXMLviaHTTP, writeOBJtoXML, clearElementById, spliceIntoPage, parseXMLLiteral, parseAndTransformXMLLiteral, parseAndTransformXMLatHREF, xslt1ResultDocument, xsltEngineForHREF };
+export { fileTextContent, fileXMLContent, fileHTMLContent, getXMLviaHTTP, clearElementById, spliceIntoPage, parseXMLLiteral, parseAndTransformXMLLiteral, parseAndTransformXMLatHREF, xslt1ResultDocument, xsltEngineForHREF };
