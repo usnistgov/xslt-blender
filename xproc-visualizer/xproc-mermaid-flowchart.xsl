@@ -52,7 +52,7 @@
     </xsl:template>
 
     <xsl:template match="p:identity | p:xslt | metaschema:*">
-        <xsl:apply-templates"/>
+        <xsl:apply-templates/>
         <xsl:if test="not(p:input/@port = 'source')">
             <xsl:call-template name="write-implicit-source"/>
         </xsl:if>
