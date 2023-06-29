@@ -31,8 +31,10 @@
    'theme':'base' }
 }%%</xsl:text>
         <xsl:text>&#xA;flowchart TB&#xA;</xsl:text>
-        <xsl:apply-templates/>
-        <xsl:apply-templates mode="output-only"/>
+        <!-- going from end to start works better -->
+        <xsl:apply-templates>
+            <xsl:sort select="count(*) - position()"/>
+        </xsl:apply-templates>
     </xsl:template>
         
     <xsl:template match="/*/p:input" priority="10">
@@ -41,14 +43,7 @@
         <xsl:apply-templates mode="write-label" select="."/>
     </xsl:template>
 
-    <xsl:template match="p:output" priority="10"/>
-    
-    <xsl:template mode="output-only" match="* | text()">
-        <!-- no op, but finds any more -->
-        <xsl:apply-templates mode="output-only"/>
-    </xsl:template>
-
-    <xsl:template mode="output-only" match="p:output" priority="10">
+    <xsl:template match="p:output" priority="10">
         <xsl:text>&#xA;</xsl:text>
         <xsl:apply-templates select="p:pipe" mode="write-key"/>
         <xsl:text> -. OUTPUT .-> </xsl:text>
@@ -57,11 +52,10 @@
     </xsl:template>
 
     <xsl:template match="p:identity | p:xslt | metaschema:*">
+        <xsl:apply-templates"/>
         <xsl:if test="not(p:input/@port = 'source')">
             <xsl:call-template name="write-implicit-source"/>
         </xsl:if>
-        <xsl:apply-templates select="*[p:document]"/>
-        <xsl:apply-templates select="*[not(p:document)]"/>
     </xsl:template>
 
     <xsl:template match="p:input">
