@@ -58,8 +58,6 @@ details.boxed[open] { background-color: white }
    async function viewAndShowXML(xmlDocument, targetID, filename) {
      // move this up outside the function call for memoability?
      let chosenXSLT = [...document.getElementsByClassName('mermaidChoice')].filter( e => e.checked )[0].value + '.xsl';  
-     let checked =  [...document.getElementsByClassName('mermaidChoice')].filter( e => e.checked )[0];
-     console.log(checked.value);
      let viewerXSLTEngine = await xsltEngineForHREF(chosenXSLT);
      viewerXSLTEngine.setParameter(null, "filename", filename);
      const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
