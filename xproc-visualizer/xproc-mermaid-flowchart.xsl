@@ -31,7 +31,10 @@
    'theme':'base' }
 }%%</xsl:text>
         <xsl:text>&#xA;flowchart TB&#xA;</xsl:text>
-        <xsl:apply-templates/>
+        <!-- going from end to start works better -->
+        <xsl:apply-templates>
+            <xsl:sort select="count(*) - position()"/>
+        </xsl:apply-templates>
     </xsl:template>
         
     <xsl:template match="/*/p:input" priority="10">
@@ -49,10 +52,10 @@
     </xsl:template>
 
     <xsl:template match="p:identity | p:xslt | metaschema:*">
+        <xsl:apply-templates/>
         <xsl:if test="not(p:input/@port = 'source')">
             <xsl:call-template name="write-implicit-source"/>
         </xsl:if>
-        <xsl:apply-templates/>
     </xsl:template>
 
     <xsl:template match="p:input">
@@ -62,7 +65,7 @@
             <xsl:apply-templates mode="write-label"/>
         </xsl:if>
         <xsl:choose>
-            <xsl:when test="@port='source'"> ==>|</xsl:when>
+            <xsl:when test="@port='source'"> ===>|</xsl:when>
             <xsl:otherwise> -->|</xsl:otherwise>
         </xsl:choose>
         <xsl:value-of select="translate(@port,$lower,$upper)"/>
@@ -76,7 +79,7 @@
         <xsl:variable name="previous-step" select="preceding-sibling::*[not(self::p:serialization|self::p:import|self::p:output|self::p:input[not(@primary='true')])][1]"/>
         <xsl:apply-templates mode="write-key" select="$previous-step"/>
         
-        <xsl:text> ==>|SOURCE|</xsl:text>
+        <xsl:text> ===>|SOURCE|</xsl:text>
         <xsl:apply-templates select="." mode="write-key"/>
         <xsl:apply-templates select="." mode="write-label"/>
     </xsl:template>
