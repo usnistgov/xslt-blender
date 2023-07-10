@@ -45,7 +45,7 @@
         <line>XProc 1.0 as a Mermaid flowchart</line>
         <description>
             <p>On this page a transformation converts XProc into <a href="https://mermaid.js.org/syntax/flowchart.html">Mermaid Flowchart Syntax</a> and makes it available for converting live into a graphic, using Mermaid.</p>
-            <p>Under development and still pretty rudimentary.</p>
+            <p>Under development and still pretty rudimentary. <b>Latest!</b> also supports  <a href="https://mermaid.js.org/syntax/flowchart.html">Mermaid State Diagram Syntax</a></p>
         </description>
     </project>
     <project entry="directory.xml">
