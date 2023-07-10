@@ -57,7 +57,10 @@ details.boxed[open] { background-color: white }
 
    async function viewAndShowXML(xmlDocument, targetID, filename) {
      // move this up outside the function call for memoability?
-     const viewerXSLTEngine = await xsltEngineForHREF('xproc-mermaid-flowchart.xsl');
+     let chosenXSLT = [...document.getElementsByClassName('mermaidChoice')].filter( e => e.checked )[0].value + '.xsl';  
+     let checked =  [...document.getElementsByClassName('mermaidChoice')].filter( e => e.checked )[0];
+     console.log(checked.value);
+     let viewerXSLTEngine = await xsltEngineForHREF(chosenXSLT);
      viewerXSLTEngine.setParameter(null, "filename", filename);
      const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
      spliceIntoPage(targetID, resultDocument, true);
@@ -111,12 +114,21 @@ details.boxed[open] { background-color: white }
   <main class="draft">
     <h1>XProc Visualizer  / <i>alpha</i></h1>
     <h2>XProc pipeline as Mermaid flowchart</h2>
-    <p>An XSLT 1.0 transformation is applied to your XProc 1.0 to create <a class="external" href="https://mermaid.js.org/">Mermaid</a> notation representing the pipeline as a flowchart. The code can be adjusted in place, rendered dynamically on the page, and copied out into your Mermaid-aware application, wiki or site.</p>
+    <p>An XSLT 1.0 transformation can be applied to your XProc 1.0 to create either of two forms of <a class="external" href="https://mermaid.js.org/">Mermaid</a> notation, representing the pipeline as a flowchart or as a state diagram. The code can be adjusted in place, rendered dynamically on the page, and copied out into your Mermaid-aware application, wiki or site.</p>
     <p>Feedback on this demonstration may be directed to the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board. Currently the application does only some basics: examples of real-life XProc illustrating requirements are especially welcome.</p>
+ <div>Produce syntax for a
+   <label for="flowchart">Flowchart</label>
+   <input type="radio" id="flowchart" class="mermaidChoice" name="mermaid-choice" value="xproc-mermaid-flowchart" checked="checked"/> or
+   <input type="radio" id="statediagram" class="mermaidChoice" name="mermaid-choice" value="xproc-mermaid-stateDiagram-v2"/>
+   <label for="statediagram">State diagram</label>
+   
+ </div><button style="float:right" onclick="clearPage();">Reset</button>
     
+    <div>
       <label for="loadXProc">Load your XProc 1.0 </label><input type="file" id="loadXProc" name="loadXProc" title="Load XProc 1.0 XML"
         onchange="filterAndShowXMLFiles(this.files); clearElementById('showMermaid')" />
-    <button style="float:right" onclick="clearPage();">Reset</button>
+    </div>
+    
       <pre contenteditable="true" spellcheck="false" id="xprocMermaid">flowchart TB&#xA;xproc[(XPROC)]</pre>
     <button onclick="copyToClipboard('xprocMermaid');">Copy to clipboard</button>
     <button onclick="refreshMermaid('xprocMermaid','showMermaid');">Run Mermaid</button>
@@ -140,7 +152,11 @@ details.boxed[open] { background-color: white }
     </details>
     <details class="boxed arrayed">
     <summary>For best results</summary>
-      <p>The syntax written to the screen is a simple, if partial, reflection of the XProc source, with no additional information. Consequently some of the graphics it makes can easily <a class="external" href="https://mermaid.js.org/syntax/flowchart.html">be improved</a> with one or two touches to the code. If you have two paths crossing, <a class="external" href="https://mermaid.js.org/syntax/flowchart.html#minimum-length-of-a-link">try lengthening one of them</a>, for example by changing <code>--></code> to <code>---></code> in your Mermaid. Every extra hyphen adds a 'step' of vertical space to a node in the diagram. <code>----></code> will indicate a path should take two extra steps, etc. Often, one or two of these correctly placed in your diagram will untangle paths.</p></details>
+      <p>In both renderings, the syntax written to the screen is a simple, if partial, reflection of the XProc source, with no additional information. Consequently some of the graphics it makes can easily be improved with one or two touches to the code. See the Mermaid documentation on either <a class="external" href="https://mermaid.js.org/syntax/flowchart.html">flowchart</a> or <a class="external" href="https://mermaid.js.org/syntax/stateDiagram.html">state diagram</a> renditions. Try adjusting:</p>
+      <ul>
+        <li>For example, in the flowchart, the relative order of instructions: by moving a line item up or down relative to others you can affect its placement.</li>
+        <li>If you have two paths crossing, <a class="external" href="https://mermaid.js.org/syntax/flowchart.html#minimum-length-of-a-link">try lengthening one of them</a>, for example by changing <code>--></code> to <code>---></code> in your Mermaid. Every extra hyphen adds a 'step' of vertical space to a node in the diagram. <code>----></code> will indicate a path should take two extra steps, etc. Often, one or two of these correctly placed in your diagram will untangle paths.</li></ul>
+      </details>
     <details class="boxed arrayed"><summary>Is this site a demonstration, a service or both?</summary>
       <p>This application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/xproc-visualizer">Github, with documentation</a>. Like other applications on this site, this resource is provided by NIST primarily as an educational demonstration of how a service can be created, not as a fully operational service.</p>
       <p>No guarantees or warranties are provided by NIST that the demo service will be maintained, updated, upgraded, or always available. While NIST intends to keep the demonstration running, NIST also reserves the right to stop supporting it, or to remove or rework it, without prior warning.</p>
