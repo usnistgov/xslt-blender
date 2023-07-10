@@ -28,7 +28,7 @@
         <xsl:apply-templates mode="step-labeler"/>
         <xsl:text>&#xA;</xsl:text>
         <xsl:apply-templates mode="subpipelines"/>
-        
+        <xsl:text>&#xA;</xsl:text>
         <xsl:apply-templates mode="edges">
             <!--<xsl:sort select="count(*) + position()"/>-->
         </xsl:apply-templates>
@@ -75,7 +75,6 @@
     
     <xsl:template mode="step-labeler" match="p:sink" priority="101"/>
     
-
     <xsl:template match="*" mode="step-labeler">
         <xsl:text>&#xA;</xsl:text>
         <xsl:apply-templates mode="write-key" select="."/>
@@ -146,13 +145,7 @@
     <xsl:template mode="edges" match="/*/p:input | p:serialization | p:import" priority="99"/>
     
     <xsl:template match="*" mode="edges"/>
-    <!--<xsl:template match="p:input" mode="edges">
-        <xsl:text>&#xA;</xsl:text>
-        <xsl:apply-templates mode="write-key"/>
-        <xsl:text> -\-> </xsl:text>
-        <xsl:apply-templates select=".." mode="write-key"/>
-    </xsl:template>-->
-
+    
     <xsl:template name="write-implicit-source">
         <xsl:text>&#xA;</xsl:text>
         <xsl:variable name="previous-step" select="preceding-sibling::*[not(self::p:serialization|self::p:import|self::p:output|self::p:input[not(@primary='true')])][1]"/>
@@ -200,13 +193,13 @@
     </xsl:template>
     
     <xsl:template mode="write-label" match="p:xslt">
-        <xsl:text>XSLT Transformation '</xsl:text>
+        <xsl:text> XSLT Transformation '</xsl:text>
         <xsl:value-of select="@name"/>
         <xsl:text>'</xsl:text>
     </xsl:template>
     
     <xsl:template mode="write-label" match="p:xslt/p:input[@port='stylesheet'][p:document]">
-        <xsl:text>stylesheet '</xsl:text>
+        <xsl:text> stylesheet '</xsl:text>
         <xsl:apply-templates select="p:document/@href"/>
         <xsl:text>'</xsl:text>
     </xsl:template>
