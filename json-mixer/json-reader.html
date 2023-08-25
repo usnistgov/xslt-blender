@@ -22,7 +22,7 @@
     #JSON-display { max-width: 48em }
     
     #JSON-display div:before { content: attr(title) " "; font-weight: bold }
-    #JSON-display div.string:before {  font-weight: bold; content: attr(title) " " open-quote }
+    #JSON-display div.string:before { font-weight: bold; content: attr(title) " " open-quote }
     #JSON-display div.string:after  { content: close-quote; font-weight: bold }
     
   </style>
@@ -136,8 +136,7 @@ async function filterAndShowXML(xmlLiteral, targetID) {
     <p>This demonstration paints what it sees back to the screen.</p>
   <input type="file" id="loadJSON" name="loadJSON" title="Load JSON" onchange="filterAndShowJSONFiles(this.files)" />
     <p>Load your JSON: the application does its best to parse and read it.</p>
-    <p>Parser errors will be presented in an alert. The built-in JSON parser is very particular about superfluous trailing commas, so avoid them.</p>
-      <p>TODO in this project: provide an editing window for the JSON; provide a Clear button.</p>
+    <p>Parser errors will be presented in an alert. The built-in JSON parser rejects superfluous trailing commas, so avoid them. If your JSON produces errors here but works elsewhere, please consider filing a <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">bug report</a> with a similar example for testing.</p>
   <div id="JSON-display">
     <!-- -->
   </div>
