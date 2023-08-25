@@ -9,7 +9,6 @@
         margin: 0.2em;
       margin-left: 1em;
       padding: 0.2em;
-      word-wrap: break-word;
     }
 
 
@@ -59,9 +58,10 @@ function tagAnyProperty(obj, key, top) {
     // making @key only for (named) object properties, not (enumerated) array members
     let xml = `<${tagValue(obj)}${top ? xpathns : ""}${isNaN(key) ? ` key='${key}'` : ""}>`;
 
+    // on strings, we escape open delimiters into markup (entity notation)
+    if ((typeof obj) === "string") { xml += obj.replaceAll('&','&amp;').replaceAll('<','&lt;') }
     // if we know the object type as a scalar, we can write the value
-    // casting as a string and escaping open delimiters into markup (entity notation)
-    if (scalarTypes.includes(typeof obj)) { xml += obj.toString.replaceAll('&','&amp;').replaceAll('<','&lt;') }
+    else if (scalarTypes.includes(typeof obj)) { xml += obj }
     // or for objects and arrays, we process contents recursively
     else if (typeof obj === "object") {
         for (const prop in obj) { xml += tagAnyProperty(obj[prop], prop, false); }
