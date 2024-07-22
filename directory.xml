@@ -1,7 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?xml-stylesheet type="text/xsl" href="site/projects-page.xsl"?>
 <projects>
-    <project entry="oscal-styler">
+   <project entry="xproc-visualizer/xproc3-plot.html">
+      <name>XProc Plotter</name>
+      <line>XProc 3.0 simple display</line>
+      <description>
+         <p>This rendition of an <a href="https://xproc.org">XProc 3.0 pipeline</a> may be somewhat easier to read than raw source code, and it breaks XProc step declarations into their parts - imports, prologue, step declarations and steps (subpipelines). So, at least useful as an illustration.</p>
+      </description>
+   </project>
+   <project entry="oscal-styler">
         <name>OSCAL Styler</name>
         <line>XSLT like it's 1999</line>
         <description>
