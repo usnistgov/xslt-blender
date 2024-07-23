@@ -15,3 +15,15 @@ async function filterAndViewXMLFiles(fileSet, whereToView) {
    while ( clearing.firstChild && clearing.removeChild(clearing.firstChild) );
      document.getElementById("loadSTS").files = noFiles;
    }
+
+ const highLight = (plugID) => {
+   document.getElementById(plugID).classList.add("LIT-UP");
+    
+ }
+ 
+ const unHighLight = (plugID) => {
+   document.getElementById(plugID).classList.remove("LIT-UP");
+    
+ }
+ 
+ 
