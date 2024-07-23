@@ -149,7 +149,28 @@
    
    <xsl:template match="*">
       <section id="{ generate-id() }">
-         <xsl:for-each select="key('port-by-namekey',@pipe)">
+         <xsl:variable name="pipe-connector">
+            <xsl:choose>
+               <xsl:when test="substring-after(@pipe,'@') = /*/@name">
+                  <xsl:value-of select="@pipe"/>
+               </xsl:when>
+               <xsl:when test="@pipe">
+                  <xsl:text>@</xsl:text>
+                  <xsl:value-of select="substring-after(@pipe,'@')"/>
+               </xsl:when>
+               <xsl:when test="p:pipe[@step = /*/@name]">
+                  <xsl:value-of select="p:pipe/@pipe"/>
+                  <xsl:text>@</xsl:text>
+                  <xsl:value-of select="p:pipe/@step"/>
+               </xsl:when>
+               <xsl:when test="p:pipe">
+                  <xsl:text>@</xsl:text>
+                  <xsl:value-of select="p:pipe/@step"/>
+               </xsl:when>
+               <xsl:otherwise>-</xsl:otherwise>
+            </xsl:choose>
+         </xsl:variable>
+         <xsl:for-each select="key('port-by-namekey',$pipe-connector)">
             <xsl:attribute name="onmouseenter">
                <xsl:text>highLight('</xsl:text>
                <xsl:value-of select="generate-id()"/>
@@ -167,6 +188,8 @@
    </xsl:template>
    
    <xsl:key name="port-by-namekey" match="*[@port]" use="concat(@port, '@', parent::*/@name)"/>
+   
+   <xsl:key name="port-by-namekey" match="*[@name]" use="concat('@', @name)"/>
    
    <xsl:template match="*[count(@*[not((name() = 'name') or (name() = 'port')) or (name() = 'pipe')]) > 0]" mode="label-step">
          <p class="el { local-name() }">
