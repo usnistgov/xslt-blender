@@ -5,7 +5,8 @@
       <name>XProc Plotter</name>
       <line>XProc 3.0 simple display</line>
       <description>
-         <p>This rendition of an <a href="https://xproc.org">XProc 3.0 pipeline</a> may be somewhat easier to read than raw source code, and it breaks XProc step declarations into their parts - imports, prologue, step declarations and steps (subpipelines). So, at least useful as an illustration.</p>
+         <p>This rendition of an <a href="https://xproc.org">XProc 3.0 pipeline</a>  breaks XProc step declarations into their parts - imports, prologue, step declarations and subpipelines (step sequences).</p>
+         <p>HTML results could be enhanced with some smart CSS and interactivity - let us know what ideas come up (flexboxes?). The XSLT could also be integrated into other pipelines.</p>
       </description>
    </project>
    <project entry="oscal-styler">
