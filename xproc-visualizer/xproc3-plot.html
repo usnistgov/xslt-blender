@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+
+<head>
+  <title>XProc 3.0 Plot</title>
+  <meta charset="utf-8" />
+  <style type="text/css">
+
+  </style>
+  <link rel="stylesheet" href="../site/nist-boilerplate.css" type="text/css" />
+  <link rel="stylesheet" href="../site/nist-combined.css"/>
+  <!--<link rel="stylesheet" href="sts-html.css" type="text/css" />-->
+  <style type="text/css">
+     
+.project-footer { margin-top: 1em }
+
+p { margin: 0.6em 0em; max-width: 54em; line-height: 1.62 }
+
+
+.project-footer p { max-width: inherit}
+
+h1, h2, h3, h4, h5, h6, summary, .reflect, *:before { font-family: 'Source Sans Pro', 'Helvetica Neue', Helvetica, Roboto, Arial, sans-serif; }
+
+aside > *:last-child { margin-bottom: 0em }
+
+  </style>
+   
+  <script type="text/javascript" src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+  <!-- Remove the nist-header-footer.js script to drop the NIST header and footer  -->
+  <script src="https://pages.nist.gov/nist-header-footer/js/nist-header-footer.js" type="text/javascript" defer="defer"></script>
+  
+  <!-- Google analytics https://github.com/usnistgov/pages-root/wiki/Adding-NIST-required-branding-and-features-to-your-site   -->
+  
+  <!--<script async="async" type="text/javascript" id="_fed_an_ua_tag" src="https://dap.digitalgov.gov/Universal-Federated-Analytics-Min.js?agency=NIST%26subagency=github%26pua=UA-66610693-1%26yt=true%26exts=ppsx,pps,f90,sch,rtf,wrl,txz,m1v,xlsm,msi,xsd,f,tif,eps,mpg,xml,pl,xlt,c">
+</script>-->
+   
+  <script type="module">
+      import { fileXMLContent, spliceIntoPage, xslt1ResultDocument, xsltEngineForHREF } from "../lib/xslt-blender.js";
+
+      // todo: replace with something a little less cumbersome?
+      window.xslt1ResultDocument = xslt1ResultDocument;
+      window.fileXMLContent = fileXMLContent;
+      window.spliceIntoPage = spliceIntoPage;
+      // window.parseAndTransformXMLLiteral = parseAndTransformXMLLiteral;
+      window.xsltEngineForHREF = xsltEngineForHREF;
+
+  </script>
+   
+  <script type="text/javascript" src="viewer.js"> </script>
+  <script type="text/javascript">
+
+ 
+    async function viewAndShowXML(xmlDocument, targetID) {
+      // move this up outside the function call for memoability?
+      const viewerXSLTEngine = await xsltEngineForHREF('xproc-plot-html.xsl');
+      const resultDocument = xslt1ResultDocument(xmlDocument, viewerXSLTEngine); // a promise
+      return spliceIntoPage(targetID, resultDocument, true);
+    }
+  </script>
+  
+  <script type="text/javascript" src="https://pages.nist.gov/leaveNotice/js/jquery.leaveNotice-nist.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="https://pages.nist.gov/leaveNotice/css/jquery.leaveNotice.css" />
+  <!-- load MathJax -->
+  <!-- https://docs.mathjax.org/en/latest/web/configuration.html#configuring-and-loading-in-one-script -->
+  <!--<script src="load-mathjax.js" async> <!-\- and close -\-> </script>--> 
+</head>
+
+<body>
+  <!-- NIST header goes here -->
+  <div style="display: none" class="teaser">A preview in your browser of your NISO STS data</div>
+  <details id="sec-notice">
+    <summary>Is <a href="..">this site</a> a preview, mockup or spoof? - <i><b>How you can know</b></i></summary>
+    <p><span>The real site domain ends in <code>nist.gov</code></span>&#xA0;<span>The page address shows <code>https://</code></span></p>
+  </details>
+  <main class="draft">
+    <h1>XProc 3.0 Plotter</h1>
+    <p>A simple preview of an XProc 3.0 pipeline step declaration or library.</p>
+    <p>Load your XProc 3.0 below: the application does its best to process and display it. All processing is in your browser.</p>
+    <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board.</p>
+     <p>Users of XProc 3.0 may also be interesting in a related project, <a class="external" href="">OSCAL XProc 3.0</a>,.</p>
+    <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
+       onchange="filterAndViewXMLFiles(this.files,'XProcPlot')" />
+     <button style="float:right" onclick="clearView('XProcPlot')">Clear page</button>
+    <div id="XProcPlot"><!-- --></div>
+    <details class="boxed arrayed">
+      <summary>About XProc 3.0</summary>
+       <p><a class="external" href="https://xproc.org">XProc 3.0</a> is the latest generation of W3C XProc XML pipelining technology.</p>
+      <p>This viewer application is maintained on <a class="external" href="https://github.com/usnistgov/xslt-blender/tree/main/sts-viewer">Github, with documentation</a>.</p>
+   </details>
+    <details class="boxed arrayed">
+    <summary>Is this site a demonstration, a service or both?</summary>
+      <p>This application is provided by NIST as an educational demonstration of how a service can be created, not as a fully operational service.</p>
+      <p>No guarantees or warranties are provided by NIST that the demo service will be maintained, updated, upgraded, or always available. While NIST intends to keep the demonstration running (with <a class="external" href="https://github.com/usnistgov/xslt-blender">project source code</a> available), NIST also reserves the right to stop supporting it, or to remove or rework it, without any prior warning.</p>
+      <p>The best way to ensure access to the application over the long term is to replicate it. See the <a class="external" href="https://github.com/usnistgov/xslt-blender/wiki/Maintenance-and-Support">project wiki page on Maintenance and Support</a> for more details on how these projects are designed to be standards-based, accessible, portable, adaptable over time and unhindered by practical impediments to wide deployment, either technical or legal.</p></details>
+  </main>
+  <div class="project-footer">
+     <p><i>XProc 3.0 Plotter</i> and <a href="index.html">XProc Visualizer</a> are <a  href="https://pages.nist.gov/xslt-blender">XSLT Blender</a> projects using XSLT 1.0 capabilities built into your browser, with no external dependencies.</p>
+    <p>Disclaimers apply; no warranty should or can be assumed.</p>
+    <p>See the code and contact the developers in the <a class="external" 
+      href="https://github.com/usnistgov/xslt-blender">project repository</a>.</p>
+  </div>
+  <!-- NIST footer goes here -->
+  <script src="../site/nist-bounce.js"> </script>
+  
+  </body>
+</html>
