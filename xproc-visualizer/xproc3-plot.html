@@ -16,6 +16,7 @@
 
 p { margin: 0.6em 0em; max-width: 54em; line-height: 1.62 }
 
+details.boxed[open] { background-color: white }
 
 .project-footer p { max-width: inherit}
 
@@ -77,7 +78,7 @@ aside > *:last-child { margin-bottom: 0em }
     <p>A simple preview of an XProc 3.0 pipeline step declaration or library.</p>
     <p>Load your XProc 3.0 below: the application does its best to process and display it. All processing is in your browser.</p>
     <p>Feedback on this demonstration is welcome on the public <a class="external" href="https://github.com/usnistgov/xslt-blender/issues">Github Issues</a> board.</p>
-     <p>Users of XProc 3.0 may also be interesting in a related project, <a class="external" href="">OSCAL XProc 3.0</a>,.</p>
+     <p>Users of XProc 3.0 may also be interested in the project <a class="external" href="https://github.com/usnistgov/oscal-xproc3">OSCAL XProc 3.0</a>.</p>
     <input type="file" id="loadSTS" name="loadSTS" title="Load STS XML"
        onchange="filterAndViewXMLFiles(this.files,'XProcPlot')" />
      <button style="float:right" onclick="clearView('XProcPlot')">Clear page</button>
